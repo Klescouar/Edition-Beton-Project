@@ -1,10 +1,10 @@
-import { Articles, ChatActionTypes } from "types/articles";
+import { Articles, ArticleActionTypes } from "types/articles";
 
 interface State {
   articles: Articles;
 }
 
-export default (state: State, action: ChatActionTypes) => {
+export default (state: State, action: ArticleActionTypes) => {
   switch (action.type) {
     case "ADD_ARTICLE_SUCCESS":
       return {

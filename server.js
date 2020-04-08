@@ -1,36 +1,47 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+require("dotenv").config();
 
-//On définit notre objet express nommé app
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const passport = require("passport");
+
+// Setting up port
+const connUri = process.env.MONGO_LOCAL_CONN_URL;
+let PORT = process.env.PORT || 4444;
+
+//=== 1 - CREATE APP
+// Creating express app and configuring middleware needed for authentication
 const app = express();
 
-//Body Parser
-const urlencodedParser = bodyParser.urlencoded({
-  extended: true,
-});
-app.use(urlencodedParser);
-app.use(bodyParser.json());
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-//Définition des CORS
-app.use(function (req, res, next) {
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
+//=== 2 - SET UP DATABASE
+//Configure mongoose's promise to global promise
+mongoose.promise = global.Promise;
+mongoose.connect(connUri, { useNewUrlParser: true, useCreateIndex: true });
+
+const connection = mongoose.connection;
+connection.once("open", () =>
+  console.log("MongoDB --  database connection established successfully!")
+);
+connection.on("error", (err) => {
+  console.log(
+    "MongoDB connection error. Please make sure MongoDB is running. " + err
   );
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
+  process.exit();
 });
 
-//On définit la route Hello
-app.get("/hello", function (req, res) {
-  res.json("Hello World");
-});
+//=== 3 - INITIALIZE PASSPORT MIDDLEWARE
+app.use(passport.initialize());
+require("./middlewares/jwt")(passport);
 
-//Définition et mise en place du port d'écoute
-const port = 8800;
-app.listen(port, () => console.log(`Listening on port ${port}`));
+//=== 4 - CONFIGURE ROUTES
+//Configure Route
+require("./routes/index")(app);
+
+//=== 5 - START SERVER
+app.listen(PORT, () =>
+  console.log("Server running on http://localhost:" + PORT + "/")
+);

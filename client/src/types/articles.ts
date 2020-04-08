@@ -1,7 +1,3 @@
-export const ADD_ARTICLE_SUCCESS = "ADD_ARTICLE_SUCCESS";
-export const ADD_ARTICLE_FAILURE = "ADD_ARTICLE_FAILURE";
-export const REMOVE_ARTICLE_SUCCESS = "REMOVE_ARTICLE_SUCCESS";
-
 export interface Article {
   id: string;
   image: string;
@@ -10,21 +6,22 @@ export interface Article {
 
 export type Articles = Article[];
 
-interface AddArticleSuccessAction {
-  type: typeof ADD_ARTICLE_SUCCESS;
+export interface AddArticleSuccessAction {
+  type: string;
   payload: Article;
 }
 
 interface AddArticleFailureAction {
-  type: typeof ADD_ARTICLE_FAILURE;
-}
-
-interface RemoveArticleAction {
-  type: typeof REMOVE_ARTICLE_SUCCESS;
+  type: string;
   payload: Article;
 }
 
-export type ChatActionTypes =
+interface RemoveArticleAction {
+  type: string;
+  payload: Article;
+}
+
+export type ArticleActionTypes =
   | AddArticleSuccessAction
   | AddArticleFailureAction
   | RemoveArticleAction;

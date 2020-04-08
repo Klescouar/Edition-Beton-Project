@@ -1,16 +1,25 @@
 {
   "name": "edition-beton",
   "version": "1.0.0",
+  "private": true,
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "create-react-app": "^1.5.2",
-    "express": "^4.16.2",
-    "jwt-simple": "^0.5.1",
-    "mongoose": "^5.0.7",
-    "password-hash": "^1.2.2"
+    "@sendgrid/mail": "^7.0.0",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.21.0",
+    "cors": "^2.8.5",
+    "datauri": "^2.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.7",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
   }
 }

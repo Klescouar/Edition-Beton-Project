@@ -41,6 +41,14 @@ require("./middlewares/jwt")(passport);
 //Configure Route
 require("./routes/index")(app);
 
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, "client/build")));
+
+// Anything that doesn't match the above, send back index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
+
 //=== 5 - START SERVER
 app.listen(PORT, () =>
   console.log("Server running on http://localhost:" + PORT + "/")

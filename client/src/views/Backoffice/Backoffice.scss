@@ -1,2 +1,7 @@
 .Backoffice {
+  display: flex;
+
+  &__Content {
+    width: 100%;
+  }
 }

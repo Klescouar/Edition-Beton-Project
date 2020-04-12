@@ -1,0 +1,31 @@
+.Nav {
+  width: 18rem;
+  height: 100vh;
+  background-color: #29313d;
+  display: flex;
+  flex-direction: column;
+
+  &__Head {
+    display: flex;
+    justify-content: center;
+
+    &__Image {
+      height: 5rem;
+      width: 5rem;
+      border-radius: 50%;
+      margin: 1.5rem 0;
+    }
+  }
+
+  &__Link {
+    padding: 2rem;
+    color: white;
+    text-decoration: none;
+    border-top: 1px solid #404c5f;
+
+    &:hover,
+    &--active {
+      background-color: #1c222b;
+    }
+  }
+}

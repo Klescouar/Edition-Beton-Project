@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Authentication />} />
           <Route path="register" element={<Register />} />
-          <ProtectedRoute path="/backoffice" Component={Backoffice} />
+          <ProtectedRoute path="backoffice/*" Component={Backoffice} />
         </Routes>
       </BrowserRouter>
     </div>

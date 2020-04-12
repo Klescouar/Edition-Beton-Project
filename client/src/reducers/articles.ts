@@ -1,10 +1,17 @@
-import { Articles, ArticleActionTypes } from "types/articles";
+import { ArticleActionTypes, Articles } from "types/articles";
 
-interface State {
+type ArticlesState = {
   articles: Articles;
-}
+};
 
-export default (state: State, action: ArticleActionTypes) => {
+const initialState = {
+  articles: [],
+};
+
+export default (
+  state: ArticlesState = initialState,
+  action: ArticleActionTypes
+) => {
   switch (action.type) {
     case "ADD_ARTICLE_SUCCESS":
       return {

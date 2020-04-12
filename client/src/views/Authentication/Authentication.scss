@@ -9,7 +9,7 @@
   }
 }
 
-.Login {
+.Authentication {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -123,6 +123,11 @@
       &:hover {
         background-color: rgb(241, 241, 241);
       }
+    }
+
+    &__Error {
+      max-width: 17rem;
+      color: rgba(255, 0, 0, 0.555);
     }
   }
 }

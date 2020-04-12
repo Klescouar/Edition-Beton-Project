@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const passport = require("passport");
+const user = require("./routes/user"); //new addition
 const path = require("path");
 
 // Setting up port
@@ -21,7 +21,10 @@ app.use(express.urlencoded({ extended: false }));
 //=== 2 - SET UP DATABASE
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
-mongoose.connect(connUri, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(connUri, {
+  useNewUrlParser: true,
+  autoIndex: true,
+});
 
 const connection = mongoose.connection;
 connection.once("open", () =>
@@ -34,13 +37,7 @@ connection.on("error", (err) => {
   process.exit();
 });
 
-//=== 3 - INITIALIZE PASSPORT MIDDLEWARE
-app.use(passport.initialize());
-require("./middlewares/jwt")(passport);
-
-//=== 4 - CONFIGURE ROUTES
-//Configure Route
-require("./routes/index")(app);
+app.use("/user", user);
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "client/build")));

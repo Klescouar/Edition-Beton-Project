@@ -1,7 +1,11 @@
 .Backoffice {
   display: flex;
+  justify-content: flex-end;
 
   &__Content {
-    width: 100%;
+    width: calc(100% - 18rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

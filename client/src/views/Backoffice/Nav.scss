@@ -1,4 +1,8 @@
 .Nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 18rem;
   height: 100vh;
   background-color: #29313d;
@@ -18,6 +22,7 @@
   }
 
   &__Link {
+    cursor: pointer;
     padding: 2rem;
     color: white;
     text-decoration: none;

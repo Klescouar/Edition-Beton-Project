@@ -16,16 +16,16 @@ export const Nav = () => {
       <NavLink
         activeClassName="Nav__Link--active"
         className="Nav__Link"
-        to="/backoffice/article"
+        to="/backoffice"
       >
-        Ajouter un article
+        Liste des articles
       </NavLink>
       <NavLink
         activeClassName="Nav__Link--active"
         className="Nav__Link"
-        to="/backoffice"
+        to="/backoffice/article"
       >
-        Liste des articles
+        Ajouter un article
       </NavLink>
     </div>
   );

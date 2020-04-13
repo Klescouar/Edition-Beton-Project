@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const user = require("./routes/user"); //new addition
+const articles = require("./routes/articles"); //new addition
 const path = require("path");
 
 // Setting up port
@@ -38,6 +39,8 @@ connection.on("error", (err) => {
 });
 
 app.use("/user", user);
+app.use(articles);
+app.use("/medias", express.static(__dirname + "/medias"));
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "client/build")));

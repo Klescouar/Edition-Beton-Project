@@ -1,27 +1,47 @@
+export interface preSavedArticle {
+  url: string;
+  title: string;
+}
+
 export interface Article {
-  id: string;
-  image: string;
+  _id: string;
+  url: string;
   title: string;
 }
 
 export type Articles = Article[];
 
-export interface AddArticleSuccessAction {
-  type: string;
-  payload: Article;
+interface AddArticleSuccessAction {
+  type: "ADD_ARTICLE_SUCCESS";
+  payload: Articles;
 }
 
 interface AddArticleFailureAction {
-  type: string;
-  payload: Article;
+  type: "ADD_ARTICLE_FAILURE";
 }
 
-interface RemoveArticleAction {
-  type: string;
-  payload: Article;
+interface RemoveArticleSuccessAction {
+  type: "REMOVE_ARTICLE_SUCCESS";
+  payload: Articles;
+}
+
+interface RemoveArticleFailureAction {
+  type: "REMOVE_ARTICLE_FAILURE";
+}
+
+interface GetArticlesSuccessAction {
+  type: "GET_ARTICLES_SUCCESS";
+  payload: Articles;
+}
+
+interface GetArticlesFailureAction {
+  type: "GET_ARTICLES_FAILURE";
 }
 
 export type ArticleActionTypes =
   | AddArticleSuccessAction
   | AddArticleFailureAction
-  | RemoveArticleAction;
+  | RemoveArticleSuccessAction
+  | RemoveArticleFailureAction
+  | GetArticlesSuccessAction
+  | GetArticlesFailureAction;

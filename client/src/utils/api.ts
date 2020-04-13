@@ -34,6 +34,24 @@ const API = {
       }
     });
   },
+
+  delete(url: string, payload: Object, token: string = "") {
+    return fetch(url, {
+      method: "DELETE",
+      mode: "cors",
+      credentials: "include", // necessary to set commits via fetch
+      headers: this.getHeaders("POST", token),
+      body: JSON.stringify(payload),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return res.json().then((error) => {
+          throw error;
+        });
+      }
+    });
+  },
   getHeaders(method: string, token: string): Headers {
     const headers = new Headers();
 

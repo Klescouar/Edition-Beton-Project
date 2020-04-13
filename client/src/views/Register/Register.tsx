@@ -14,9 +14,7 @@ export const Register = () => {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  const handleClick = () => {
-    dispatch(register(values));
-  };
+  const handleClick = () => dispatch(register(values));
 
   return (
     <div className="Register">

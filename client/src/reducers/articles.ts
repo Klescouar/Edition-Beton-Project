@@ -1,12 +1,8 @@
 import { ArticleActionTypes, Articles } from "types/articles";
 
-type ArticlesState = {
-  articles: Articles;
-};
+type ArticlesState = Articles;
 
-const initialState = {
-  articles: [],
-};
+const initialState: ArticlesState = [];
 
 export default (
   state: ArticlesState = initialState,
@@ -14,9 +10,11 @@ export default (
 ) => {
   switch (action.type) {
     case "ADD_ARTICLE_SUCCESS":
-      return {
-        articles: [...state.articles, action.payload],
-      };
+    case "GET_ARTICLES_SUCCESS":
+    case "REMOVE_ARTICLE_SUCCESS":
+      return action.payload;
+    case "REMOVE_ARTICLE_FAILURE":
+    case "GET_ARTICLES_FAILURE":
     case "ADD_ARTICLE_FAILURE":
     default:
       return state;

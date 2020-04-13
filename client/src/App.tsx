@@ -9,6 +9,7 @@ import Authentication from "views/Authentication/Authentication";
 import Register from "views/Register/Register";
 import Backoffice from "views/Backoffice/Backoffice";
 import { autoLogin } from "actions/authentication";
+import { getArticles } from "actions/articles";
 import "./App.scss";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   useEffect(() => {
     const token = Cookies.get("token");
     dispatch(autoLogin(token));
+    dispatch(getArticles());
   });
 
   return (

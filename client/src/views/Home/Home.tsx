@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 // @ts-ignore
 import StackGrid from "react-stack-grid";
@@ -11,7 +11,19 @@ import "./Home.scss";
 export const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const articles = useSelector(getArticles);
+
+  const listenToScroll = () => setScrollPosition(window.scrollY);
+
+  useEffect(() => {
+    window.addEventListener("scroll", listenToScroll);
+
+    return () => {
+      window.removeEventListener("scroll", listenToScroll);
+    };
+  });
+
   const handleClick = (index: number) => {
     setSelectedImageIndex(index);
     setIsOpen(!isOpen);
@@ -19,7 +31,7 @@ export const Home = () => {
 
   return (
     <div className="Home">
-      <Menu />
+      <Menu isMinified={scrollPosition > 0} />
       <div className="Home__Content">
         <StackGrid
           monitorImagesLoaded={true}

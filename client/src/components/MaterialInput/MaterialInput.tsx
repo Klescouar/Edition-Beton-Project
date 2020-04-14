@@ -7,9 +7,16 @@ type Props = {
   value: string;
   label: string;
   name: string;
+  type?: string;
 };
 
-const MaterialInput = ({ handleChange, value, label, name }: Props) => {
+const MaterialInput = ({
+  handleChange,
+  value,
+  label,
+  name,
+  type = "text",
+}: Props) => {
   return (
     <div className="MaterialInput">
       <input
@@ -18,7 +25,7 @@ const MaterialInput = ({ handleChange, value, label, name }: Props) => {
         value={value}
         className="MaterialInput__Input"
         placeholder=" "
-        type="text"
+        type={type}
       />
       <span className="MaterialInput__Highlight"></span>
       <span className="MaterialInput__Bar"></span>

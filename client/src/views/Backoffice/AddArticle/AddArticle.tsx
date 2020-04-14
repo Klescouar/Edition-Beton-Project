@@ -13,27 +13,7 @@ const AddArticle = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [article, setArticle] = useState({ title: "", url: "" });
-  const [uploadError, setUploadError] = useState("");
   const [formError, setFormError] = useState("");
-
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files || [];
-    const form = new FormData();
-    form.append("files", files[0], files[0].name);
-
-    try {
-      let request = await fetch("/upload", {
-        method: "post",
-        body: form,
-      });
-      const response = await request.json();
-      if (response.status === 400) throw new Error(response.message);
-      setArticle({ ...article, url: response.files });
-      setUploadError("");
-    } catch (error) {
-      setUploadError(error.message);
-    }
-  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = event.target;
@@ -59,14 +39,7 @@ const AddArticle = () => {
           value={article.title}
           label="Titre"
         />
-        <ImageUploader
-          onChange={handleUpload}
-          article={article}
-          setArticle={setArticle}
-        />
-        {uploadError && (
-          <p className="AddArticle__Content__Error">{uploadError}</p>
-        )}
+        <ImageUploader article={article} setArticle={setArticle} />
         <MaterialButton handleClick={handleClick} text="Ajouter" />
         {formError && <p className="AddArticle__Content__Error">{formError}</p>}
       </div>

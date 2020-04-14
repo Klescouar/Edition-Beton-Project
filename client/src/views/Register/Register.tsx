@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "actions/register";
 import { getRegisterError } from "selectors/register";
+import MaterialInput from "components/MaterialInput/MaterialInput";
+
 import "./Register.scss";
 
 export const Register = () => {
@@ -19,32 +21,19 @@ export const Register = () => {
   return (
     <div className="Register">
       <div className="Register__Form">
-        <div className="Register__Form__Box">
-          <input
-            onChange={handleChange}
-            name="username"
-            value={values.username}
-            className="Register__Form__Box__Input"
-            placeholder=" "
-            type="text"
-          />
-          <span className="Register__Form__Box__Highlight"></span>
-          <span className="Register__Form__Box__Bar"></span>
-          <label>Identifiant</label>
-        </div>
-        <div className="Register__Form__Box">
-          <input
-            onChange={handleChange}
-            name="password"
-            value={values.password}
-            className="Register__Form__Box__Input"
-            placeholder=" "
-            type="password"
-          />
-          <span className="Register__Form__Box__Highlight"></span>
-          <span className="Register__Form__Box__Bar"></span>
-          <label>Mot de passe</label>
-        </div>
+        <MaterialInput
+          name="username"
+          handleChange={handleChange}
+          value={values.username}
+          label="Identifiant"
+        />
+        <MaterialInput
+          name="password"
+          handleChange={handleChange}
+          value={values.password}
+          type="password"
+          label="Mot de passe"
+        />
         {registerError && (
           <p className="Authentication__Form__Error">{registerError}</p>
         )}

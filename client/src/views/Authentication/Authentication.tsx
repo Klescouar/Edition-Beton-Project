@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // @ts-ignore
 import { useNavigate } from "react-router-dom";
 import { login } from "actions/authentication";
+import MaterialInput from "components/MaterialInput/MaterialInput";
 import {
   getAuthenticationError,
   getAuthenticationStatus,
@@ -30,32 +31,19 @@ export const Authentication = () => {
   return (
     <div className="Authentication">
       <div className="Authentication__Form">
-        <div className="Authentication__Form__Box">
-          <input
-            onChange={handleChange}
-            name="username"
-            value={values.username}
-            className="Authentication__Form__Box__Input"
-            placeholder=" "
-            type="text"
-          />
-          <span className="Authentication__Form__Box__Highlight"></span>
-          <span className="Authentication__Form__Box__Bar"></span>
-          <label>Identifiant</label>
-        </div>
-        <div className="Authentication__Form__Box">
-          <input
-            onChange={handleChange}
-            name="password"
-            value={values.password}
-            className="Authentication__Form__Box__Input"
-            placeholder=" "
-            type="password"
-          />
-          <span className="Authentication__Form__Box__Highlight"></span>
-          <span className="Authentication__Form__Box__Bar"></span>
-          <label>Mot de passe</label>
-        </div>
+        <MaterialInput
+          name="username"
+          handleChange={handleChange}
+          value={values.username}
+          label="Identifiant"
+        />
+        <MaterialInput
+          name="password"
+          handleChange={handleChange}
+          value={values.password}
+          type="password"
+          label="Mot de passe"
+        />
         {authenticationError && (
           <p className="Authentication__Form__Error">{authenticationError}</p>
         )}

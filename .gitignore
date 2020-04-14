@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-/medias
 /client/node_modules
 /client/build
 /.pnp

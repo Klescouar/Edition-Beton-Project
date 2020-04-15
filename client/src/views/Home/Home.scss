@@ -1,11 +1,10 @@
 .Home {
   min-height: 100vh;
-  padding-top: 30rem;
+  padding: 4rem 0 3rem 20%;
 
   &__Content {
-    width: 80%;
     margin: auto;
-    padding: 3rem 0;
+    padding-right: 3rem;
 
     &__Article {
       display: block;

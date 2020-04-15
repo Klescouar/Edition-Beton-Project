@@ -3,14 +3,14 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Articles from "views/Backoffice/Articles/Articles";
 import AddArticle from "views/Backoffice/AddArticle/AddArticle";
-import Nav from "views/Backoffice/Nav";
+import BackofficeNav from "components/BackofficeNav/BackofficeNav";
 
 import "./Backoffice.scss";
 
 export const Backoffice = () => {
   return (
     <div className="Backoffice">
-      <Nav />
+      <BackofficeNav />
       <div className="Backoffice__Content">
         <Routes>
           <Route path="/" element={<Articles />} />

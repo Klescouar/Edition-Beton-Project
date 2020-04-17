@@ -6,13 +6,13 @@ import "./BackofficeNav.scss";
 export const BackofficeNav = () => {
   return (
     <div className="BackofficeNav">
-      <div className="BackofficeNav__Head">
+      <NavLink to="/" className="BackofficeNav__Head">
         <img
           className="BackofficeNav__Head__Image"
           src={require("../../assets/images/oeil.jpg")}
           alt=""
         />
-      </div>
+      </NavLink>
       <NavLink
         activeClassName="BackofficeNav__Link--active"
         className="BackofficeNav__Link"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 // @ts-ignore
 import StackGrid from "react-stack-grid";
@@ -11,7 +11,25 @@ import "./Home.scss";
 export const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [numberOfItemDisplayed, setNumberOfItemDisplayed] = useState(10);
   const articles = useSelector(getArticles);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
+      articles.length
+    ) {
+      setNumberOfItemDisplayed(numberOfItemDisplayed + 10);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   const handleClick = (index: number) => {
     setSelectedImageIndex(index);
@@ -29,19 +47,23 @@ export const Home = () => {
           duration={0}
           columnWidth={"30%"}
         >
-          {articles.map((article, index) => (
-            <button
-              className="Home__Content__Article"
-              key={article._id}
-              onClick={() => handleClick(index)}
-            >
-              <img
-                className="Home__Content__Article__Image"
-                src={`../../../../medias/${article.url}`}
-                alt=""
-              />
-            </button>
-          ))}
+          {articles.map((article, index) => {
+            return (
+              index <= numberOfItemDisplayed && (
+                <button
+                  className="Home__Content__Article"
+                  key={article._id}
+                  onClick={() => handleClick(index)}
+                >
+                  <img
+                    className="Home__Content__Article__Image"
+                    src={`../../../../medias/${article.url}`}
+                    alt=""
+                  />
+                </button>
+              )
+            );
+          })}
         </StackGrid>
       </div>
       {isOpen && (

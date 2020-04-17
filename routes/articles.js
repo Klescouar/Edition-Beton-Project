@@ -125,6 +125,8 @@ router.post("/article", async (req, res) => {
     const article = new Article({
       url: req.body.url,
       title: req.body.title,
+      categories: req.body.categories,
+      creationDate: new Date(),
     });
 
     await article.save();
@@ -162,6 +164,35 @@ router.delete("/article", async (req, res) => {
     await Article.findOneAndRemove({
       _id: req.body.id,
     });
+    const allArticles = await Article.find({});
+    res.send(allArticles);
+  } catch (e) {
+    console.log(e);
+    res.send({ message: "Erreur" });
+  }
+});
+
+/**
+ * @method - PUT
+ * @description - Update an article
+ * @param - /article
+ */
+
+router.put("/article", async (req, res) => {
+  try {
+    const article = new Article({
+      _id: req.body._id,
+      url: req.body.url,
+      title: req.body.title,
+      categories: req.body.categories,
+    });
+    await Article.findOneAndUpdate(
+      {
+        _id: req.body._id,
+      },
+      article,
+      { upsert: true, useFindAndModify: false }
+    );
     const allArticles = await Article.find({});
     res.send(allArticles);
   } catch (e) {

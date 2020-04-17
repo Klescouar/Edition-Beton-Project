@@ -1,4 +1,4 @@
-import { preSavedArticle } from "types/articles";
+import { PreSavedArticle } from "types/articles";
 
 import React, { useState } from "react";
 import { ReactComponent as Upload } from "assets/icons/upload.svg";
@@ -7,7 +7,7 @@ import { ReactComponent as Close } from "assets/icons/close.svg";
 import "./ImageUploader.scss";
 
 type Props = {
-  article: preSavedArticle;
+  article: PreSavedArticle;
   setArticle: Function;
 };
 

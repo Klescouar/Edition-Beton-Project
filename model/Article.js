@@ -9,6 +9,14 @@ const ArticleSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  categories: {
+    type: Array,
+    required: true,
+  },
+  creationDate: {
+    type: Date,
+    required: true,
+  },
 });
 
 // export model article with ArticleSchema

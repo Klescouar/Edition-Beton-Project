@@ -3,8 +3,9 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const user = require("./routes/user"); //new addition
-const articles = require("./routes/articles"); //new addition
+const user = require("./routes/user");
+const articles = require("./routes/articles");
+const categories = require("./routes/categories");
 const path = require("path");
 
 // Setting up port
@@ -40,6 +41,7 @@ connection.on("error", (err) => {
 
 app.use("/user", user);
 app.use(articles);
+app.use(categories);
 app.use("/medias", express.static(__dirname + "/medias"));
 
 // Serve static files from the React frontend app

@@ -27,6 +27,13 @@ export const BackofficeNav = () => {
       >
         Ajouter un article
       </NavLink>
+      <NavLink
+        activeClassName="BackofficeNav__Link--active"
+        className="BackofficeNav__Link"
+        to="/backoffice/categories"
+      >
+        Categories
+      </NavLink>
     </div>
   );
 };

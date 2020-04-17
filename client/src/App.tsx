@@ -10,6 +10,7 @@ import Register from "views/Register/Register";
 import Backoffice from "views/Backoffice/Backoffice";
 import { autoLogin } from "actions/authentication";
 import { getArticles } from "actions/articles";
+import { getCategories } from "actions/categories";
 import "./App.scss";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     const token = Cookies.get("token");
     dispatch(autoLogin(token));
     dispatch(getArticles());
+    dispatch(getCategories());
   });
 
   return (

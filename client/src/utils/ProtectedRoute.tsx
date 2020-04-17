@@ -22,7 +22,7 @@ const ProtectedRoute = ({ Component, path }: Props) => {
       firstUpdate.current = false;
       return;
     }
-    if (!isLoading && !isAuthenticated) navigate("/");
+    if (!isLoading && !isAuthenticated) navigate("/login");
   });
 
   return <Route path={path} element={<Component />} />;

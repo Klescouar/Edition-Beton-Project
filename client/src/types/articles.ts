@@ -1,12 +1,15 @@
-export interface preSavedArticle {
+export interface PreSavedArticle {
   url: string;
   title: string;
+  categories: string[];
 }
 
 export interface Article {
   _id: string;
   url: string;
   title: string;
+  categories: string[];
+  creationDate: Date;
 }
 
 export type Articles = Article[];
@@ -38,10 +41,21 @@ interface GetArticlesFailureAction {
   type: "GET_ARTICLES_FAILURE";
 }
 
+interface UpdateArticleSuccessAction {
+  type: "UPDATE_ARTICLE_SUCCESS";
+  payload: Articles;
+}
+
+interface UpdateArticleFailureAction {
+  type: "UPDATE_ARTICLE_FAILURE";
+}
+
 export type ArticleActionTypes =
   | AddArticleSuccessAction
   | AddArticleFailureAction
   | RemoveArticleSuccessAction
   | RemoveArticleFailureAction
   | GetArticlesSuccessAction
-  | GetArticlesFailureAction;
+  | GetArticlesFailureAction
+  | UpdateArticleSuccessAction
+  | UpdateArticleFailureAction;

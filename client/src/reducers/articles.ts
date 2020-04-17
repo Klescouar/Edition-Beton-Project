@@ -12,10 +12,12 @@ export default (
     case "ADD_ARTICLE_SUCCESS":
     case "GET_ARTICLES_SUCCESS":
     case "REMOVE_ARTICLE_SUCCESS":
+    case "UPDATE_ARTICLE_SUCCESS":
       return action.payload;
     case "REMOVE_ARTICLE_FAILURE":
     case "GET_ARTICLES_FAILURE":
     case "ADD_ARTICLE_FAILURE":
+    case "UPDATE_ARTICLE_FAILURE":
     default:
       return state;
   }

@@ -1,10 +1,10 @@
-import { preSavedArticle, ArticleActionTypes } from "types/articles";
+import { PreSavedArticle, ArticleActionTypes } from "types/articles";
 import { State } from "types/state";
 import { ThunkAction } from "redux-thunk";
 import API from "utils/api";
 
 export const addArticle = (
-  article: preSavedArticle
+  article: PreSavedArticle
 ): ThunkAction<void, State, unknown, ArticleActionTypes> => async (
   dispatch
 ) => {
@@ -16,6 +16,23 @@ export const addArticle = (
     });
   } catch (error) {
     dispatch({ type: "ADD_ARTICLE_FAILURE" });
+  }
+};
+
+export const updateArticle = (
+  article: PreSavedArticle,
+  id: string
+): ThunkAction<void, State, unknown, ArticleActionTypes> => async (
+  dispatch
+) => {
+  try {
+    const response = await API.put("/article", { ...article, _id: id });
+    dispatch({
+      type: "UPDATE_ARTICLE_SUCCESS",
+      payload: response,
+    });
+  } catch (error) {
+    dispatch({ type: "UPDATE_ARTICLE_FAILURE" });
   }
 };
 

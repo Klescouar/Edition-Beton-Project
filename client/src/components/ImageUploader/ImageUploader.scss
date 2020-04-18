@@ -1,4 +1,5 @@
 @import "utils/variables";
+@import "utils/mixins";
 
 .ImageUploader {
   margin-top: 4rem;
@@ -11,6 +12,11 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @include mobile {
+    height: 10rem;
+    width: 12rem;
+  }
 
   &__Close {
     position: absolute;

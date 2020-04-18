@@ -1,12 +1,26 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { ReactComponent as CloseIcon } from "assets/icons/white-cross-out.svg";
 
 import "./BackofficeNav.scss";
 
-export const BackofficeNav = () => {
+type Props = {
+  isMobile: boolean;
+  setMenuIsOpen: Function;
+};
+
+export const BackofficeNav = ({ isMobile, setMenuIsOpen }: Props) => {
+  const handleClick = () => {
+    setMenuIsOpen(false);
+  };
   return (
     <div className="BackofficeNav">
-      <NavLink to="/" className="BackofficeNav__Head">
+      {isMobile && (
+        <button className="BackofficeNav__Close" onClick={handleClick}>
+          <CloseIcon />
+        </button>
+      )}
+      <NavLink onClick={handleClick} to="/" className="BackofficeNav__Head">
         <img
           className="BackofficeNav__Head__Image"
           src={require("../../assets/images/oeil.jpg")}
@@ -14,6 +28,7 @@ export const BackofficeNav = () => {
         />
       </NavLink>
       <NavLink
+        onClick={handleClick}
         activeClassName="BackofficeNav__Link--active"
         className="BackofficeNav__Link"
         to="/backoffice"
@@ -21,6 +36,7 @@ export const BackofficeNav = () => {
         Liste des articles
       </NavLink>
       <NavLink
+        onClick={handleClick}
         activeClassName="BackofficeNav__Link--active"
         className="BackofficeNav__Link"
         to="/backoffice/article"
@@ -28,6 +44,7 @@ export const BackofficeNav = () => {
         Ajouter un article
       </NavLink>
       <NavLink
+        onClick={handleClick}
         activeClassName="BackofficeNav__Link--active"
         className="BackofficeNav__Link"
         to="/backoffice/categories"

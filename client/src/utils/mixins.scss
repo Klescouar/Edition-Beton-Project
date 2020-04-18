@@ -11,7 +11,13 @@
 }
 
 @mixin desktop {
-  @media screen and (min-width: 1025px) {
+  @media screen and (min-width: 1025px) and (max-width: 1400px) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media screen and (min-width: 1400px) {
     @content;
   }
 }

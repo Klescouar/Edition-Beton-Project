@@ -1,3 +1,5 @@
+@import "utils/mixins";
+
 .HandleCategories {
   display: flex;
   flex-direction: column;
@@ -6,9 +8,17 @@
   padding: 3rem;
   min-height: 80vh;
 
+  @include mobile {
+    padding: 1rem;
+  }
+
   &__List {
     display: flex;
     flex-wrap: wrap;
+
+    @include mobile {
+      justify-content: center;
+    }
 
     &__Item {
       position: relative;
@@ -30,10 +40,13 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    width: min-content;
     margin-top: 3rem;
     padding: 0 3rem 2rem 3rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     border-radius: 0.4rem;
+
+    @include mobile {
+      width: auto;
+    }
   }
 }

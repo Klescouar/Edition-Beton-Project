@@ -1,9 +1,14 @@
 @import "utils/variables";
+@import "utils/mixins";
 
 /* Fonts */
 @font-face {
   font-family: "Roboto";
   src: url("./assets/fonts/Roboto-Light.ttf");
+}
+
+.App {
+  overflow: hidden;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -357,6 +362,10 @@ template {
   display: none;
 }
 
+.headroom {
+  z-index: 4 !important;
+}
+
 @keyframes closeWindow {
   0% {
     opacity: 1;
@@ -380,6 +389,10 @@ template {
   -ms-user-select: none;
   -ms-touch-select: none;
   touch-action: none;
+
+  @include mobile {
+    background-color: white;
+  }
 }
 
 .ril__outerClosing {
@@ -440,6 +453,10 @@ template {
   background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjM0Ij48cGF0aCBkPSJtIDE5LDMgLTIsLTIgLTE2LDE2IDE2LDE2IDEsLTEgLTE1LC0xNSAxNSwtMTUgeiIgZmlsbD0iI0ZGRiIvPjwvc3ZnPg==")
     no-repeat center;
   background-size: 50% auto;
+
+  @include mobile {
+    display: block;
+  }
 }
 
 .ril__navButtonNext {
@@ -447,6 +464,10 @@ template {
   background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjM0Ij48cGF0aCBkPSJtIDEsMyAyLC0yIDE2LDE2IC0xNiwxNiAtMSwtMSAxNSwtMTUgLTE1LC0xNSB6IiBmaWxsPSIjRkZGIi8+PC9zdmc+")
     no-repeat center;
   background-size: 50% auto;
+
+  @include mobile {
+    display: none;
+  }
 }
 
 .ril__downloadBlocker {
@@ -544,9 +565,12 @@ template {
 .ril__closeButton {
   background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIj48cGF0aCBkPSJtIDEsMyAxLjI1LC0xLjI1IDcuNSw3LjUgNy41LC03LjUgMS4yNSwxLjI1IC03LjUsNy41IDcuNSw3LjUgLTEuMjUsMS4yNSAtNy41LC03LjUgLTcuNSw3LjUgLTEuMjUsLTEuMjUgNy41LC03LjUgLTcuNSwtNy41IHoiIGZpbGw9IiNGRkYiLz48L3N2Zz4=")
     no-repeat center;
-  height: 3rem;
-  width: 3rem;
-  background-size: 50%;
+  height: 1.5rem;
+  width: 1.5rem;
+
+  @include mobile {
+    background: url("./assets/icons/cross-out.svg") no-repeat center;
+  }
 }
 
 .ril__zoomInButton {

@@ -23,22 +23,22 @@ export const Home = () => {
   const gutterValue =
     screenSize === "large" ? 30 : screenSize === "medium" ? 15 : 10;
 
-  const handleScroll = () => {
-    if (
-      window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
-      articles.length
-    ) {
-      setNumberOfItemDisplayed(numberOfItemDisplayed + 10);
-    }
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+          document.body.offsetHeight - 50 &&
+        articles.length
+      ) {
+        setNumberOfItemDisplayed(numberOfItemDisplayed + 10);
+      }
+    };
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  });
+  }, [articles, numberOfItemDisplayed]);
 
   const handleClick = (index: number) => {
     setSelectedImageIndex(index);
@@ -83,7 +83,7 @@ export const Home = () => {
           <StackGrid
             monitorImagesLoaded={true}
             gutterWidth={gutterValue}
-            gutterHeight={isMobile ? gutterValue / 2 : gutterValue}
+            gutterHeight={isMobile ? gutterValue / 2 : gutterValue / 1.2}
             duration={0}
             columnWidth={isMobile ? "50%" : "30%"}
           >

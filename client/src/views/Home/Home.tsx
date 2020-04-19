@@ -17,9 +17,11 @@ export const Home = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [numberOfItemDisplayed, setNumberOfItemDisplayed] = useState(10);
+  const [categorySelected, setCategorySelected] = useState("");
   const screenSize = useScreenSize();
   const articles = useSelector(getArticles);
   const isMobile = screenSize === "small";
+  const isDesktop = screenSize === "large";
   const gutterValue =
     screenSize === "large" ? 30 : screenSize === "medium" ? 15 : 10;
 
@@ -27,7 +29,7 @@ export const Home = () => {
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
-          document.body.offsetHeight - 50 &&
+          document.body.offsetHeight - 150 &&
         articles.length
       ) {
         setNumberOfItemDisplayed(numberOfItemDisplayed + 10);
@@ -59,6 +61,8 @@ export const Home = () => {
         isMobile={isMobile}
         menuIsOpen={menuIsOpen}
         setMenuIsOpen={setMenuIsOpen}
+        setCategorySelected={setCategorySelected}
+        categorySelected={categorySelected}
       />
       <div
         className={classNames("Home__Content", {
@@ -85,25 +89,31 @@ export const Home = () => {
             gutterWidth={gutterValue}
             gutterHeight={isMobile ? gutterValue / 2 : gutterValue / 1.2}
             duration={0}
-            columnWidth={isMobile ? "50%" : "30%"}
+            columnWidth={isDesktop ? "30%" : "50%"}
           >
-            {articles.map((article, index) => {
-              return (
-                index <= numberOfItemDisplayed && (
-                  <button
-                    className="Home__Content__List__Article"
-                    key={article._id}
-                    onClick={() => handleClick(index)}
-                  >
-                    <img
-                      className="Home__Content__List__Article__Image"
-                      src={`../../../../medias/${article.url}`}
-                      alt=""
-                    />
-                  </button>
-                )
-              );
-            })}
+            {articles
+              .filter(
+                (article) =>
+                  !categorySelected ||
+                  article.categories.includes(categorySelected)
+              )
+              .map((article, index) => {
+                return (
+                  index <= numberOfItemDisplayed && (
+                    <button
+                      className="Home__Content__List__Article"
+                      key={article._id}
+                      onClick={() => handleClick(index)}
+                    >
+                      <img
+                        className="Home__Content__List__Article__Image"
+                        src={`../../../../medias/${article.url}`}
+                        alt=""
+                      />
+                    </button>
+                  )
+                );
+              })}
           </StackGrid>
         </div>
       </div>

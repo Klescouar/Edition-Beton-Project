@@ -521,6 +521,7 @@ template {
 .ril__toolbarRightSide {
   padding-left: 0;
   padding-right: 20px;
+  padding-top: 0.5rem;
   flex: 0 0 auto;
 }
 
@@ -565,8 +566,9 @@ template {
 .ril__closeButton {
   background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIj48cGF0aCBkPSJtIDEsMyAxLjI1LC0xLjI1IDcuNSw3LjUgNy41LC03LjUgMS4yNSwxLjI1IC03LjUsNy41IDcuNSw3LjUgLTEuMjUsMS4yNSAtNy41LC03LjUgLTcuNSw3LjUgLTEuMjUsLTEuMjUgNy41LC03LjUgLTcuNSwtNy41IHoiIGZpbGw9IiNGRkYiLz48L3N2Zz4=")
     no-repeat center;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2rem;
+  width: 2rem;
+  background-size: 100%;
 
   @include mobile {
     background: url("./assets/icons/cross-out.svg") no-repeat center;

@@ -9,11 +9,11 @@
   width: 23%;
 
   @include large-desktop {
-    width: 19%;
+    width: 22%;
   }
 
   @include tablet {
-    width: 28%;
+    width: 35%;
   }
 
   @include mobile {
@@ -26,12 +26,52 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1.5rem;
 
     @include mobile {
       width: 82%;
-      padding-right: 18%;
-      padding-top: 2rem;
+      padding: 2rem 18% 0 0;
       left: 0;
+    }
+
+    &__Presentation {
+      padding: 1rem;
+      line-height: 1.5rem;
+      text-align: center;
+    }
+
+    &__Email {
+      font-weight: bold;
+    }
+
+    &__Separator {
+      margin: 2rem;
+      border-top: 0.1rem solid rgb(192, 192, 192);
+      width: 100%;
+
+      @include mobile {
+        width: 80%;
+      }
+    }
+
+    &__Categories {
+      button {
+        margin: 0.2rem;
+        padding: 0.3rem;
+      }
+
+      &__Title {
+        margin-top: 0.5rem;
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      &__List {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
 
     &__Close {
@@ -51,6 +91,8 @@
 
     &__Logo {
       width: 70%;
+      max-width: 18rem;
+      margin-bottom: 1rem;
     }
 
     &__Link {

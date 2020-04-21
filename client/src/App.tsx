@@ -8,9 +8,11 @@ import Home from "views/Home/Home";
 import Authentication from "views/Authentication/Authentication";
 import Register from "views/Register/Register";
 import Backoffice from "views/Backoffice/Backoffice";
+import About from "views/About/About";
 import { autoLogin } from "actions/authentication";
 import { getArticles } from "actions/articles";
 import { getCategories } from "actions/categories";
+import { getAbout } from "actions/about";
 import "./App.scss";
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
     dispatch(autoLogin(token));
     dispatch(getArticles());
     dispatch(getCategories());
+    dispatch(getAbout());
   });
 
   return (
@@ -28,6 +31,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
           <Route path="login" element={<Authentication />} />
           <Route path="register" element={<Register />} />
           <ProtectedRoute path="backoffice/*" Component={Backoffice} />

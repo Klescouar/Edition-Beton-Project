@@ -56,9 +56,9 @@ const HomeNav = ({
           châtiment / ACAB
         </p>
         <p className="HomeNav__Content__Email">virgilethedream@gmail.com</p>
-        {/* <Link className="HomeNav__Content__Link" to="/about">
+        <Link className="HomeNav__Content__Link" to="/about">
           À propos
-        </Link> */}
+        </Link>
         <div className="HomeNav__Content__Separator"></div>
         <div className="HomeNav__Content__Categories">
           <p className="HomeNav__Content__Categories__Title">

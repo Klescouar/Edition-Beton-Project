@@ -11,9 +11,9 @@ import MaterialInput from "components/MaterialInput/MaterialInput";
 import MaterialButton from "components/MaterialButton/MaterialButton";
 import ImageUploader from "components/ImageUploader/ImageUploader";
 
-import "./AddArticle.scss";
+import "./HandleArticle.scss";
 
-const AddArticle = () => {
+const HandleArticle = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams<{ id: string }>();
@@ -28,12 +28,13 @@ const AddArticle = () => {
 
   useEffect(() => {
     if (
-      articleToModify &&
+      !!articleToModify &&
       !article.title &&
       !article.url &&
       article.categories.length === 0
-    )
+    ) {
       setArticle(articleToModify);
+    }
   }, [article, articleToModify]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,22 +69,22 @@ const AddArticle = () => {
   };
 
   return (
-    <div className="AddArticle">
-      <div className="AddArticle__Content">
+    <div className="HandleArticle">
+      <div className="HandleArticle__Content">
         <MaterialInput
           name="title"
           handleChange={handleChange}
           value={article.title}
           label="Titre"
         />
-        <h3 className="AddArticle__Content__Subtitle">
+        <h3 className="HandleArticle__Content__Subtitle">
           Selection des catégories associées :
         </h3>
-        <div className="AddArticle__Content__Categories">
+        <div className="HandleArticle__Content__Categories">
           {categories.map((category) => (
             <div
               key={category.name}
-              className="AddArticle__Content__Categories__Item"
+              className="HandleArticle__Content__Categories__Item"
             >
               <MaterialButton
                 isActive={article.categories.includes(category.name)}
@@ -93,15 +94,17 @@ const AddArticle = () => {
             </div>
           ))}
         </div>
-        <ImageUploader article={article} setArticle={setArticle} />
+        <ImageUploader item={article} setItem={setArticle} />
         <MaterialButton
           handleClick={handleClick}
           text={params.id ? "Modifier" : "Ajouter"}
         />
-        {formError && <p className="AddArticle__Content__Error">{formError}</p>}
+        {formError && (
+          <p className="HandleArticle__Content__Error">{formError}</p>
+        )}
       </div>
     </div>
   );
 };
 
-export default AddArticle;
+export default HandleArticle;

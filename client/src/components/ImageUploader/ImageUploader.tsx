@@ -1,5 +1,3 @@
-import { PreSavedArticle } from "types/articles";
-
 import React, { useState } from "react";
 import { ReactComponent as Upload } from "assets/icons/upload.svg";
 import { ReactComponent as Close } from "assets/icons/close.svg";
@@ -7,11 +5,11 @@ import { ReactComponent as Close } from "assets/icons/close.svg";
 import "./ImageUploader.scss";
 
 type Props = {
-  article: PreSavedArticle;
-  setArticle: Function;
+  item: any;
+  setItem: Function;
 };
 
-const ImageUploader = ({ article, setArticle }: Props) => {
+const ImageUploader = ({ item, setItem }: Props) => {
   const [uploadError, setUploadError] = useState("");
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,21 +25,21 @@ const ImageUploader = ({ article, setArticle }: Props) => {
       const response = await request.json();
 
       if (request.status === 400) throw new Error(response.message);
-      setArticle({ ...article, url: response.files });
+      setItem({ ...item, url: response.files });
       setUploadError("");
     } catch (error) {
       setUploadError(error.message);
     }
   };
-  const handleOnClick = () => setArticle({ ...article, url: "" });
+  const handleOnClick = () => setItem({ ...item, url: "" });
   return (
     <>
       <div
         className="ImageUploader"
-        style={{ backgroundImage: `url(../../../../medias/${article.url})` }}
+        style={{ backgroundImage: `url(../../../../medias/${item.url})` }}
       >
         <button onClick={handleOnClick} className="ImageUploader__Close">
-          {article.url && <Close />}
+          {item.url && <Close />}
         </button>
         <input
           className="ImageUploader__Input"
@@ -50,7 +48,7 @@ const ImageUploader = ({ article, setArticle }: Props) => {
           type="file"
         />
         <label className="ImageUploader__Label" htmlFor="upload">
-          {!article.url && <Upload />}
+          {!item.url && <Upload />}
         </label>
       </div>
       {uploadError && <p className="ImageUploader__Error">{uploadError}</p>}

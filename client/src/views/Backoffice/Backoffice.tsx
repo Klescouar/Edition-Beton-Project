@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Headroom from "react-headroom";
 import Articles from "views/Backoffice/Articles/Articles";
-import AddArticle from "views/Backoffice/AddArticle/AddArticle";
+import HandleArticle from "views/Backoffice/HandleArticle/HandleArticle";
 import BackofficeNav from "components/BackofficeNav/BackofficeNav";
 import HandleCategories from "views/Backoffice/HandleCategories/HandleCategories";
+import HandleAbout from "views/Backoffice/HandleAbout/HandleAbout";
 import useScreenSize from "utils/useScreenSize";
 import { ReactComponent as MenuIcon } from "assets/icons/white-menu.svg";
 
@@ -42,9 +43,10 @@ export const Backoffice = () => {
       <div className="Backoffice__Content">
         <Routes>
           <Route path="/" element={<Articles />} />
-          <Route path="article" element={<AddArticle />} />
-          <Route path="article/:id" element={<AddArticle />} />
+          <Route path="article" element={<HandleArticle key="Add" />} />
+          <Route path="article/:id" element={<HandleArticle key="Modify" />} />
           <Route path="categories" element={<HandleCategories />} />
+          <Route path="about" element={<HandleAbout />} />
         </Routes>
       </div>
     </div>

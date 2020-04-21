@@ -51,6 +51,14 @@ export const BackofficeNav = ({ isMobile, setMenuIsOpen }: Props) => {
       >
         Categories
       </NavLink>
+      <NavLink
+        onClick={handleClick}
+        activeClassName="BackofficeNav__Link--active"
+        className="BackofficeNav__Link"
+        to="/backoffice/about"
+      >
+        À propos
+      </NavLink>
     </div>
   );
 };

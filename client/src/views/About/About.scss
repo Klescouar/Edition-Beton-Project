@@ -1,0 +1,17 @@
+.About {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+
+  &__Title {
+  }
+
+  &__Image {
+    width: 50%;
+  }
+
+  &__Description {
+  }
+}

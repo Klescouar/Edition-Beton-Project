@@ -1,0 +1,13 @@
+.HandleAbout {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__Content {
+    &__Editor {
+      margin-top: 3rem;
+      width: 100%;
+    }
+  }
+}

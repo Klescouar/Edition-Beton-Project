@@ -6,7 +6,6 @@ import "./About.scss";
 
 const About = () => {
   const about = useSelector(getAbout);
-  console.log(about);
   return (
     <div className="About">
       <h1 className="About__Title">{about.title}</h1>

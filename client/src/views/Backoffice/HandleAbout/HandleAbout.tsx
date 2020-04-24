@@ -1,8 +1,8 @@
 import { About } from "types/about";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import JoditEditor from "jodit-react";
+import ReactQuill from "react-quill";
 // @ts-ignore
 import { updateAbout } from "actions/about";
 import { getAbout } from "selectors/about";
@@ -13,7 +13,6 @@ import ImageUploader from "components/ImageUploader/ImageUploader";
 import "./HandleAbout.scss";
 
 const HandleAbout = () => {
-  const editor = useRef(null);
   const savedAbout = useSelector(getAbout);
   const dispatch = useDispatch();
   const [about, setAbout] = useState<About>(savedAbout);
@@ -38,9 +37,27 @@ const HandleAbout = () => {
     }
   };
 
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      [{ align: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "align",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+  ];
+
   return (
     <div className="HandleAbout">
-      <div className="HandleArticle__Content">
+      <div className="HandleAbout__Content">
         <MaterialInput
           name="title"
           handleChange={handleChange}
@@ -48,28 +65,20 @@ const HandleAbout = () => {
           label="Titre"
         />
         <div className="HandleAbout__Content__Editor">
-          <JoditEditor
-            ref={editor}
+          <ReactQuill
+            theme="snow"
+            modules={modules}
+            formats={formats}
             value={about.description}
-            config={{
-              readonly: false, // all options from https://xdsoft.net/jodit/doc/
-            }}
-            onBlur={(description) =>
+            onChange={(description) =>
               setAbout({ ...about, description: description })
-            } // preferred to use only this option to update the content for performance reasons
-            onChange={(newContent) => {}}
+            }
           />
         </div>
         <ImageUploader item={about} setItem={setAbout} />
-        {/* <MaterialTextArea
-          name="description"
-          handleChange={handleChange}
-          value={about.description}
-          label="Description"
-        /> */}
         <MaterialButton handleClick={handleClick} text={"Envoyer"} />
         {formError && (
-          <p className="HandleArticle__Content__Error">{formError}</p>
+          <p className="HandleAbout__Content__Error">{formError}</p>
         )}
       </div>
     </div>

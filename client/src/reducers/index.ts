@@ -4,6 +4,7 @@ import register from "./register";
 import authentication from "./authentication";
 import categories from "./categories";
 import about from "./about";
+import logo from "./logo";
 
 export default combineReducers({
   articles,
@@ -11,4 +12,5 @@ export default combineReducers({
   register,
   authentication,
   about,
+  logo,
 });

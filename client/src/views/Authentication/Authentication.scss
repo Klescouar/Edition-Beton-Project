@@ -1,14 +1,3 @@
-/* ANIMATIONS ================ */
-@keyframes inputHighlighter {
-  from {
-    background: #5264ae;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-
 .Authentication {
   height: 100vh;
   display: flex;

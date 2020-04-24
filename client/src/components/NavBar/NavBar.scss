@@ -1,7 +1,7 @@
 @import "utils/variables";
 @import "utils/mixins";
 
-.HomeNav {
+.NavBar {
   position: fixed;
   left: 0;
   height: 100%;
@@ -40,37 +40,56 @@
       text-align: center;
     }
 
-    &__Email {
-      font-weight: bold;
-    }
+    &__Actions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-    &__Separator {
-      margin: 2rem;
-      border-top: 0.1rem solid rgb(192, 192, 192);
-      width: 100%;
-
-      @include mobile {
-        width: 80%;
-      }
-    }
-
-    &__Categories {
-      button {
-        margin: 0.2rem;
-        padding: 0.3rem;
-      }
-
-      &__Title {
-        margin-top: 0.5rem;
-        font-size: 1.3rem;
+      &__Email {
         font-weight: bold;
-        text-align: center;
       }
 
-      &__List {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+      &__Separator {
+        margin: 2rem;
+        border-top: 0.1rem solid rgb(192, 192, 192);
+        width: 100%;
+
+        @include mobile {
+          width: 80%;
+        }
+      }
+
+      &__Link {
+        color: #d6afa8;
+        margin-top: 3rem;
+        text-decoration: none;
+        color: black;
+        font-size: 1.5rem;
+
+        &:hover {
+          color: #dd8a37;
+        }
+      }
+
+      &__Categories {
+        button {
+          margin: 0.2rem;
+          padding: 0.3rem;
+        }
+
+        &__Title {
+          margin-top: 0.5rem;
+          font-size: 1.3rem;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        &__List {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
       }
     }
 
@@ -90,20 +109,11 @@
     }
 
     &__Logo {
-      width: 70%;
       max-width: 18rem;
       margin-bottom: 1rem;
-    }
 
-    &__Link {
-      color: #d6afa8;
-      margin-top: 3rem;
-      text-decoration: none;
-      color: black;
-      font-size: 1.5rem;
-
-      &:hover {
-        color: #dd8a37;
+      &__Image {
+        width: 100%;
       }
     }
   }

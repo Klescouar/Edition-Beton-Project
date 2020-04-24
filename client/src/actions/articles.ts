@@ -1,4 +1,4 @@
-import { PreSavedArticle, ArticleActionTypes } from "types/articles";
+import { PreSavedArticle, ArticleActionTypes, Article } from "types/articles";
 import { State } from "types/state";
 import { ThunkAction } from "redux-thunk";
 import API from "utils/api";
@@ -37,12 +37,12 @@ export const updateArticle = (
 };
 
 export const removeArticle = (
-  id: string
+  article: Article
 ): ThunkAction<void, State, unknown, ArticleActionTypes> => async (
   dispatch
 ) => {
   try {
-    const response = await API.delete("/article", { id });
+    const response = await API.delete("/article", article);
     dispatch({
       type: "REMOVE_ARTICLE_SUCCESS",
       payload: response,

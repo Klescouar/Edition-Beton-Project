@@ -1,0 +1,69 @@
+@import "utils/mixins";
+@import "utils/variables";
+
+.Layout {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 0 3rem 23%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  @include mobile {
+    padding: 0;
+    left: 0;
+  }
+
+  @include tablet {
+    padding: 1rem 0 3rem 35%;
+  }
+
+  @include large-desktop {
+    padding: 4rem 0 3rem 22%;
+  }
+
+  &__Nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $base-color;
+    padding: 1.2rem;
+
+    &__Logo {
+      height: 3rem;
+    }
+
+    &__Button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    svg {
+      height: 2rem;
+      width: auto;
+    }
+  }
+
+  &__Content {
+    margin: auto;
+    padding-right: 3rem;
+
+    @include mobile {
+      padding: 0;
+    }
+
+    @include tablet {
+      padding-right: 1rem;
+    }
+
+    &--withMenu {
+      padding-top: 5.3rem;
+    }
+  }
+
+  &--withMenu {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    left: 80%;
+    height: 100vh;
+    overflow: hidden;
+  }
+}

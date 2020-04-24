@@ -161,9 +161,14 @@ router.get("/articles", async (req, res) => {
 
 router.delete("/article", async (req, res) => {
   try {
-    await Article.findOneAndRemove({
-      _id: req.body.id,
-    });
+    await Article.findOneAndRemove(
+      {
+        _id: req.body._id,
+      },
+      { useFindAndModify: false }
+    );
+    fs.unlinkSync(`${path.join(__dirname, "../medias")}/${req.body.url}`);
+
     const allArticles = await Article.find({});
     res.send(allArticles);
   } catch (e) {

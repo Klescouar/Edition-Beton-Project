@@ -49,7 +49,7 @@ export const BackofficeNav = ({ isMobile, setMenuIsOpen }: Props) => {
         className="BackofficeNav__Link"
         to="/backoffice/categories"
       >
-        Categories
+        Modifier les catégories
       </NavLink>
       <NavLink
         onClick={handleClick}
@@ -57,7 +57,15 @@ export const BackofficeNav = ({ isMobile, setMenuIsOpen }: Props) => {
         className="BackofficeNav__Link"
         to="/backoffice/about"
       >
-        À propos
+        Modifier la page "À propos"
+      </NavLink>
+      <NavLink
+        onClick={handleClick}
+        activeClassName="BackofficeNav__Link--active"
+        className="BackofficeNav__Link"
+        to="/backoffice/logo"
+      >
+        Changer de logo
       </NavLink>
     </div>
   );

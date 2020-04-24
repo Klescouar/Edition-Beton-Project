@@ -7,6 +7,7 @@ const user = require("./routes/user");
 const articles = require("./routes/articles");
 const categories = require("./routes/categories");
 const about = require("./routes/about");
+const logo = require("./routes/logo");
 const path = require("path");
 
 // Setting up port
@@ -44,6 +45,7 @@ app.use("/user", user);
 app.use(articles);
 app.use(categories);
 app.use(about);
+app.use(logo);
 app.use("/medias", express.static(__dirname + "/medias"));
 
 // Serve static files from the React frontend app

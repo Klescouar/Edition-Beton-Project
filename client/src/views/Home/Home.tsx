@@ -2,22 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 // @ts-ignore
 import StackGrid from "react-stack-grid";
-import classNames from "classnames";
-import Headroom from "react-headroom";
 import Lightbox from "react-image-lightbox";
 import { getArticles } from "selectors/articles";
 import useScreenSize from "utils/useScreenSize";
-import HomeNav from "components/HomeNav/HomeNav";
-import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 
 import "./Home.scss";
 
-export const Home = () => {
+type Props = {
+  categorySelected: string;
+};
+
+export const Home = ({ categorySelected }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [numberOfItemDisplayed, setNumberOfItemDisplayed] = useState(10);
-  const [categorySelected, setCategorySelected] = useState("");
   const screenSize = useScreenSize();
   const articles = useSelector(getArticles);
   const isMobile = screenSize === "small";
@@ -47,76 +45,38 @@ export const Home = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleMenu = () => {
-    setMenuIsOpen(true);
-  };
-
   return (
-    <div
-      className={classNames("Home", {
-        "Home--withMenu": menuIsOpen,
-      })}
-    >
-      <HomeNav
-        isMobile={isMobile}
-        menuIsOpen={menuIsOpen}
-        setMenuIsOpen={setMenuIsOpen}
-        setCategorySelected={setCategorySelected}
-        categorySelected={categorySelected}
-      />
-      <div
-        className={classNames("Home__Content", {
-          "Home__Content--withMenu": menuIsOpen,
-        })}
+    <div className="Home">
+      <StackGrid
+        monitorImagesLoaded={true}
+        gutterWidth={gutterValue}
+        gutterHeight={isMobile ? gutterValue / 2 : gutterValue / 1.2}
+        duration={0}
+        columnWidth={isDesktop ? "30%" : "50%"}
       >
-        {!menuIsOpen && isMobile && (
-          <Headroom>
-            <div className="Home__Nav">
-              <img
-                className="Home__Nav__Logo"
-                src={require("../../assets/images/beton.png")}
-                alt=""
-              />
-              <button className="Home__Nav__Button" onClick={handleMenu}>
-                <MenuIcon />
-              </button>
-            </div>
-          </Headroom>
-        )}
-        <div className="Home__Content__List">
-          <StackGrid
-            monitorImagesLoaded={true}
-            gutterWidth={gutterValue}
-            gutterHeight={isMobile ? gutterValue / 2 : gutterValue / 1.2}
-            duration={0}
-            columnWidth={isDesktop ? "30%" : "50%"}
-          >
-            {articles
-              .filter(
-                (article) =>
-                  !categorySelected ||
-                  article.categories.includes(categorySelected)
+        {articles
+          .filter(
+            (article) =>
+              !categorySelected || article.categories.includes(categorySelected)
+          )
+          .map((article, index) => {
+            return (
+              index <= numberOfItemDisplayed && (
+                <button
+                  className="Home__Article"
+                  key={article._id}
+                  onClick={() => handleClick(index)}
+                >
+                  <img
+                    className="Home__Article__Image"
+                    src={`../../../../medias/${article.url}`}
+                    alt=""
+                  />
+                </button>
               )
-              .map((article, index) => {
-                return (
-                  index <= numberOfItemDisplayed && (
-                    <button
-                      className="Home__Content__List__Article"
-                      key={article._id}
-                      onClick={() => handleClick(index)}
-                    >
-                      <img
-                        className="Home__Content__List__Article__Image"
-                        src={`../../../../medias/${article.url}`}
-                        alt=""
-                      />
-                    </button>
-                  )
-                );
-              })}
-          </StackGrid>
-        </div>
-      </div>
+            );
+          })}
+      </StackGrid>
       {isOpen && (
         <Lightbox
           mainSrc={`../../../../medias/${articles[selectedImageIndex].url}`}

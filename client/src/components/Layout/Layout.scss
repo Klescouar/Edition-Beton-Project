@@ -3,7 +3,7 @@
 
 .Layout {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 8rem);
   padding: 4rem 0 3rem 23%;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 

@@ -3,13 +3,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  padding: 0 1.5rem;
+  min-height: calc(100vh - 10rem);
 
   &__Title {
   }
 
   &__Image {
-    width: 50%;
+    width: 25%;
   }
 
   &__Description {

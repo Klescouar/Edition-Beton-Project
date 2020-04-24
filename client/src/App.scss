@@ -491,6 +491,18 @@ template {
   justify-content: space-between;
 }
 
+.ql-align-center {
+  text-align: center;
+}
+
+.ql-align-right {
+  text-align: right;
+}
+
+.ql-align-justify {
+  text-align: justify;
+}
+
 .ril__caption {
   bottom: 0;
   max-height: 150px;

@@ -112,6 +112,10 @@
       max-width: 18rem;
       margin-bottom: 1rem;
 
+      @include mobile {
+        width: 70%;
+      }
+
       &__Image {
         width: 100%;
       }

@@ -40,7 +40,12 @@ const HandleAbout = () => {
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
-      [{ align: [] }],
+      [
+        { align: "" },
+        { align: "center" },
+        { align: "right" },
+        { align: "justify" },
+      ],
       ["bold", "italic", "underline", "strike", "blockquote"],
     ],
   };

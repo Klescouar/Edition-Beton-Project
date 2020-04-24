@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // @ts-ignore
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import classNames from "classnames";
 import Headroom from "react-headroom";
 import useScreenSize from "utils/useScreenSize";
@@ -42,11 +42,13 @@ export const Layout = () => {
         {!menuIsOpen && isMobile && (
           <Headroom>
             <div className="Layout__Nav">
-              <img
-                className="Layout__Nav__Logo"
-                src={require("../../assets/images/beton.png")}
-                alt=""
-              />
+              <Link to="/">
+                <img
+                  className="Layout__Nav__Logo"
+                  src={require("../../assets/images/beton.png")}
+                  alt=""
+                />
+              </Link>
               <button className="Layout__Nav__Button" onClick={handleMenu}>
                 <MenuIcon />
               </button>

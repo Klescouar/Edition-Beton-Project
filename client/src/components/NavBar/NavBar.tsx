@@ -34,6 +34,8 @@ const NavBar = ({
   };
 
   const handleCategories = (category: string) => {
+    setMenuIsOpen(false);
+
     return categorySelected === category
       ? setCategorySelected("")
       : setCategorySelected(category);
@@ -51,7 +53,7 @@ const NavBar = ({
             <CloseMenuIcon />
           </button>
         )}
-        <Link className="NavBar__Content__Logo" to="/">
+        <Link className="NavBar__Content__Logo" to="/" onClick={handleClick}>
           <img
             className="NavBar__Content__Logo__Image"
             src={`../../../../medias/${logo.url}`}
@@ -67,7 +69,11 @@ const NavBar = ({
             <p className="NavBar__Content__Actions__Email">
               virgilethedream@gmail.com
             </p>
-            <Link className="NavBar__Content__Actions__Link" to="/about">
+            <Link
+              className="NavBar__Content__Actions__Link"
+              to="/about"
+              onClick={handleClick}
+            >
               À propos
             </Link>
             <div className="NavBar__Content__Actions__Separator"></div>

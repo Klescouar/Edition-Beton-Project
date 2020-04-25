@@ -1,3 +1,5 @@
+@import "utils/mixins";
+
 .HandleArticle {
   display: flex;
   justify-content: center;
@@ -16,6 +18,11 @@
     border-radius: 0.4rem;
     max-width: 30rem;
     margin: 1rem;
+
+    @include mobile {
+      padding: 0 2rem 2rem;
+      margin: 0;
+    }
 
     &__Subtitle {
       margin-top: 4rem;

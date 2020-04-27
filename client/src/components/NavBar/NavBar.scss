@@ -26,7 +26,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5rem;
+    padding: 0 1.5rem 1.5rem;
 
     @include mobile {
       width: 82%;
@@ -35,7 +35,8 @@
     }
 
     &__Presentation {
-      padding: 1rem;
+      margin: 0;
+      padding: 1rem 1rem 0.5rem;
       line-height: 1.5rem;
       text-align: center;
     }
@@ -48,10 +49,11 @@
 
       &__Email {
         font-weight: bold;
+        margin-top: 2rem;
       }
 
       &__Separator {
-        margin: 2rem;
+        margin: 2rem 0 2rem;
         border-top: 0.1rem solid rgb(192, 192, 192);
         width: 100%;
 
@@ -62,10 +64,12 @@
 
       &__Link {
         color: #d6afa8;
-        margin-top: 3rem;
+        margin-bottom: 1rem;
         text-decoration: none;
         color: black;
-        font-size: 1.5rem;
+        font-weight: bold;
+        font-style: italic;
+        text-decoration: underline;
 
         &:hover {
           color: #dd8a37;
@@ -79,7 +83,7 @@
         }
 
         &__Title {
-          margin-top: 0.5rem;
+          margin-top: 0;
           font-size: 1.3rem;
           font-weight: bold;
           text-align: center;

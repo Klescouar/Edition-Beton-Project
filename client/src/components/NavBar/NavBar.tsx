@@ -66,16 +66,16 @@ const NavBar = ({
         </p>
         {isHomePage && (
           <div className="NavBar__Content__Actions">
-            <p className="NavBar__Content__Actions__Email">
-              virgilethedream@gmail.com
-            </p>
             <Link
               className="NavBar__Content__Actions__Link"
               to="/about"
               onClick={handleClick}
             >
-              À propos
+              En savoir plus
             </Link>
+            <p className="NavBar__Content__Actions__Email">
+              virgilethedream@gmail.com
+            </p>
             <div className="NavBar__Content__Actions__Separator"></div>
             <div className="NavBar__Content__Actions__Categories">
               <p className="NavBar__Content__Actions__Categories__Title">

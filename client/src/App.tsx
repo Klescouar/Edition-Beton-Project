@@ -31,7 +31,7 @@ function App() {
     dispatch(getCategories());
     dispatch(getAbout());
     dispatch(loadLogo());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">

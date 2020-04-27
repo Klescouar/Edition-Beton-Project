@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 // @ts-ignore
 import { Route, Routes, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import classNames from "classnames";
 import Headroom from "react-headroom";
 import useScreenSize from "utils/useScreenSize";
 import NavBar from "components/NavBar/NavBar";
 import Home from "views/Home/Home";
 import About from "views/About/About";
+import { getLogo } from "selectors/logo";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 
 import "./Layout.scss";
 
 export const Layout = () => {
+  const logo = useSelector(getLogo);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [categorySelected, setCategorySelected] = useState("");
   const screenSize = useScreenSize();
@@ -33,6 +36,7 @@ export const Layout = () => {
         setMenuIsOpen={setMenuIsOpen}
         setCategorySelected={setCategorySelected}
         categorySelected={categorySelected}
+        logo={logo}
       />
       <div
         className={classNames("Layout__Content", {
@@ -45,7 +49,7 @@ export const Layout = () => {
               <Link to="/">
                 <img
                   className="Layout__Nav__Logo"
-                  src={require("../../assets/images/beton.png")}
+                  src={`../../../../medias/${logo.url}`}
                   alt=""
                 />
               </Link>

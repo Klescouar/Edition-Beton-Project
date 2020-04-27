@@ -1,10 +1,11 @@
+import { Logo } from "types/logo";
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { getCategories } from "selectors/categories";
-import { getLogo } from "selectors/logo";
 import MaterialButton from "components/MaterialButton/MaterialButton";
 import { ReactComponent as CloseMenuIcon } from "assets/icons/closeMenu.svg";
 
@@ -16,6 +17,7 @@ type Props = {
   setCategorySelected: Function;
   menuIsOpen: boolean;
   categorySelected: string;
+  logo: Logo;
 };
 
 const NavBar = ({
@@ -24,10 +26,10 @@ const NavBar = ({
   menuIsOpen,
   setCategorySelected,
   categorySelected,
+  logo,
 }: Props) => {
   const location = useLocation();
   const categories = useSelector(getCategories);
-  const logo = useSelector(getLogo);
   const isHomePage = location.pathname === "/";
   const handleClick = () => {
     setMenuIsOpen(false);

@@ -50,6 +50,7 @@ export default (
     case "AUTO_AUTHENTICATION_FAILURE":
       return {
         ...state,
+        isAuthenticated: false,
         isLoading: false,
       };
     default:

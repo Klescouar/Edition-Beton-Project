@@ -1,10 +1,12 @@
+import Cookies from "js-cookie";
+
 const API = {
-  get(url: string, options: Object = {}, token: string = "") {
+  get(url: string, options: Object = {}) {
     return fetch(url, {
       method: "GET",
       mode: "cors",
       credentials: "include", // necessary to set commits via fetch
-      headers: this.getHeaders("GET", token),
+      headers: this.getHeaders("GET"),
       ...options,
     }).then((res) => {
       if (res.ok) {
@@ -17,12 +19,12 @@ const API = {
     });
   },
 
-  post(url: string, payload: Object, token: string = "") {
+  post(url: string, payload: Object) {
     return fetch(url, {
       method: "POST",
       mode: "cors",
       credentials: "include", // necessary to set commits via fetch
-      headers: this.getHeaders("POST", token),
+      headers: this.getHeaders("POST"),
       body: JSON.stringify(payload),
     }).then((res) => {
       if (res.ok) {
@@ -35,12 +37,12 @@ const API = {
     });
   },
 
-  delete(url: string, payload: Object, token: string = "") {
+  delete(url: string, payload: Object) {
     return fetch(url, {
       method: "DELETE",
       mode: "cors",
       credentials: "include", // necessary to set commits via fetch
-      headers: this.getHeaders("POST", token),
+      headers: this.getHeaders("POST"),
       body: JSON.stringify(payload),
     }).then((res) => {
       if (res.ok) {
@@ -53,12 +55,12 @@ const API = {
     });
   },
 
-  put(url: string, payload: Object, token: string = "") {
+  put(url: string, payload: Object) {
     return fetch(url, {
       method: "PUT",
       mode: "cors",
       credentials: "include", // necessary to set commits via fetch
-      headers: this.getHeaders("POST", token),
+      headers: this.getHeaders("POST"),
       body: JSON.stringify(payload),
     }).then((res) => {
       if (res.ok) {
@@ -70,7 +72,8 @@ const API = {
       }
     });
   },
-  getHeaders(method: string, token: string): Headers {
+  getHeaders(method: string): Headers {
+    const token = Cookies.get("token");
     const headers = new Headers();
 
     headers.append("Content-Type", "application/json");
@@ -79,7 +82,7 @@ const API = {
       headers.append("Accept", "application/json");
     }
 
-    headers.append("token", token);
+    if (token) headers.append("token", token);
 
     return headers;
   },

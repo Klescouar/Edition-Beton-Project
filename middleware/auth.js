@@ -10,6 +10,6 @@ module.exports = function (req, res, next) {
     next();
   } catch (e) {
     console.error(e);
-    res.send({ message: "Invalid Token" });
+    res.status(400).json({ message: "Invalid Token" });
   }
 };

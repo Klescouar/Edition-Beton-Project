@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 // @ts-ignore
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "utils/ProtectedRoute";
 import Layout from "components/Layout/Layout";
@@ -25,8 +24,7 @@ function App() {
   if (favicon) favicon.href = `../../medias/${logo.url}`;
 
   useEffect(() => {
-    const token = Cookies.get("token");
-    dispatch(autoLogin(token));
+    dispatch(autoLogin());
     dispatch(getArticles());
     dispatch(getCategories());
     dispatch(getAbout());

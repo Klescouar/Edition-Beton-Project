@@ -4,6 +4,7 @@ const Formidable = require("formidable");
 const bluebird = require("bluebird");
 const fs = bluebird.promisifyAll(require("fs"));
 const path = require("path");
+const auth = require("../middleware/auth");
 const Article = require("../model/Article");
 
 // Returns true if successful or false otherwise
@@ -43,7 +44,7 @@ function checkAcceptedExtensions(file) {
  * @description - Upload Image
  */
 
-router.post("/upload", async (req, res) => {
+router.post("/upload", auth, async (req, res) => {
   let form = Formidable.IncomingForm();
   const uploadsFolder = path.join(__dirname, "../medias");
   form.multiples = true;
@@ -120,7 +121,7 @@ router.post("/upload", async (req, res) => {
  * @param - /
  */
 
-router.post("/article", async (req, res) => {
+router.post("/article", auth, async (req, res) => {
   try {
     const article = new Article({
       url: req.body.url,
@@ -159,7 +160,7 @@ router.get("/articles", async (req, res) => {
  * @param - /article
  */
 
-router.delete("/article", async (req, res) => {
+router.delete("/article", auth, async (req, res) => {
   try {
     await Article.findOneAndRemove(
       {
@@ -183,7 +184,7 @@ router.delete("/article", async (req, res) => {
  * @param - /article
  */
 
-router.put("/article", async (req, res) => {
+router.put("/article", auth, async (req, res) => {
   try {
     const article = new Article({
       _id: req.body._id,

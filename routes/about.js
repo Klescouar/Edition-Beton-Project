@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const auth = require("../middleware/auth");
 const About = require("../model/About");
 
 /**
@@ -24,7 +24,7 @@ router.get("/about", async (req, res) => {
  * @description - Update About
  */
 
-router.post("/about", async (req, res) => {
+router.post("/about", auth, async (req, res) => {
   try {
     await About.deleteMany({});
     const about = new About({

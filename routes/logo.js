@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/auth");
 
 const Logo = require("../model/Logo");
 
@@ -24,7 +25,7 @@ router.get("/logo", async (req, res) => {
  * @description - Update logo
  */
 
-router.post("/logo", async (req, res) => {
+router.post("/logo", auth, async (req, res) => {
   try {
     await Logo.deleteMany({});
     const logo = new Logo({

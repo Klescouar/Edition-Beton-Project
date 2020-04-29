@@ -19,16 +19,17 @@ export const login = (
   }
 };
 
-export const autoLogin = (
-  token: string = ""
-): ThunkAction<void, State, unknown, AuthenticationActionTypes> => async (
-  dispatch
-) => {
+export const autoLogin = (): ThunkAction<
+  void,
+  State,
+  unknown,
+  AuthenticationActionTypes
+> => async (dispatch) => {
   dispatch({
     type: "AUTO_AUTHENTICATION_REQUEST",
   });
   try {
-    const response = await API.get("/user/me", {}, token);
+    const response = await API.get("/user/me", {});
     dispatch({
       type: "AUTO_AUTHENTICATION_SUCCESS",
       payload: response,

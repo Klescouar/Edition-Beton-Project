@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/auth");
 
 const Category = require("../model/Category");
 
@@ -24,7 +25,7 @@ router.get("/categories", async (req, res) => {
  * @description - Add Category
  */
 
-router.post("/category", async (req, res) => {
+router.post("/category", auth, async (req, res) => {
   try {
     const category = new Category({
       name: req.body.name,
@@ -44,7 +45,7 @@ router.post("/category", async (req, res) => {
  * @param - /category
  */
 
-router.delete("/category", async (req, res) => {
+router.delete("/category", auth, async (req, res) => {
   try {
     await Category.findOneAndRemove({
       _id: req.body.id,

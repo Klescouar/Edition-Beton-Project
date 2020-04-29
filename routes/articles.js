@@ -44,7 +44,7 @@ function checkAcceptedExtensions(file) {
  * @description - Upload Image
  */
 
-router.post("/upload", auth, async (req, res) => {
+router.post("/upload", async (req, res) => {
   let form = Formidable.IncomingForm();
   const uploadsFolder = path.join(__dirname, "../medias");
   form.multiples = true;

@@ -59,6 +59,12 @@ export const Home = ({ categorySelected }: Props) => {
             (article) =>
               !categorySelected || article.categories.includes(categorySelected)
           )
+          .sort((a, b) =>
+            Math.abs(
+              new Date(b.creationDate).getTime() -
+                new Date(a.creationDate).getTime()
+            )
+          )
           .map((article, index) => {
             return (
               index <= numberOfItemDisplayed && (

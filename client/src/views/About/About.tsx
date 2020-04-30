@@ -8,15 +8,19 @@ const About = () => {
   const about = useSelector(getAbout);
   return (
     <div className="About">
-      <h1 className="About__Title">{about.title}</h1>
       <img
         alt=""
         className="About__Image"
-        src={`../../../../medias/${about.url}`}
+        src={`../../../../medias/banniere-up_burned.png`}
       />
       <p
         className="About__Description"
         dangerouslySetInnerHTML={{ __html: about.description }}
+      />
+      <img
+        alt=""
+        className="About__Image"
+        src={`../../../../medias/${about.url}`}
       />
     </div>
   );

@@ -10,9 +10,13 @@
   }
 
   &__Image {
-    width: 100%;
+    width: 70%;
   }
 
   &__Description {
+    width: 50%;
+    p {
+      margin: 0;
+    }
   }
 }

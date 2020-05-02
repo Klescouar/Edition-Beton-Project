@@ -8,7 +8,7 @@ import Layout from "../components/Layout/Layout";
 
 import "../styles/Home.scss";
 
-const Home = ({ data }) => {
+const Category = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [numberOfItemDisplayed, setNumberOfItemDisplayed] = useState(10);
@@ -19,7 +19,7 @@ const Home = ({ data }) => {
   const gutterValue =
     screenSize === "large" ? 30 : screenSize === "medium" ? 15 : 10;
 
-  const articles = data.allArticleType.nodes;
+  const articles = data.allArticleType.edges.map(({ node }) => node);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,16 +115,17 @@ const Home = ({ data }) => {
 };
 
 export const query = graphql`
-  query HomePageQuery {
-    allArticleType {
-      nodes {
-        id
-        categories
-        url
-        title
+  query($name: [String]) {
+    allArticleType(filter: { categories: { in: $name } }) {
+      edges {
+        node {
+          id
+          url
+          title
+        }
       }
     }
   }
 `;
 
-export default Home;
+export default Category;

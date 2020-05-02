@@ -1,4 +1,4 @@
-import { useStaticQuery } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 
 export function useLogo() {
   const data = useStaticQuery(graphql`

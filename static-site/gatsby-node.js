@@ -5,3 +5,53 @@
  */
 
 // You can delete this file if you're not using it
+const path = require("path");
+
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions;
+  if (node.internal.type === `CategoryType`) {
+    const slug = node.name
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .split(" ")
+      .join("-");
+
+    createNodeField({
+      node,
+      name: "slug",
+      value: slug,
+    });
+  }
+};
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+  const { data } = await graphql(`
+    query {
+      allCategoryType {
+        edges {
+          node {
+            name
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  data.allCategoryType.edges.forEach(({ node }) => {
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve(`./src/templates/category.js`),
+      context: {
+        // Data passed to context is available
+        // in page queries as GraphQL variables.
+        slug: node.fields.slug,
+        name: node.name,
+      },
+    });
+  });
+};

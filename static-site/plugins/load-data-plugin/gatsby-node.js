@@ -42,6 +42,48 @@ async function generateArticles({
   return;
 }
 
+function formatCategory({ category, createNodeId, createContentDigest }) {
+  const nodeContent = JSON.stringify(category);
+
+  const nodeMeta = {
+    id: createNodeId(`Category-${category._id}`),
+    parent: null,
+    children: [],
+    internal: {
+      type: "CategoryType",
+      mediaType: "application/json",
+      content: nodeContent,
+      contentDigest: createContentDigest(category),
+    },
+  };
+
+  return { ...category, ...nodeMeta };
+}
+
+async function generateCategories({
+  createNode,
+  createNodeId,
+  createContentDigest,
+}) {
+  const result = await axios.get("http://localhost:4444/categories");
+
+  const categories = result.data;
+
+  categories.forEach((category) =>
+    createNode(
+      formatCategory({
+        category,
+        createNodeId,
+        createContentDigest,
+      })
+    )
+  );
+
+  console.log(`Generated ${categories.length} categories`);
+
+  return;
+}
+
 async function generateLogo({ createNode, createNodeId, createContentDigest }) {
   const result = await axios.get("http://localhost:4444/logo");
 
@@ -103,6 +145,7 @@ exports.sourceNodes = async ({
 
   await Promise.all([
     generateArticles({ createNode, createNodeId, createContentDigest }),
+    generateCategories({ createNode, createNodeId, createContentDigest }),
     generateLogo({ createNode, createNodeId, createContentDigest }),
     generateAbout({ createNode, createNodeId, createContentDigest }),
   ]);

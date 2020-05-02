@@ -28,6 +28,20 @@ const NavBar = ({
   };
 
   const logo = useLogo();
+  const categories = useStaticQuery(graphql`
+    query Categories {
+      allCategoryType {
+        edges {
+          node {
+            name
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
 
   return (
     <div
@@ -69,16 +83,20 @@ const NavBar = ({
               <p className="NavBar__Content__Actions__Categories__Title">
                 Par catégories :
               </p>
-              {/* <div className="NavBar__Content__Actions__Categories__List">
-                {categories.map((category) => (
-                  <MaterialButton
-                    key={category._id}
-                    text={category.name}
-                    isActive={category.name === categorySelected}
-                    handleClick={() => handleCategories(category.name)}
-                  />
-                ))}
-              </div> */}
+              <div className="NavBar__Content__Actions__Categories__List">
+                {categories.allCategoryType.edges
+                  .map(({ node }) => node)
+                  .map((category) => (
+                    <Link
+                      className="MaterialButton"
+                      activeClassName="MaterialButton--active"
+                      to={`/${category.fields.slug}`}
+                      key={category.fields.slug}
+                    >
+                      {category.name}
+                    </Link>
+                  ))}
+              </div>
             </div>
           </div>
         )}

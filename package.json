@@ -26,5 +26,10 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "static-site/*"
+    ]
   }
 }

@@ -1,0 +1,139 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.NavBar {
+  position: fixed;
+  left: 0;
+  height: 100%;
+  z-index: 10;
+  width: 23%;
+
+  @include large-desktop {
+    width: 22%;
+  }
+
+  @include tablet {
+    width: 35%;
+  }
+
+  @include mobile {
+    left: -100%;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  &__Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.5rem 1.5rem;
+
+    @include mobile {
+      width: 82%;
+      padding: 1rem 18% 0 0;
+      left: 0;
+    }
+
+    &__Presentation {
+      margin: 0;
+      padding: 1rem 1rem 0.5rem;
+      line-height: 1.5rem;
+      text-align: center;
+    }
+
+    &__Actions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &__Email {
+        font-weight: bold;
+        margin-top: 2rem;
+
+        @include mobile {
+          margin-top: 1rem;
+        }
+      }
+
+      &__Separator {
+        margin: 2rem 0 2rem;
+        border-top: 0.1rem solid rgb(192, 192, 192);
+        width: 100%;
+
+        @include mobile {
+          width: 80%;
+          margin: 1rem 0 1rem;
+        }
+      }
+
+      &__Link {
+        color: #d6afa8;
+        margin-bottom: 1rem;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        font-style: italic;
+        text-decoration: underline;
+
+        &:hover {
+          color: #dd8a37;
+        }
+      }
+
+      &__Categories {
+        button {
+          margin: 0.2rem;
+          padding: 0.3rem;
+        }
+
+        &__Title {
+          margin-top: 0;
+          font-size: 1.3rem;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        &__List {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+    }
+
+    &__Close {
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0;
+      cursor: pointer;
+
+      svg {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
+
+    &__Logo {
+      max-width: 18rem;
+      margin-bottom: 1rem;
+
+      @include mobile {
+        width: 70%;
+        margin: 0;
+      }
+
+      &__Image {
+        width: 100%;
+      }
+    }
+  }
+  &--withMenu {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.767);
+  }
+}

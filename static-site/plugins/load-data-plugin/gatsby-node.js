@@ -66,6 +66,34 @@ async function generateLogo({ createNode, createNodeId, createContentDigest }) {
   return;
 }
 
+async function generateAbout({
+  createNode,
+  createNodeId,
+  createContentDigest,
+}) {
+  const result = await axios.get("http://localhost:4444/about");
+
+  const about = result.data;
+
+  const nodeContent = JSON.stringify(about);
+
+  const nodeMeta = {
+    id: createNodeId(`About-${about._id}`),
+    parent: null,
+    children: [],
+    internal: {
+      type: "AboutType",
+      mediaType: "application/json",
+      content: nodeContent,
+      contentDigest: createContentDigest(about),
+    },
+  };
+
+  createNode({ ...about, ...nodeMeta });
+
+  return;
+}
+
 exports.sourceNodes = async ({
   actions,
   createNodeId,
@@ -73,8 +101,11 @@ exports.sourceNodes = async ({
 }) => {
   const { createNode } = actions;
 
-  await generateArticles({ createNode, createNodeId, createContentDigest });
-  await generateLogo({ createNode, createNodeId, createContentDigest });
+  await Promise.all([
+    generateArticles({ createNode, createNodeId, createContentDigest }),
+    generateLogo({ createNode, createNodeId, createContentDigest }),
+    generateAbout({ createNode, createNodeId, createContentDigest }),
+  ]);
 
   return;
 };

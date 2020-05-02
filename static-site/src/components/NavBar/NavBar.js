@@ -2,7 +2,9 @@ import React from "react";
 import classNames from "classnames";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import MaterialButton from "../MaterialButton/MaterialButton";
-// import { ReactComponent as CloseMenuIcon } from "assets/icons/closeMenu.svg";
+import { useLogo } from "../useLogo";
+
+import CloseIcon from "../../icons/closeMenu.inline.svg";
 
 import "./NavBar.scss";
 
@@ -25,14 +27,7 @@ const NavBar = ({
       : setCategorySelected(category);
   };
 
-  const data = useStaticQuery(graphql`
-    query LogoQuery {
-      logo: logoType {
-        id
-        url
-      }
-    }
-  `);
+  const logo = useLogo();
 
   return (
     <div
@@ -43,13 +38,13 @@ const NavBar = ({
       <div className="NavBar__Content">
         {isMobile && (
           <button className="NavBar__Content__Close" onClick={handleClick}>
-            Close
+            <CloseIcon />
           </button>
         )}
         <Link className="NavBar__Content__Logo" to="/" onClick={handleClick}>
           <img
             className="NavBar__Content__Logo__Image"
-            src={`http://localhost:4444/medias/${data.logo.url}`}
+            src={`http://localhost:4444/medias/${logo.url}`}
             alt=""
           />
         </Link>

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { Link } from "gatsby";
+import React, { useState, useEffect } from "react";
+import { Link, useStaticQuery } from "gatsby";
 import classNames from "classnames";
 import Headroom from "react-headroom";
 import useScreenSize from "../useScreenSize";
 import NavBar from "../NavBar/NavBar";
-// import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
+import MenuIcon from "../../icons/menu.inline.svg";
 
 import "./Layout.scss";
+import { useLogo } from "../useLogo";
+import SEO from "../seo";
 
 export const Layout = ({ children }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -18,12 +20,15 @@ export const Layout = ({ children }) => {
     setMenuIsOpen(true);
   };
 
+  const logo = useLogo();
+
   return (
     <div
       className={classNames("Layout", {
         "Layout--withMenu": menuIsOpen,
       })}
     >
+      <SEO />
       <NavBar
         isMobile={isMobile}
         menuIsOpen={menuIsOpen}
@@ -47,7 +52,7 @@ export const Layout = ({ children }) => {
                 />
               </Link>
               <button className="Layout__Nav__Button" onClick={handleMenu}>
-                Menu
+                <MenuIcon />
               </button>
             </div>
           </Headroom>

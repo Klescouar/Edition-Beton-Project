@@ -70,7 +70,7 @@ const Home = ({ data }) => {
                   index <= numberOfItemDisplayed && (
                     <button
                       className="Home__Article"
-                      key={article._id}
+                      key={article.id}
                       onClick={() => handleClick(index)}
                     >
                       <img

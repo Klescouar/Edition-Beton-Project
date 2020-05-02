@@ -9,6 +9,12 @@
   src: url("../fonts/Roboto-Light.ttf");
 }
 
+body {
+  margin: 0;
+  background-color: $base-color;
+  font-family: "Roboto";
+}
+
 .App {
   overflow: hidden;
 }

@@ -1,30 +1,16 @@
 import React from "react";
 import classNames from "classnames";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import MaterialButton from "../MaterialButton/MaterialButton";
 import { useLogo } from "../useLogo";
+import MaterialLink from "../MaterialLink/MaterialLink";
 
 import CloseIcon from "../../icons/closeMenu.inline.svg";
 
 import "./NavBar.scss";
 
-const NavBar = ({
-  isMobile,
-  setMenuIsOpen,
-  menuIsOpen,
-  setCategorySelected,
-  categorySelected,
-}) => {
+const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }) => {
   const handleClick = () => {
     setMenuIsOpen(false);
-  };
-
-  const handleCategories = (category) => {
-    setMenuIsOpen(false);
-
-    return categorySelected === category
-      ? setCategorySelected("")
-      : setCategorySelected(category);
   };
 
   const logo = useLogo();
@@ -87,14 +73,12 @@ const NavBar = ({
                 {categories.allCategoryType.edges
                   .map(({ node }) => node)
                   .map((category) => (
-                    <Link
-                      className="MaterialButton"
-                      activeClassName="MaterialButton--active"
-                      to={`/${category.fields.slug}`}
+                    <MaterialLink
                       key={category.fields.slug}
+                      to={`/${category.fields.slug}`}
                     >
                       {category.name}
-                    </Link>
+                    </MaterialLink>
                   ))}
               </div>
             </div>

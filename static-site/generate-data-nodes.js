@@ -136,19 +136,9 @@ async function generateAbout({
   return;
 }
 
-exports.sourceNodes = async ({
-  actions,
-  createNodeId,
-  createContentDigest,
-}) => {
-  const { createNode } = actions;
-
-  await Promise.all([
-    generateArticles({ createNode, createNodeId, createContentDigest }),
-    generateCategories({ createNode, createNodeId, createContentDigest }),
-    generateLogo({ createNode, createNodeId, createContentDigest }),
-    generateAbout({ createNode, createNodeId, createContentDigest }),
-  ]);
-
-  return;
+module.exports = {
+  generateAbout,
+  generateArticles,
+  generateCategories,
+  generateLogo,
 };

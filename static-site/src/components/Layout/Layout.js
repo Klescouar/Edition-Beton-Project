@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Link, useStaticQuery } from "gatsby";
+import React, { useState } from "react";
+import { Link } from "gatsby";
 import classNames from "classnames";
 import Headroom from "react-headroom";
+
 import useScreenSize from "../useScreenSize";
 import NavBar from "../NavBar/NavBar";
+import { useLogo } from "../useLogo";
+import SEO from "../seo";
 import MenuIcon from "../../icons/menu.inline.svg";
 
 import "./Layout.scss";
-import { useLogo } from "../useLogo";
-import SEO from "../seo";
 
 export const Layout = ({ children }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [categorySelected, setCategorySelected] = useState("");
+
   const screenSize = useScreenSize();
   const isMobile = screenSize === "small";
 
@@ -33,8 +34,6 @@ export const Layout = ({ children }) => {
         isMobile={isMobile}
         menuIsOpen={menuIsOpen}
         setMenuIsOpen={setMenuIsOpen}
-        setCategorySelected={setCategorySelected}
-        categorySelected={categorySelected}
       />
       <div
         className={classNames("Layout__Content", {

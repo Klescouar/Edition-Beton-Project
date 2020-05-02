@@ -1,9 +1,7 @@
-@import "./mixins";
-@import "./variables";
+@import "../../styles/mixins";
+@import "../../styles/variables";
 
-@import "./app.scss";
-
-.Home {
+.Articles {
   @include mobile {
     padding: 0.5rem;
   }

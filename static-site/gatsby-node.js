@@ -5,7 +5,9 @@
  */
 
 // You can delete this file if you're not using it
+require("dotenv").config();
 const path = require("path");
+
 const {
   generateArticles,
   generateCategories,
@@ -48,7 +50,7 @@ exports.onCreateNode = ({ node, actions }) => {
   }
 
   if (["ArticleType", "LogoType", "AboutType"].includes(node.internal.type)) {
-    const imageUrl = `http://localhost:4444/medias/${node.url}`;
+    const imageUrl = `${process.env.API_URL}/medias/${node.url}`;
     createNodeField({ node, name: "imageUrl", value: imageUrl });
   }
 };

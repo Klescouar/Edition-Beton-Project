@@ -1,3 +1,4 @@
+require("dotenv").config();
 const axios = require("axios");
 
 function formatArticle({ article, createNodeId, createContentDigest }) {
@@ -23,7 +24,7 @@ async function generateArticles({
   createNodeId,
   createContentDigest,
 }) {
-  const result = await axios.get("http://localhost:4444/articles");
+  const result = await axios.get(`${process.env.API_URL}/articles`);
 
   const articles = result.data;
 
@@ -65,7 +66,7 @@ async function generateCategories({
   createNodeId,
   createContentDigest,
 }) {
-  const result = await axios.get("http://localhost:4444/categories");
+  const result = await axios.get(`${process.env.API_URL}/categories`);
 
   const categories = result.data;
 
@@ -85,7 +86,7 @@ async function generateCategories({
 }
 
 async function generateLogo({ createNode, createNodeId, createContentDigest }) {
-  const result = await axios.get("http://localhost:4444/logo");
+  const result = await axios.get(`${process.env.API_URL}/logo`);
 
   const logo = result.data;
 
@@ -113,7 +114,7 @@ async function generateAbout({
   createNodeId,
   createContentDigest,
 }) {
-  const result = await axios.get("http://localhost:4444/about");
+  const result = await axios.get(`${process.env.API_URL}/about`);
 
   const about = result.data;
 

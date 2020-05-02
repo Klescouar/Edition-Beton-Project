@@ -1,8 +1,10 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import "../styles/About.scss";
 import Layout from "../components/Layout/Layout";
+import BurnedUpImage from "../images/banniere-up_burned.png";
+
+import "../styles/About.scss";
 
 const About = ({ data }) => {
   const { about } = data;
@@ -10,11 +12,7 @@ const About = ({ data }) => {
   return (
     <Layout>
       <div className="About">
-        <img
-          alt=""
-          className="About__Image"
-          src={`http://localhost:4444/medias/banniere-up_burned.png`}
-        />
+        <img alt="" className="About__Image" src={BurnedUpImage} />
         <p
           className="About__Description"
           dangerouslySetInnerHTML={{ __html: about.description }}

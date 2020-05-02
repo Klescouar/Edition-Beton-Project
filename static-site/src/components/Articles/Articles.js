@@ -65,7 +65,7 @@ const Articles = ({ articles }) => {
                 >
                   <img
                     className="Articles__Article__Image"
-                    src={`http://localhost:4444/medias/${article.url}`}
+                    src={article.fields.imageUrl}
                     alt=""
                   />
                 </button>
@@ -75,30 +75,23 @@ const Articles = ({ articles }) => {
       </StackGrid>
       {isOpen && (
         <Lightbox
-          mainSrc={`http://localhost:4444/medias/${articles[selectedImageIndex].url}`}
-          nextSrc={`http://localhost:4444/medias/${
-            articles[
-              selectedImageIndex !== articles.length - 1
-                ? selectedImageIndex + 1
-                : selectedImageIndex
-            ].url
-          }`}
-          prevSrc={`http://localhost:4444/medias/${
-            articles[
-              selectedImageIndex !== 0
-                ? selectedImageIndex - 1
-                : selectedImageIndex
-            ].url
-          }`}
+          mainSrc={articles[selectedImageIndex].fields.imageUrl}
+          nextSrc={
+            articles[Math.min(articles.length - 1, selectedImageIndex + 1)]
+              .fields.imageUrl
+          }
+          prevSrc={
+            articles[Math.max(0, selectedImageIndex - 1)].fields.imageUrl
+          }
           enableZoom={false}
           onCloseRequest={() => setIsOpen(false)}
           onMovePrevRequest={() =>
-            selectedImageIndex !== 0 &&
-            setSelectedImageIndex(selectedImageIndex - 1)
+            selectedImageIndex > 0 &&
+            setSelectedImageIndex((prevIndex) => prevIndex - 1)
           }
           onMoveNextRequest={() =>
-            selectedImageIndex !== articles.length - 1 &&
-            setSelectedImageIndex(selectedImageIndex + 1)
+            selectedImageIndex < articles.length - 1 &&
+            setSelectedImageIndex((prevIndex) => prevIndex + 1)
           }
         />
       )}

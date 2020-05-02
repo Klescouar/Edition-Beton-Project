@@ -19,11 +19,7 @@ const About = ({ data }) => {
           className="About__Description"
           dangerouslySetInnerHTML={{ __html: about.description }}
         />
-        <img
-          alt=""
-          className="About__Image"
-          src={`http://localhost:4444/medias/${about.url}`}
-        />
+        <img alt="" className="About__Image" src={about.fields.imageUrl} />
       </div>
     </Layout>
   );
@@ -34,7 +30,9 @@ export const query = graphql`
     about: aboutType {
       id
       description
-      url
+      fields {
+        imageUrl
+      }
     }
   }
 `;

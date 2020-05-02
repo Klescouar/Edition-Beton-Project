@@ -24,8 +24,10 @@ export const query = graphql`
       edges {
         node {
           id
-          url
           title
+          fields {
+            imageUrl
+          }
         }
       }
     }

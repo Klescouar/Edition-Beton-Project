@@ -46,6 +46,11 @@ exports.onCreateNode = ({ node, actions }) => {
       value: slug,
     });
   }
+
+  if (["ArticleType", "LogoType", "AboutType"].includes(node.internal.type)) {
+    const imageUrl = `http://localhost:4444/medias/${node.url}`;
+    createNodeField({ node, name: "imageUrl", value: imageUrl });
+  }
 };
 
 exports.createPages = async ({ graphql, actions }) => {

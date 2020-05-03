@@ -25,6 +25,9 @@ export const query = graphql`
         node {
           id
           title
+          fields {
+            imageUrl
+          }
           image {
             childImageSharp {
               fluid(maxWidth: 1024) {

@@ -24,21 +24,26 @@ async function generateArticles({
   createNodeId,
   createContentDigest,
 }) {
-  const result = await axios.get(`${process.env.API_URL}/articles`);
+  try {
+    console.log(`Fetching articles at ${process.env.API_URL}/articles`);
+    const result = await axios.get(`${process.env.API_URL}/articles`);
 
-  const articles = result.data;
+    const articles = result.data;
 
-  articles.forEach((article) =>
-    createNode(
-      formatArticle({
-        article,
-        createNodeId,
-        createContentDigest,
-      })
-    )
-  );
+    articles.forEach((article) =>
+      createNode(
+        formatArticle({
+          article,
+          createNodeId,
+          createContentDigest,
+        })
+      )
+    );
 
-  console.log(`Generated ${articles.length} articles`);
+    console.log(`Generated ${articles.length} articles`);
+  } catch (err) {
+    console.error(err);
+  }
 
   return;
 }
@@ -66,45 +71,55 @@ async function generateCategories({
   createNodeId,
   createContentDigest,
 }) {
-  const result = await axios.get(`${process.env.API_URL}/categories`);
+  try {
+    console.log(`Fetching categories at ${process.env.API_URL}/categories`);
+    const result = await axios.get(`${process.env.API_URL}/categories`);
 
-  const categories = result.data;
+    const categories = result.data;
 
-  categories.forEach((category) =>
-    createNode(
-      formatCategory({
-        category,
-        createNodeId,
-        createContentDigest,
-      })
-    )
-  );
+    categories.forEach((category) =>
+      createNode(
+        formatCategory({
+          category,
+          createNodeId,
+          createContentDigest,
+        })
+      )
+    );
 
-  console.log(`Generated ${categories.length} categories`);
+    console.log(`Generated ${categories.length} categories`);
+  } catch (err) {
+    console.error(err);
+  }
 
   return;
 }
 
 async function generateLogo({ createNode, createNodeId, createContentDigest }) {
-  const result = await axios.get(`${process.env.API_URL}/logo`);
+  try {
+    console.log(`Fetching logo at ${process.env.API_URL}/logo`);
+    const result = await axios.get(`${process.env.API_URL}/logo`);
 
-  const logo = result.data;
+    const logo = result.data;
 
-  const nodeContent = JSON.stringify(logo);
+    const nodeContent = JSON.stringify(logo);
 
-  const nodeMeta = {
-    id: createNodeId(`Logo-${logo._id}`),
-    parent: null,
-    children: [],
-    internal: {
-      type: "LogoType",
-      mediaType: "application/json",
-      content: nodeContent,
-      contentDigest: createContentDigest(logo),
-    },
-  };
+    const nodeMeta = {
+      id: createNodeId(`Logo-${logo._id}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: "LogoType",
+        mediaType: "application/json",
+        content: nodeContent,
+        contentDigest: createContentDigest(logo),
+      },
+    };
 
-  createNode({ ...logo, ...nodeMeta });
+    createNode({ ...logo, ...nodeMeta });
+  } catch (err) {
+    console.error(err);
+  }
 
   return;
 }
@@ -114,25 +129,30 @@ async function generateAbout({
   createNodeId,
   createContentDigest,
 }) {
-  const result = await axios.get(`${process.env.API_URL}/about`);
+  try {
+    console.log(`Fetching about at ${process.env.API_URL}/about`);
+    const result = await axios.get(`${process.env.API_URL}/about`);
 
-  const about = result.data;
+    const about = result.data;
 
-  const nodeContent = JSON.stringify(about);
+    const nodeContent = JSON.stringify(about);
 
-  const nodeMeta = {
-    id: createNodeId(`About-${about._id}`),
-    parent: null,
-    children: [],
-    internal: {
-      type: "AboutType",
-      mediaType: "application/json",
-      content: nodeContent,
-      contentDigest: createContentDigest(about),
-    },
-  };
+    const nodeMeta = {
+      id: createNodeId(`About-${about._id}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: "AboutType",
+        mediaType: "application/json",
+        content: nodeContent,
+        contentDigest: createContentDigest(about),
+      },
+    };
 
-  createNode({ ...about, ...nodeMeta });
+    createNode({ ...about, ...nodeMeta });
+  } catch (err) {
+    console.error(err);
+  }
 
   return;
 }

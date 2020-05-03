@@ -32,7 +32,7 @@ exports.sourceNodes = async ({
   return;
 };
 
-exports.onCreateNode = ({ node, actions }) => {
+exports.onCreateNode = async ({ node, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `CategoryType`) {
     const slug = node.name

@@ -44,7 +44,7 @@ const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }) => {
         <Link className="NavBar__Content__Logo" to="/" onClick={handleClick}>
           <img
             className="NavBar__Content__Logo__Image"
-            src={`http://localhost:4444/medias/${logo.url}`}
+            src={logo.fields.imageUrl}
             alt=""
           />
         </Link>

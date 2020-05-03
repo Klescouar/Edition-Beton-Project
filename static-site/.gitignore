@@ -70,3 +70,4 @@ yarn-error.log
 
 # Rollback .env ignore
 !.env
+.now

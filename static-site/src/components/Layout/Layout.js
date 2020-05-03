@@ -46,7 +46,7 @@ export const Layout = ({ children }) => {
               <Link to="/">
                 <img
                   className="Layout__Nav__Logo"
-                  src={`http://localhost:4444/medias/${logo.url}`}
+                  src={logo.fields.imageUrl}
                   alt=""
                 />
               </Link>

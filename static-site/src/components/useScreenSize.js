@@ -21,15 +21,14 @@ export const getScreenSize = (width, breakpoints = BREAKPOINTS) => {
 };
 
 const useScreenSize = () => {
-  const [screenSize, setScreenSize] = useState(
-    getScreenSize(window.innerWidth)
-  );
+  const [screenSize, setScreenSize] = useState(1280);
 
   const handleResize = () => {
     setScreenSize(getScreenSize(window.innerWidth));
   };
 
   useEffect(() => {
+    setScreenSize(getScreenSize(window.innerWidth));
     window.addEventListener("resize", handleResize);
 
     // This function is called on unmount

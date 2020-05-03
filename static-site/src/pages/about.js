@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 import Layout from "../components/Layout/Layout";
 import BurnedUpImage from "../images/banniere-up_burned.png";
@@ -17,7 +18,11 @@ const About = ({ data }) => {
           className="About__Description"
           dangerouslySetInnerHTML={{ __html: about.description }}
         />
-        <img alt="" className="About__Image" src={about.fields.imageUrl} />
+        <Img
+          fluid={about.image.childImageSharp.fluid}
+          alt=""
+          className="About__Image"
+        />
       </div>
     </Layout>
   );
@@ -28,8 +33,12 @@ export const query = graphql`
     about: aboutType {
       id
       description
-      fields {
-        imageUrl
+      image {
+        childImageSharp {
+          fluid(maxWidth: 1024) {
+            ...GatsbyImageSharpFluid
+          }
+        }
       }
     }
   }

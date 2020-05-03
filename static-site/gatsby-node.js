@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 require("dotenv").config();
 const path = require("path");
+const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
 const {
   generateArticles,
@@ -32,8 +33,8 @@ exports.sourceNodes = async ({
   return;
 };
 
-exports.onCreateNode = async ({ node, actions }) => {
-  const { createNodeField } = actions;
+exports.onCreateNode = async ({ node, actions, getCache, createNodeId }) => {
+  const { createNodeField, createNode } = actions;
   if (node.internal.type === `CategoryType`) {
     const slug = node.name
       .toLowerCase()
@@ -52,7 +53,45 @@ exports.onCreateNode = async ({ node, actions }) => {
   if (["ArticleType", "LogoType", "AboutType"].includes(node.internal.type)) {
     const imageUrl = `${process.env.API_URL}/medias/${node.url}`;
     createNodeField({ node, name: "imageUrl", value: imageUrl });
+    try {
+      const fileNode = await createRemoteFileNode({
+        url: imageUrl,
+        parentNodeId: node.id,
+        getCache,
+        createNode,
+        createNodeId,
+      });
+
+      if (fileNode) {
+        node.image = fileNode.id;
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
+};
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  createTypes(`
+    type ArticleType implements Node {
+      id: ID!
+      # create a relationship between Article and the File nodes for optimized images
+      image: File @link
+    }
+
+    type LogoType implements Node {
+      id: ID!
+      # create a relationship between Article and the File nodes for optimized images
+      image: File @link
+    }
+
+    type AboutType implements Node {
+      id: ID!
+      # create a relationship between Article and the File nodes for optimized images
+      image: File @link
+    }
+    `);
 };
 
 exports.createPages = async ({ graphql, actions }) => {

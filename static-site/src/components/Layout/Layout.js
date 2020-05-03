@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "gatsby";
 import classNames from "classnames";
 import Headroom from "react-headroom";
+import Img from "gatsby-image";
 
 import useScreenSize from "../useScreenSize";
 import NavBar from "../NavBar/NavBar";
@@ -43,10 +44,10 @@ export const Layout = ({ children }) => {
         {!menuIsOpen && isMobile && (
           <Headroom>
             <div className="Layout__Nav">
-              <Link to="/">
-                <img
+              <Link to="/" title="Page d'accueil">
+                <Img
                   className="Layout__Nav__Logo"
-                  src={logo.fields.imageUrl}
+                  fluid={logo.image.childImageSharp.fluid}
                   alt=""
                 />
               </Link>

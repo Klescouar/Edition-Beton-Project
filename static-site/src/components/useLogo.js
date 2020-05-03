@@ -6,8 +6,12 @@ export function useLogo() {
       logo: logoType {
         id
         url
-        fields {
-          imageUrl
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
       }
     }

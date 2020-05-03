@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StackGrid from "react-stack-grid";
 import Lightbox from "react-image-lightbox";
+import Img from "gatsby-image";
 
 import useScreenSize from "../useScreenSize";
 
@@ -63,9 +64,9 @@ const Articles = ({ articles }) => {
                   key={article.id}
                   onClick={() => handleClick(index)}
                 >
-                  <img
+                  <Img
                     className="Articles__Article__Image"
-                    src={article.fields.imageUrl}
+                    fluid={article.image.childImageSharp.fluid}
                     alt=""
                   />
                 </button>

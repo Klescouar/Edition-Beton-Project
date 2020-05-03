@@ -119,15 +119,12 @@
 
     &__Logo {
       max-width: 18rem;
+      width: 100%;
       margin-bottom: 1rem;
 
       @include mobile {
         width: 70%;
         margin: 0;
-      }
-
-      &__Image {
-        width: 100%;
       }
     }
   }

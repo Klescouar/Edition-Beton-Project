@@ -1,6 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import Img from "gatsby-image";
+
 import { useLogo } from "../useLogo";
 import MaterialLink from "../MaterialLink/MaterialLink";
 
@@ -41,12 +43,8 @@ const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }) => {
             <CloseIcon />
           </button>
         )}
-        <Link className="NavBar__Content__Logo" to="/" onClick={handleClick}>
-          <img
-            className="NavBar__Content__Logo__Image"
-            src={logo.fields.imageUrl}
-            alt=""
-          />
+        <Link className="NavBar__Content__Logo" to="/" title="Page d'accueil">
+          <Img fluid={logo.image.childImageSharp.fluid} alt="" />
         </Link>
         <p className="NavBar__Content__Presentation">
           Virgile Veyron Guillemaud / Dessinateur drôlatique / Peintre en

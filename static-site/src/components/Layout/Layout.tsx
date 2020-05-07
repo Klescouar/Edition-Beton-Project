@@ -12,7 +12,11 @@ import MenuIcon from "../../icons/menu.inline.svg";
 
 import "./Layout.scss";
 
-export const Layout = ({ children }) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+export const Layout = ({ children }: Props) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const screenSize = useScreenSize();

@@ -1,3 +1,6 @@
+import { Categories } from "../../types/categories";
+import { Logo } from "../../types/logo";
+
 import React from "react";
 import classNames from "classnames";
 import { Link, useStaticQuery, graphql } from "gatsby";
@@ -10,13 +13,19 @@ import CloseIcon from "../../icons/closeMenu.inline.svg";
 
 import "./NavBar.scss";
 
-const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }) => {
+type Props = {
+  isMobile: boolean;
+  setMenuIsOpen: Function;
+  menuIsOpen: boolean;
+};
+
+const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }: Props) => {
   const handleClick = () => {
     setMenuIsOpen(false);
   };
 
-  const logo = useLogo();
-  const categories = useStaticQuery(graphql`
+  const logo: Logo = useLogo();
+  const categories: Categories = useStaticQuery(graphql`
     query Categories {
       allCategoryType {
         edges {

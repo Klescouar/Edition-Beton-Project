@@ -1,4 +1,7 @@
+import { ArticlesListType, Article } from "../../types/articles";
+
 import React, { useState, useEffect } from "react";
+// @ts-ignore
 import StackGrid from "react-stack-grid";
 import Lightbox from "react-image-lightbox";
 import Img from "gatsby-image";
@@ -7,11 +10,15 @@ import useScreenSize from "../useScreenSize";
 
 import "./Articles.scss";
 
-const Articles = ({ articles }) => {
+type Props = {
+  articles: ArticlesListType;
+};
+
+const Articles = ({ articles }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [numberOfItemDisplayed, setNumberOfItemDisplayed] = useState(10);
-  const screenSize = useScreenSize();
+  const screenSize: string = useScreenSize();
 
   const isMobile = screenSize === "small";
   const isDesktop = screenSize === "large";
@@ -35,7 +42,7 @@ const Articles = ({ articles }) => {
     };
   }, [articles, numberOfItemDisplayed]);
 
-  const handleClick = (index) => {
+  const handleClick = (index: number) => {
     setSelectedImageIndex(index);
     setIsOpen((wasOpen) => !wasOpen);
   };
@@ -50,13 +57,13 @@ const Articles = ({ articles }) => {
         columnWidth={isDesktop ? "30%" : "50%"}
       >
         {articles
-          .sort((a, b) =>
+          .sort((a: Article, b: Article) =>
             Math.abs(
               new Date(b.creationDate).getTime() -
                 new Date(a.creationDate).getTime()
             )
           )
-          .map((article, index) => {
+          .map((article: Article, index: number) => {
             return (
               index <= numberOfItemDisplayed && (
                 <button

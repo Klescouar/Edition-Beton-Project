@@ -1,3 +1,5 @@
+import { AboutType } from "../types/about";
+
 import React from "react";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
@@ -7,7 +9,11 @@ import BurnedUpImage from "../images/banniere-up_burned.png";
 
 import "../styles/About.scss";
 
-const About = ({ data }) => {
+type Props = {
+  data: { about: AboutType };
+};
+
+const About = ({ data }: Props) => {
   const { about } = data;
 
   return (

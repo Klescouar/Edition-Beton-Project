@@ -1,3 +1,5 @@
+import { ArticlesType } from "../types/articles";
+
 import React from "react";
 import { graphql } from "gatsby";
 
@@ -6,7 +8,11 @@ import Articles from "../components/Articles/Articles";
 
 import "../styles/app.scss";
 
-const Home = ({ data }) => {
+type Props = {
+  data: ArticlesType;
+};
+
+const Home = ({ data }: Props) => {
   const articles = data.allArticleType.edges.map(({ node }) => node);
 
   return (

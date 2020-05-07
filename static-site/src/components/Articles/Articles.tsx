@@ -65,7 +65,8 @@ const Articles = ({ articles }: Props) => {
           )
           .map((article: Article, index: number) => {
             return (
-              index <= numberOfItemDisplayed && (
+              index <= numberOfItemDisplayed &&
+              article.image?.childImageSharp?.fluid && (
                 <button
                   className="Articles__Article"
                   key={article.id}

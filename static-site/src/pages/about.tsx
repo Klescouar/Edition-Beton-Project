@@ -24,11 +24,13 @@ const About = ({ data }: Props) => {
           className="About__Description"
           dangerouslySetInnerHTML={{ __html: about.description }}
         />
-        <Img
-          fluid={about.image.childImageSharp.fluid}
-          alt=""
-          className="About__Image"
-        />
+        {about.image?.childImageSharp?.fluid && (
+          <Img
+            fluid={about.image.childImageSharp.fluid}
+            alt=""
+            className="About__Image"
+          />
+        )}
       </div>
     </Layout>
   );

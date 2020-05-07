@@ -53,7 +53,9 @@ const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }: Props) => {
           </button>
         )}
         <Link className="NavBar__Content__Logo" to="/" title="Page d'accueil">
-          <Img fluid={logo.image.childImageSharp.fluid} alt="" />
+          {logo.image?.childImageSharp?.fluid && (
+            <Img fluid={logo.image.childImageSharp.fluid} alt="" />
+          )}
         </Link>
         <p className="NavBar__Content__Presentation">
           Virgile Veyron Guillemaud / Dessinateur drôlatique / Peintre en

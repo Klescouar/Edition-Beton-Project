@@ -55,6 +55,7 @@
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "2.x",
     "gatsby-cli": "^2.12.7",
+    "http-proxy-middleware": "^1.0.3",
     "prettier": "2.0.5"
   },
   "keywords": [

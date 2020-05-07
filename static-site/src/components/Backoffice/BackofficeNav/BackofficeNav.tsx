@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link } from "@reach/router";
 
 // @ts-ignore
 import CloseIcon from "../../../icons/white-cross-out.svg";

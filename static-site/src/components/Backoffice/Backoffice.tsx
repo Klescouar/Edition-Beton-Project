@@ -31,7 +31,7 @@ export const Backoffice = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(autoLogin());
-    dispatch(getArticles());
+    // dispatch(getArticles());
     dispatch(getCategories());
     dispatch(getAbout());
     dispatch(loadLogo());

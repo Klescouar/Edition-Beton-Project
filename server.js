@@ -42,10 +42,10 @@ connection.on("error", (err) => {
 });
 
 app.use("/user", user);
-app.use(articles);
-app.use(categories);
-app.use(about);
-app.use(logo);
+app.use("/api", articles);
+app.use("/api", categories);
+app.use("/api", about);
+app.use("/api", logo);
 app.use("/medias", express.static(__dirname + "/medias"));
 
 // Serve static files from the React frontend app

@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 
 const API = {
   get(url: string, options: Object = {}) {
-    return fetch(`https://lesdessinsdevirgile.com${url}`, {
+    return fetch(`/api${url}`, {
       method: "GET",
       mode: "cors",
       credentials: "include", // necessary to set commits via fetch
@@ -20,7 +20,7 @@ const API = {
   },
 
   post(url: string, payload: Object) {
-    return fetch(`https://lesdessinsdevirgile.com${url}`, {
+    return fetch(`/api${url}`, {
       method: "POST",
       mode: "cors",
       credentials: "include", // necessary to set commits via fetch
@@ -38,7 +38,7 @@ const API = {
   },
 
   delete(url: string, payload: Object) {
-    return fetch(`https://lesdessinsdevirgile.com${url}`, {
+    return fetch(`/api${url}`, {
       method: "DELETE",
       mode: "cors",
       credentials: "include", // necessary to set commits via fetch
@@ -56,7 +56,7 @@ const API = {
   },
 
   put(url: string, payload: Object) {
-    return fetch(`https://lesdessinsdevirgile.com${url}`, {
+    return fetch(`/api${url}`, {
       method: "PUT",
       mode: "cors",
       credentials: "include", // necessary to set commits via fetch

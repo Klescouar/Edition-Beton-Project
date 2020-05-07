@@ -2,13 +2,6 @@ export interface preSavedCategory {
   name: string;
 }
 
-export interface Category {
-  _id: string;
-  name: string;
-}
-
-export type Categories = Category[];
-
 interface AddCategorySuccessAction {
   type: "ADD_CATEGORY_SUCCESS";
   payload: Categories;
@@ -43,3 +36,23 @@ export type CategoriesActionTypes =
   | RemoveCategoryFailureAction
   | GetCategoriesSuccessAction
   | GetCategoriesFailureAction;
+export interface Category {
+  _id: string;
+  id: string;
+  name: string;
+  fields: {
+    slug: string;
+  };
+}
+
+export type Categories = Category[];
+
+export type CategoriesData = {
+  allCategoryType: {
+    edges: [
+      {
+        node: Category;
+      }
+    ];
+  };
+};

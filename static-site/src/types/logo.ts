@@ -1,9 +1,6 @@
-export interface PreSavedLogo {
-  url: string;
-}
+import { FluidObject } from "gatsby-image";
 
-export interface Logo {
-  _id: string;
+export interface PreSavedLogo {
   url: string;
 }
 
@@ -30,3 +27,13 @@ export type LogoActionTypes =
   | UpdateLogoFailureAction
   | GetLogoSuccessAction
   | GetLogoFailureAction;
+
+export interface Logo {
+  id: string;
+  url: string;
+  image: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
+}

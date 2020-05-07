@@ -15,7 +15,9 @@ const HandleLogo = (props: RouteComponentProps) => {
   const [logo, setLogo] = useState({ url: "" });
 
   useEffect(() => {
-    if (savedLogo) setLogo(savedLogo);
+    if (savedLogo) {
+      setLogo(savedLogo);
+    }
   }, [savedLogo]);
 
   const handleClick = () => {

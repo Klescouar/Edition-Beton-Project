@@ -114,7 +114,7 @@ exports.createPages = async ({ graphql, actions }) => {
   data.allCategoryType.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve(`./src/templates/category.js`),
+      component: path.resolve(`./src/templates/category.tsx`),
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.

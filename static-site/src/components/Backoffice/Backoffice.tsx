@@ -32,7 +32,7 @@ export const Backoffice = () => {
   useEffect(() => {
     // dispatch(autoLogin());
     // dispatch(getArticles());
-    dispatch(getCategories());
+    // dispatch(getCategories());
     dispatch(getAbout());
     dispatch(loadLogo());
   }, [dispatch]);

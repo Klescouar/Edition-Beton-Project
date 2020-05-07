@@ -8,6 +8,7 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-typescript",
     "gatsby-plugin-sass",
+    "gatsby-plugin-typescript",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -46,8 +47,14 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // "gatsby-plugin-offline",
   ],
-  proxy: {
-    prefix: "/api",
-    url: "http://localhoost:4444",
-  },
+  proxy: [
+    {
+      prefix: "/api",
+      url: "http://localhost:4444",
+    },
+    {
+      prefix: "/medias",
+      url: "http://localhost:4444",
+    },
+  ],
 };

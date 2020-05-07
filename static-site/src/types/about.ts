@@ -1,11 +1,6 @@
-export interface PreSavedAbout {
-  url: string;
-  title: string;
-  description: string;
-}
+import { FluidObject } from "gatsby-image";
 
-export interface About {
-  _id: string;
+export interface PreSavedAbout {
   url: string;
   title: string;
   description: string;
@@ -41,3 +36,19 @@ export type AboutActionTypes =
   | UpdateAboutFailureAction
   | GetAboutSuccessAction
   | GetAboutailureAction;
+
+export interface About {
+  _id: string;
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+}
+
+export interface AboutType extends About {
+  image: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
+}

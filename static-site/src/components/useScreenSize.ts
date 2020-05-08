@@ -9,18 +9,25 @@ const BREAKPOINTS: Breakpoints = {
   [MEDIUM]: 767,
   [LARGE]: 1025,
 };
+
 export const getScreenSize = (
   width: number,
   breakpoints: Breakpoints = BREAKPOINTS
 ): Breakpoint => {
   return Object.keys(breakpoints)
-    .filter((key: Breakpoint) => width >= breakpoints[key])
-    .reduce(
-      (keyToKeep: Breakpoint, key: Breakpoint) =>
-        breakpoints[keyToKeep] > breakpoints[key] ? keyToKeep : key,
-      SMALL
-    ) as Breakpoint;
+    .filter((key) => {
+      const breakpointKey = <Breakpoint>key;
+      return width >= breakpoints[breakpointKey];
+    })
+    .reduce((keyToKeep, key) => {
+      const keyToKeepBreakPoint = <Breakpoint>keyToKeep;
+      const keyBreakpoint = <Breakpoint>key;
+      return breakpoints[keyToKeepBreakPoint] > breakpoints[keyBreakpoint]
+        ? keyToKeepBreakPoint
+        : keyBreakpoint;
+    }, SMALL) as Breakpoint;
 };
+
 const useScreenSize = () => {
   const [screenSize, setScreenSize] = useState<Breakpoint>(
     getScreenSize(window.innerWidth)
@@ -37,4 +44,5 @@ const useScreenSize = () => {
   }, []);
   return screenSize;
 };
+
 export default useScreenSize;

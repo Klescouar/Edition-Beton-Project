@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RouteComponentProps } from "@reach/router";
 
+import { getCategories as loadCategories } from "../../../actions/categories";
 import { getCategories } from "../../../selectors/categories";
 import { addCategory, removeCategory } from "../../../actions/categories";
 import MaterialButton from "../../MaterialButton/MaterialButton";
@@ -9,11 +10,14 @@ import MaterialInput from "../../MaterialInput/MaterialInput";
 import RemoveButton from "../../RemoveButton/RemoveButton";
 
 import "./HandleCategories.scss";
+import { useFetchData } from "../../useFetchData";
+import { Category } from "../../../types/categories";
 
 const HandleCategories = (props: RouteComponentProps) => {
   const dispatch = useDispatch();
   const [category, setCategory] = useState("");
-  const categories = useSelector(getCategories);
+
+  const categories = useFetchData<Category[]>(loadCategories, getCategories);
 
   const handleClick = () => {
     dispatch(addCategory(category));

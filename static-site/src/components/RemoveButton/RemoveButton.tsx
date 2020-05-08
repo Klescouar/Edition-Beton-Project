@@ -1,6 +1,6 @@
 import React from "react";
 // @ts-ignore
-import Close from "../../icons/close.svg";
+import Close from "../../icons/close.inline.svg";
 
 import "./RemoveButton.scss";
 

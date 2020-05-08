@@ -4,16 +4,18 @@ import { RouteComponentProps } from "@reach/router";
 import ReactQuill from "react-quill";
 
 import { About } from "../../../types/about";
-import { updateAbout } from "../../../actions/about";
+import { updateAbout, getAbout as loadAbout } from "../../../actions/about";
 import { getAbout } from "../../../selectors/about";
 import MaterialInput from "../../MaterialInput/MaterialInput";
 import MaterialButton from "../../MaterialButton/MaterialButton";
 import ImageUploader from "../../ImageUploader/ImageUploader";
 
 import "./HandleAbout.scss";
+import { useFetchData } from "../../useFetchData";
 
 const HandleAbout = (props: RouteComponentProps) => {
-  const savedAbout = useSelector(getAbout);
+  const savedAbout = useFetchData<About>(loadAbout, getAbout);
+
   const dispatch = useDispatch();
   const [about, setAbout] = useState<About>(savedAbout);
 

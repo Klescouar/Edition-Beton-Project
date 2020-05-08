@@ -18,10 +18,6 @@ import eyeImage from "../../images/oeil.jpg";
 import "../../styles/quill.snow.scss";
 import "./Backoffice.scss";
 import { useDispatch } from "react-redux";
-import { getAbout } from "../../actions/about";
-import { loadLogo } from "../../actions/logo";
-import { getArticles } from "../../actions/articles";
-import { getCategories } from "../../actions/categories";
 
 export const Backoffice = () => {
   const screenSize = useScreenSize();
@@ -31,10 +27,6 @@ export const Backoffice = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(autoLogin());
-    // dispatch(getArticles());
-    // dispatch(getCategories());
-    dispatch(getAbout());
-    dispatch(loadLogo());
   }, [dispatch]);
 
   const handleMenu = () => {

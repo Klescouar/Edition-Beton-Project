@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, RouteComponentProps } from "@reach/router";
 
 import { Article } from "../../../types/articles";
 import { getArticles } from "../../../selectors/articles";
+import { getArticles as loadArticles } from "../../../actions/articles";
 import RemoveButton from "../../RemoveButton/RemoveButton";
 import MaterialButton from "../../MaterialButton/MaterialButton";
 import { removeArticle } from "../../../actions/articles";
 
 import "./HandleArticles.scss";
+import { useFetchData } from "../../useFetchData";
 
 const HandleArticles = (props: RouteComponentProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const articles = useSelector(getArticles);
+
+  const articles = useFetchData<Article[]>(loadArticles, getArticles);
+
   const handleClick = (article: Article) => {
     dispatch(removeArticle(article));
   };
@@ -28,7 +32,7 @@ const HandleArticles = (props: RouteComponentProps) => {
             <div
               className="HandleArticles__Content__Item__Image"
               style={{
-                backgroundImage: `url(../../../../medias/${article.url})`,
+                backgroundImage: `url(/medias/${article.url})`,
               }}
             >
               <RemoveButton handleClick={() => handleClick(article)} />

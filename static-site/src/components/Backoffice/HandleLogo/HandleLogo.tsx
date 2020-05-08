@@ -2,16 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RouteComponentProps } from "@reach/router";
 
-import { updateLogo } from "../../../actions/logo";
+import { updateLogo, loadLogo } from "../../../actions/logo";
 import { getLogo } from "../../../selectors/logo";
 import ImageUploader from "../../ImageUploader/ImageUploader";
 import MaterialButton from "../../MaterialButton/MaterialButton";
 
 import "./HandleLogo.scss";
+import { Logo } from "../../../types/logo";
+import { useFetchData } from "../../useFetchData";
 
 const HandleLogo = (props: RouteComponentProps) => {
   const dispatch = useDispatch();
-  const savedLogo = useSelector(getLogo);
+
+  const savedLogo = useFetchData<Logo>(loadLogo, getLogo);
+
   const [logo, setLogo] = useState({ url: "" });
 
   useEffect(() => {

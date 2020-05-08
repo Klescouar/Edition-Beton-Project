@@ -48,16 +48,14 @@ export const Backoffice = () => {
       {(!isMobile || menuIsOpen) && (
         <BackofficeNav setMenuIsOpen={setMenuIsOpen} isMobile={isMobile} />
       )}
-      <div className="Backoffice__Content">
-        <Router>
-          <HandleArticles path="/" />
-          <HandleArticle path="article" key="Add" />
-          <HandleArticle path="article/:id" key="Modify" />
-          <HandleCategories path="categories" />
-          <HandleAbout path="about" />
-          <HandleLogo path="logo" />
-        </Router>
-      </div>
+      <Router primary={false} className="Backoffice__Content">
+        <HandleArticles path="/" />
+        <HandleArticle path="article" key="Add" />
+        <HandleArticle path="article/:id" key="Modify" />
+        <HandleCategories path="categories" />
+        <HandleAbout path="about" />
+        <HandleLogo path="logo" />
+      </Router>
     </div>
   );
 };

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RouteComponentProps } from "@reach/router";
-import ReactQuill from "react-quill";
 
 import { About } from "../../../types/about";
 import { updateAbout, getAbout as loadAbout } from "../../../actions/about";
@@ -12,6 +11,8 @@ import ImageUploader from "../../ImageUploader/ImageUploader";
 
 import "./HandleAbout.scss";
 import { useFetchData } from "../../useFetchData";
+
+const ReactQuill = React.lazy(() => import("react-quill"));
 
 const HandleAbout = (props: RouteComponentProps) => {
   const savedAbout = useFetchData<About>(loadAbout, getAbout);
@@ -72,15 +73,17 @@ const HandleAbout = (props: RouteComponentProps) => {
           label="Titre"
         />
         <div className="HandleAbout__Content__Editor">
-          <ReactQuill
-            theme="snow"
-            modules={modules}
-            formats={formats}
-            value={about.description}
-            onChange={(description) =>
-              setAbout({ ...about, description: description })
-            }
-          />
+          <Suspense fallback={<div />}>
+            <ReactQuill
+              theme="snow"
+              modules={modules}
+              formats={formats}
+              value={about.description}
+              onChange={(description) =>
+                setAbout({ ...about, description: description })
+              }
+            />
+          </Suspense>
         </div>
         <ImageUploader item={about} setItem={setAbout} />
         <MaterialButton handleClick={handleClick} text={"Envoyer"} />

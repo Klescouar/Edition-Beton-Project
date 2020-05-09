@@ -11,6 +11,7 @@ import { removeArticle } from "../../../actions/articles";
 
 import "./HandleArticles.scss";
 import { useFetchData } from "../../useFetchData";
+import MaterialLink from "../../MaterialLink/MaterialLink";
 
 const HandleArticles = (props: RouteComponentProps) => {
   const navigate = useNavigate();
@@ -21,8 +22,6 @@ const HandleArticles = (props: RouteComponentProps) => {
   const handleClick = (article: Article) => {
     dispatch(removeArticle(article));
   };
-
-  const handleModify = (id: string) => navigate(`/backoffice/article/${id}`);
 
   return (
     <div className="HandleArticles">
@@ -37,10 +36,9 @@ const HandleArticles = (props: RouteComponentProps) => {
             >
               <RemoveButton handleClick={() => handleClick(article)} />
             </div>
-            <MaterialButton
-              text="Modifier"
-              handleClick={() => handleModify(article._id)}
-            />
+            <MaterialLink to={`/admin/dashboard/article/${article._id}`}>
+              Modifier
+            </MaterialLink>
           </div>
         ))}
       </div>

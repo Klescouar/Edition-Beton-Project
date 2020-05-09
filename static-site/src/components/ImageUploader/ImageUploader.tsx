@@ -20,7 +20,7 @@ const ImageUploader = ({ item, setItem }: Props) => {
     form.append("files", files[0], files[0].name);
 
     try {
-      let request = await fetch("/upload", {
+      let request = await fetch("/api/upload", {
         method: "post",
         body: form,
       });

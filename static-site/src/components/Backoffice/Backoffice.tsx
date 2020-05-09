@@ -8,7 +8,7 @@ import HandleCategories from "./HandleCategories/HandleCategories";
 import HandleAbout from "./HandleAbout/HandleAbout";
 import HandleLogo from "./HandleLogo/HandleLogo";
 import BackofficeNav from "./BackofficeNav/BackofficeNav";
-import useScreenSize from "../../utils/useScreenSize";
+import useScreenSize from "../useScreenSize";
 
 // @ts-ignore
 import MenuIcon from "../../icons/white-menu.inline.svg";

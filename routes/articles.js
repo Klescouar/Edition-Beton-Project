@@ -6,7 +6,7 @@ const fs = bluebird.promisifyAll(require("fs"));
 const path = require("path");
 const auth = require("../middleware/auth");
 const Article = require("../model/Article");
-const buildFront = require("../utils/build-front");
+const { buildFront, cleanBuild } = require("../utils/build-front");
 
 // Returns true if successful or false otherwise
 async function checkCreateUploadsFolder(uploadsFolder) {
@@ -171,6 +171,8 @@ router.delete("/article", auth, async (req, res) => {
       { useFindAndModify: false }
     );
     fs.unlinkSync(`${path.join(__dirname, "../medias")}/${req.body.url}`);
+
+    await cleanBuild();
     buildFront();
 
     const allArticles = await Article.find({});

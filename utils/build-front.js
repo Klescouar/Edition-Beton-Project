@@ -1,4 +1,7 @@
-const { spawn } = require("child_process");
+const { spawn, exec } = require("child_process");
+const { promisify } = require("util");
+
+const asyncExec = promisify(exec);
 
 let isRunning = false;
 let build = null;
@@ -20,11 +23,11 @@ function generateFront() {
   });
 
   buildFront.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
+    console.log(`${data}`);
   });
 
   buildFront.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
+    console.log(`${data}`);
   });
 
   return buildFront;
@@ -39,4 +42,22 @@ function buildFront() {
   }
 }
 
-module.exports = buildFront;
+async function cleanFolder(path) {
+  try {
+    await asyncExec(`rm -rf ${path}`);
+  } catch (err) {
+    console.error(`Could not clean ${path}`);
+  }
+}
+
+function cleanBuild() {
+  return Promise.all([
+    cleanFolder("./static-site/.cache"),
+    cleanFolder("./static-site/public"),
+  ]);
+}
+
+module.exports = {
+  buildFront,
+  cleanBuild,
+};

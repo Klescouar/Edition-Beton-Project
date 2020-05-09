@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
 const About = require("../model/About");
-const buildFront = require("../utils/build-front");
+const { buildFront } = require("../utils/build-front");
 
 /**
  * @method - GET

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
-const buildFront = require("../utils/build-front");
+const { buildFront, cleanBuild } = require("../utils/build-front");
 
 const Category = require("../model/Category");
 
@@ -53,7 +53,10 @@ router.delete("/category", auth, async (req, res) => {
       _id: req.body.id,
     });
     const allCategories = await Category.find({});
+
+    await cleanBuild();
     buildFront();
+
     res.send(allCategories);
   } catch (e) {
     res.send({ message: e });

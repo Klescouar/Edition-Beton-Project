@@ -2,12 +2,12 @@ import { RegisterActionTypes } from "../types/register";
 
 type RegisterState = {
   token: string;
-  registerError: string;
+  registerErrors: string[];
 };
 
 const initialState = {
   token: "",
-  registerError: "",
+  registerErrors: [],
 };
 
 export default (
@@ -23,7 +23,7 @@ export default (
     case "REGISTER_FAILURE":
       return {
         ...state,
-        registerError: action.payload,
+        registerErrors: action.payload,
       };
     default:
       return state;

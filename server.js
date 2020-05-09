@@ -41,7 +41,7 @@ connection.on("error", (err) => {
   process.exit();
 });
 
-app.use("/user", user);
+app.use("/api/user", user);
 app.use("/api", articles);
 app.use("/api", categories);
 app.use("/api", about);

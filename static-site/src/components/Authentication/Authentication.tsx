@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "@reach/router";
+import { useNavigate, RouteComponentProps } from "@reach/router";
 
 import { login } from "../../actions/authentication";
 import MaterialInput from "../MaterialInput/MaterialInput";
@@ -11,7 +11,7 @@ import {
 
 import "./Authentication.scss";
 
-export const Authentication = () => {
+export const Authentication = (props: RouteComponentProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authenticationError = useSelector(getAuthenticationError);
@@ -19,19 +19,24 @@ export const Authentication = () => {
   const [values, setValues] = useState({ username: "", password: "" });
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/backoffice");
-  });
+    if (isAuthenticated) {
+      navigate("/admin/dashboard");
+    }
+  }, [isAuthenticated]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = event.target;
     setValues({ ...values, [name]: event.target.value });
   };
 
-  const handleClick = () => dispatch(login(values));
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    dispatch(login(values));
+  };
 
   return (
     <div className="Authentication">
-      <div className="Authentication__Form">
+      <form className="Authentication__Form" onSubmit={handleSubmit}>
         <MaterialInput
           name="username"
           handleChange={handleChange}
@@ -48,10 +53,8 @@ export const Authentication = () => {
         {authenticationError && (
           <p className="Authentication__Form__Error">{authenticationError}</p>
         )}
-        <button onClick={handleClick} className="Authentication__Form__Submit">
-          Se Connecter
-        </button>
-      </div>
+        <button className="Authentication__Form__Submit">Se Connecter</button>
+      </form>
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Headroom from "react-headroom";
-import { Router } from "@reach/router";
+import { Router, RouteComponentProps } from "@reach/router";
 
 import HandleArticles from "./HandleArticles/HandleArticles";
 import HandleArticle from "./HandleArticle/HandleArticle";
@@ -17,17 +17,11 @@ import eyeImage from "../../images/oeil.jpg";
 
 import "../../styles/quill.snow.scss";
 import "./Backoffice.scss";
-import { useDispatch } from "react-redux";
 
-export const Backoffice = () => {
+export const Backoffice = (props: RouteComponentProps) => {
   const screenSize = useScreenSize();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const isMobile = screenSize === "small";
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    // dispatch(autoLogin());
-  }, [dispatch]);
 
   const handleMenu = () => {
     setMenuIsOpen(true);

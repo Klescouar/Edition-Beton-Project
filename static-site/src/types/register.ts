@@ -9,7 +9,7 @@ interface RegisterSuccessAction {
 
 interface RegisterFailureAction {
   type: string;
-  payload: string;
+  payload: string[];
 }
 
 export type RegisterActionTypes = RegisterSuccessAction | RegisterFailureAction;

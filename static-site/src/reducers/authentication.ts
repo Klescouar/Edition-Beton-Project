@@ -11,7 +11,7 @@ type AuthenticationState = {
 const initialState = {
   isAuthenticated: false,
   token: "",
-  isLoading: false,
+  isLoading: true,
   authenticationError: "",
 };
 

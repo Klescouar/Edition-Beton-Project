@@ -20,6 +20,6 @@ export interface State {
   };
   register: {
     registerInfo: RegisterData;
-    registerError: string;
+    registerErrors: string[];
   };
 }

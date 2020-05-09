@@ -5,6 +5,13 @@ import { RegisterActionTypes } from "../types/register";
 import { User } from "../types/authentication";
 import API from "../utils/api";
 
+type Error = {
+  errors?: {
+    msg: string;
+  }[];
+  message?: string;
+};
+
 export const register = (
   data: User
 ): ThunkAction<void, State, unknown, RegisterActionTypes> => async (
@@ -17,6 +24,17 @@ export const register = (
       payload: response.token,
     });
   } catch (error) {
-    dispatch({ type: "REGISTER_FAILURE", payload: error.message });
+    let catchedError = <Error>error;
+    if (catchedError.errors) {
+      dispatch({
+        type: "REGISTER_FAILURE",
+        payload: catchedError.errors.map((err) => err.msg),
+      });
+    } else {
+      dispatch({
+        type: "REGISTER_FAILURE",
+        payload: [catchedError.message || "An unknown error occured"],
+      });
+    }
   }
 };

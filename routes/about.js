@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
 const About = require("../model/About");
+const buildFront = require("../utils/build-front");
 
 /**
  * @method - GET
@@ -34,6 +35,7 @@ router.post("/about", auth, async (req, res) => {
     });
 
     await about.save();
+    buildFront();
     const savedAbout = await About.find({});
 
     res.send(...savedAbout);

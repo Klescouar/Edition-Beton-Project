@@ -1,0 +1,59 @@
+@import "../../../styles/mixins";
+
+.BackofficeNav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 18rem;
+  height: 100vh;
+  background-color: #29313d;
+  display: flex;
+  flex-direction: column;
+
+  @include mobile {
+    width: 100%;
+    z-index: 5;
+  }
+
+  &__Close {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0;
+    cursor: pointer;
+
+    svg {
+      height: 1.5rem;
+      width: 1.5rem;
+      color: white;
+    }
+  }
+
+  &__Head {
+    display: flex;
+    justify-content: center;
+
+    &__Image {
+      height: 5rem;
+      width: 5rem;
+      border-radius: 50%;
+      margin: 1.5rem 0;
+    }
+  }
+
+  &__Link {
+    cursor: pointer;
+    padding: 2rem;
+    color: white;
+    text-decoration: none;
+    border-top: 1px solid #404c5f;
+
+    &:hover,
+    &--active {
+      background-color: #1c222b;
+    }
+  }
+}

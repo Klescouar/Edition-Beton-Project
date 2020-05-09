@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
+const buildFront = require("../utils/build-front");
 
 const Logo = require("../model/Logo");
 
@@ -35,6 +36,7 @@ router.post("/logo", auth, async (req, res) => {
     });
 
     await logo.save();
+    buildFront();
     const savedLogo = await Logo.find({});
 
     res.send(...savedLogo);

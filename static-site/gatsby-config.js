@@ -5,7 +5,8 @@ module.exports = {
       "Virgile Veyron Guillemaud / Dessinateur drôlatique / Peintre en châtiment / ACAB",
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-typescript",
     "gatsby-plugin-sass",
     "gatsby-plugin-typescript",
     {
@@ -15,23 +16,23 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-plugin-sharp`,
+    "gatsby-plugin-sharp",
     {
-      resolve: `gatsby-transformer-sharp`,
+      resolve: "gatsby-transformer-sharp",
       options: {
         checkSupportedExtensions: false,
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: `les-dessins-de-virgile`,
-        short_name: `dessins-virgile`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
+        name: "les-dessins-de-virgile",
+        short_name: "dessins-virgile",
+        start_url: "/",
+        background_color: "#663399",
+        theme_color: "#663399",
+        display: "minimal-ui",
+        icon: "src/images/favicon.png", // This path is relative to the root of the site.
       },
     },
     {
@@ -44,6 +45,16 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // "gatsby-plugin-offline",
+  ],
+  proxy: [
+    {
+      prefix: "/api",
+      url: "http://localhost:4444",
+    },
+    {
+      prefix: "/medias",
+      url: "http://localhost:4444",
+    },
   ],
 };

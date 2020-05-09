@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
+const { buildFront, cleanBuild } = require("../utils/build-front");
 
 const Category = require("../model/Category");
 
@@ -33,6 +34,7 @@ router.post("/category", auth, async (req, res) => {
 
     await category.save();
     const allCategories = await Category.find({});
+    buildFront();
     res.send(allCategories);
   } catch (e) {
     res.send({ message: e });
@@ -51,6 +53,10 @@ router.delete("/category", auth, async (req, res) => {
       _id: req.body.id,
     });
     const allCategories = await Category.find({});
+
+    await cleanBuild();
+    buildFront();
+
     res.send(allCategories);
   } catch (e) {
     res.send({ message: e });

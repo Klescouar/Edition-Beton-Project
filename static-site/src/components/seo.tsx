@@ -17,7 +17,7 @@ type Props = {
 };
 
 const SEO = ({
-  description = ``,
+  description = "",
   lang = "fr",
   meta = [],
   title = "",

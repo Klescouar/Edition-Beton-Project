@@ -41,19 +41,19 @@ connection.on("error", (err) => {
   process.exit();
 });
 
-app.use("/user", user);
-app.use(articles);
-app.use(categories);
-app.use(about);
-app.use(logo);
+app.use("/api/user", user);
+app.use("/api", articles);
+app.use("/api", categories);
+app.use("/api", about);
+app.use("/api", logo);
 app.use("/medias", express.static(__dirname + "/medias"));
 
 // Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "static-site/public")));
 
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  res.sendFile(path.join(__dirname + "/static-site/public/index.html"));
 });
 
 //=== 5 - START SERVER

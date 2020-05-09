@@ -6,6 +6,7 @@ const fs = bluebird.promisifyAll(require("fs"));
 const path = require("path");
 const auth = require("../middleware/auth");
 const Article = require("../model/Article");
+const { buildFront, cleanBuild } = require("../utils/build-front");
 
 // Returns true if successful or false otherwise
 async function checkCreateUploadsFolder(uploadsFolder) {
@@ -132,6 +133,7 @@ router.post("/article", auth, async (req, res) => {
 
     await article.save();
     const allArticles = await Article.find({});
+    const buildFront = require("../utils/build-front");
     res.send(allArticles);
   } catch (e) {
     console.log(e);
@@ -170,6 +172,9 @@ router.delete("/article", auth, async (req, res) => {
     );
     fs.unlinkSync(`${path.join(__dirname, "../medias")}/${req.body.url}`);
 
+    await cleanBuild();
+    buildFront();
+
     const allArticles = await Article.find({});
     res.send(allArticles);
   } catch (e) {
@@ -199,6 +204,7 @@ router.put("/article", auth, async (req, res) => {
       article,
       { upsert: true, useFindAndModify: false }
     );
+    buildFront();
     const allArticles = await Article.find({});
     res.send(allArticles);
   } catch (e) {

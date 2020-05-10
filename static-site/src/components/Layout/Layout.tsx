@@ -40,7 +40,7 @@ export const Layout = ({ children }: Props) => {
         menuIsOpen={menuIsOpen}
         setMenuIsOpen={setMenuIsOpen}
       />
-      <div
+      <main
         className={classNames("Layout__Content", {
           "Layout__Content--withMenu": menuIsOpen,
         })}
@@ -62,7 +62,7 @@ export const Layout = ({ children }: Props) => {
           </Headroom>
         )}
         {children}
-      </div>
+      </main>
     </div>
   );
 };

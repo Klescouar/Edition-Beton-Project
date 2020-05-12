@@ -14,7 +14,6 @@ import { useFetchData } from "../../useFetchData";
 import MaterialLink from "../../MaterialLink/MaterialLink";
 
 const HandleArticles = (props: RouteComponentProps) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const articles = useFetchData<Article[]>(loadArticles, getArticles);
@@ -31,7 +30,7 @@ const HandleArticles = (props: RouteComponentProps) => {
             <div
               className="HandleArticles__Content__Item__Image"
               style={{
-                backgroundImage: `url(/medias/${article.url})`,
+                backgroundImage: `url(https://virgile.s3.eu-west-3.amazonaws.com/${article.url})`,
               }}
             >
               <RemoveButton handleClick={() => handleClick(article)} />

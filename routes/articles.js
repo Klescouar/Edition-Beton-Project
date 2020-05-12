@@ -62,16 +62,8 @@ function checkAcceptedExtensions(file) {
 
 router.post("/upload", async (req, res) => {
   let form = Formidable.IncomingForm();
-  const uploadsFolder = path.join(__dirname, "../medias");
   form.multiples = true;
-  form.uploadDir = uploadsFolder;
   form.maxFileSize = 50 * 1024 * 1024; // 50 MB
-  const folderCreationResult = await checkCreateUploadsFolder(uploadsFolder);
-  if (!folderCreationResult) {
-    return res.status(400).json({
-      message: "The uploads folder couldn't be created",
-    });
-  }
   form.parse(req, async (err, fields, files) => {
     const file = files.files;
     if (!checkAcceptedExtensions(file)) {
@@ -96,7 +88,7 @@ router.post("/upload", async (req, res) => {
         type
       );
     } catch (e) {
-      console.log("Error uploading the file");
+      console.log(e);
       return res.status(400).json({ message: "Error uploading the file" });
     }
 

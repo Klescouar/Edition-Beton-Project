@@ -1,3 +1,9 @@
+const AWS = require("aws-sdk");
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
+
 module.exports = {
   siteMetadata: {
     title: "Les dessins de Virgile",
@@ -14,14 +20,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: "gatsby-source-s3-image",
-      options: {
-        bucketName: "virgile",
-        domain: null, // [optional] Not necessary to define for AWS S3; defaults to `s3.amazonaws.com`
-        protocol: "https", // [optional] Default to `https`.
       },
     },
     "gatsby-plugin-sharp",

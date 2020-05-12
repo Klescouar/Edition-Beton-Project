@@ -38,7 +38,9 @@ const ImageUploader = ({ item, setItem }: Props) => {
     <>
       <div
         className="ImageUploader"
-        style={{ backgroundImage: `url(/medias/${item.url})` }}
+        style={{
+          backgroundImage: `url(https://virgile.s3.eu-west-3.amazonaws.com/${item.url})`,
+        }}
       >
         <button onClick={handleOnClick} className="ImageUploader__Close">
           {item.url && <Close />}

@@ -47,6 +47,8 @@ const Articles = ({ articles }: Props) => {
     setIsOpen((wasOpen) => !wasOpen);
   };
 
+  console.log(articles);
+
   return (
     <div className="Articles">
       <StackGrid

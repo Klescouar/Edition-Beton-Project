@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RouteComponentProps } from "@reach/router";
+import { Category } from "../../../types/categories";
 
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { RouteComponentProps } from "@reach/router";
 import { getCategories as loadCategories } from "../../../actions/categories";
 import { getCategories } from "../../../selectors/categories";
 import { addCategory, removeCategory } from "../../../actions/categories";
@@ -11,7 +12,6 @@ import RemoveButton from "../../RemoveButton/RemoveButton";
 
 import "./HandleCategories.scss";
 import { useFetchData } from "../../useFetchData";
-import { Category } from "../../../types/categories";
 
 const HandleCategories = (props: RouteComponentProps) => {
   const dispatch = useDispatch();

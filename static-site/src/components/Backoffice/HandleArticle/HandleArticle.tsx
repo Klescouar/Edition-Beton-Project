@@ -1,14 +1,18 @@
+import { Category } from "../../../types/categories";
+
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, RouteComponentProps } from "@reach/router";
 import { useDispatch, useSelector } from "react-redux";
 
 import { PreSavedArticle } from "../../../types/articles";
 import { addArticle, updateArticle } from "../../../actions/articles";
+import { getCategories as loadCategories } from "../../../actions/categories";
 import { getCategories } from "../../../selectors/categories";
 import { getArticle } from "../../../selectors/articles";
 import MaterialInput from "../../MaterialInput/MaterialInput";
 import MaterialButton from "../../MaterialButton/MaterialButton";
 import ImageUploader from "../../ImageUploader/ImageUploader";
+import { useFetchData } from "../../useFetchData";
 
 import "./HandleArticle.scss";
 
@@ -24,6 +28,8 @@ const HandleArticle = (props: RouteComponentProps) => {
     categories: [],
   });
   const [formError, setFormError] = useState("");
+
+  useFetchData<Category[]>(loadCategories, getCategories);
 
   useEffect(() => {
     if (

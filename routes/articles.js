@@ -4,7 +4,6 @@ const Formidable = require("formidable");
 const bluebird = require("bluebird");
 const fileType = require("file-type");
 const fs = bluebird.promisifyAll(require("fs"));
-const path = require("path");
 const AWS = require("aws-sdk");
 const auth = require("../middleware/auth");
 const Article = require("../model/Article");
@@ -18,31 +17,18 @@ const uploadFile = (buffer, name, type) => {
     Body: buffer,
     Bucket: process.env.S3_BUCKET,
     ContentType: type.mime,
-    Key: `${name}.${type.ext}`,
+    Key: name,
   };
   return s3.upload(params).promise();
 };
 
-// Returns true if successful or false otherwise
-async function checkCreateUploadsFolder(uploadsFolder) {
-  try {
-    await fs.statAsync(uploadsFolder);
-  } catch (e) {
-    if (e && e.code == "ENOENT") {
-      console.log("The uploads folder doesn't exist, creating a new one...");
-      try {
-        await fs.mkdirAsync(uploadsFolder);
-      } catch (err) {
-        console.log("Error creating the uploads folder 1");
-        return false;
-      }
-    } else {
-      console.log("Error creating the uploads folder 2");
-      return false;
-    }
-  }
-  return true;
-}
+const removeFile = (name) => {
+  const params = {
+    Bucket: process.env.S3_BUCKET,
+    Key: name,
+  };
+  return s3.deleteObject(params).promise();
+};
 
 // Returns true or false depending on whether the file is an accepted type
 function checkAcceptedExtensions(file) {
@@ -82,11 +68,7 @@ router.post("/upload", async (req, res) => {
       console.log(e);
     }
     try {
-      await uploadFile(
-        buffer,
-        fileName.split(".").slice(0, -1).join("."),
-        type
-      );
+      await uploadFile(buffer, fileName, type);
     } catch (e) {
       console.log(e);
       return res.status(400).json({ message: "Error uploading the file" });
@@ -154,7 +136,8 @@ router.delete("/article", auth, async (req, res) => {
       },
       { useFindAndModify: false }
     );
-    fs.unlinkSync(`${path.join(__dirname, "../medias")}/${req.body.url}`);
+
+    await removeFile(req.body.url);
 
     await cleanBuild();
     buildFront();

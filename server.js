@@ -39,6 +39,7 @@ mongoose.promise = global.Promise;
 mongoose.connect(connUri, {
   useNewUrlParser: true,
   autoIndex: true,
+  useUnifiedTopology: true,
 });
 
 const connection = mongoose.connection;

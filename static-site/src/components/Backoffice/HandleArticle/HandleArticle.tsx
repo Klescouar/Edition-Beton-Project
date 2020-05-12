@@ -47,7 +47,7 @@ const HandleArticle = (props: RouteComponentProps) => {
         ? dispatch(updateArticle(article, params.id))
         : dispatch(addArticle(article));
       setFormError("");
-      navigate("/backoffice");
+      navigate("/admin");
     } else {
       setFormError("All fields are required");
     }

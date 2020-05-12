@@ -48,13 +48,15 @@ export const Layout = ({ children }: Props) => {
         {!menuIsOpen && isMobile && (
           <Headroom>
             <div className="Layout__Nav">
-              <Link to="/" title="Page d'accueil">
-                <Img
-                  className="Layout__Nav__Logo"
-                  fluid={logo.image.childImageSharp.fluid}
-                  alt=""
-                />
-              </Link>
+              {logo.image?.childImageSharp?.fluid && (
+                <Link to="/" title="Page d'accueil">
+                  <Img
+                    className="Layout__Nav__Logo"
+                    fluid={logo.image.childImageSharp.fluid}
+                    alt=""
+                  />
+                </Link>
+              )}
               <button className="Layout__Nav__Button" onClick={handleMenu}>
                 <MenuIcon />
               </button>

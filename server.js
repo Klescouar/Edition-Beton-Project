@@ -3,6 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const AWS = require("aws-sdk");
+const bluebird = require("bluebird");
 const user = require("./routes/user");
 const articles = require("./routes/articles");
 const categories = require("./routes/categories");
@@ -21,6 +23,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// configure the keys for accessing AWS
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
+
+// configure AWS to work with promises
+AWS.config.setPromisesDependency(bluebird);
 
 //=== 2 - SET UP DATABASE
 //Configure mongoose's promise to global promise
@@ -57,6 +68,6 @@ app.get("*", (req, res) => {
 });
 
 //=== 5 - START SERVER
-app.listen(PORT, () =>
-  console.log("Server running on http://localhost:" + PORT + "/")
-);
+app.listen(PORT, () => {
+  console.log("Server running on http://localhost:" + PORT + "/");
+});

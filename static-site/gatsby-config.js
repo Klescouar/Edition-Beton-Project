@@ -16,6 +16,14 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: "gatsby-source-s3-image",
+      options: {
+        bucketName: "virgile",
+        domain: null, // [optional] Not necessary to define for AWS S3; defaults to `s3.amazonaws.com`
+        protocol: "https", // [optional] Default to `https`.
+      },
+    },
     "gatsby-plugin-sharp",
     {
       resolve: "gatsby-transformer-sharp",

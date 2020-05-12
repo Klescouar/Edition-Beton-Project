@@ -2,11 +2,26 @@ const express = require("express");
 const router = express.Router();
 const Formidable = require("formidable");
 const bluebird = require("bluebird");
+const fileType = require("file-type");
 const fs = bluebird.promisifyAll(require("fs"));
 const path = require("path");
+const AWS = require("aws-sdk");
 const auth = require("../middleware/auth");
 const Article = require("../model/Article");
 const { buildFront, cleanBuild } = require("../utils/build-front");
+
+const s3 = new AWS.S3();
+
+const uploadFile = (buffer, name, type) => {
+  const params = {
+    ACL: "public-read",
+    Body: buffer,
+    Bucket: process.env.S3_BUCKET,
+    ContentType: type.mime,
+    Key: `${name}.${type.ext}`,
+  };
+  return s3.upload(params).promise();
+};
 
 // Returns true if successful or false otherwise
 async function checkCreateUploadsFolder(uploadsFolder) {
@@ -58,60 +73,37 @@ router.post("/upload", async (req, res) => {
     });
   }
   form.parse(req, async (err, fields, files) => {
-    let myUploadedFiles = [];
-    if (err) {
-      console.log("Error parsing the incoming form");
+    const file = files.files;
+    if (!checkAcceptedExtensions(file)) {
+      console.log("The received file is not a valid type");
       return res.status(400).json({
-        message: "Error passing the incoming form",
+        message: "The sent file is not a valid type",
       });
     }
-    // If we are sending only one file:
-    if (!files.files.length) {
-      const file = files.files;
-      if (!checkAcceptedExtensions(file)) {
-        console.log("The received file is not a valid type");
-        return res.status(400).json({
-          message: "The sent file is not a valid type",
-        });
-      }
-      const fileName = encodeURIComponent(file.name.replace(/&. *;+/g, "-"));
-      myUploadedFiles.push(fileName);
-      try {
-        await fs.renameAsync(file.path, path.join(uploadsFolder, fileName));
-      } catch (e) {
-        console.log("Error uploading the file");
-        try {
-          await fs.unlinkAsync(file.path);
-        } catch (e) {}
-        return res.status(400).json({ message: "Error uploading the file" });
-      }
-    } else {
-      for (let i = 0; i < files.files.length; i++) {
-        const file = files.files[i];
-        if (!checkAcceptedExtensions(file)) {
-          console.log("The received file is not a valid type");
-          return res.status(400).json({
-            message: "The sent file is not a valid type",
-          });
-        }
-        const fileName = encodeURIComponent(file.name.replace(/&. *;+/g, "-"));
-        myUploadedFiles.push(fileName);
-        try {
-          await fs.renameAsync(file.path, path.join(uploadsFolder, fileName));
-        } catch (e) {
-          console.log("Error uploading the file");
-          try {
-            await fs.unlinkAsync(file.path);
-          } catch (e) {}
-          return res.status(400).json({ message: "Error uploading the file" });
-        }
-      }
+    const fileName = encodeURIComponent(file.name.replace(/&. *;+/g, "-"));
+    const path = file.path;
+    const buffer = fs.readFileSync(path);
+    let type;
+    try {
+      type = await fileType.fromBuffer(buffer);
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      await uploadFile(
+        buffer,
+        fileName.split(".").slice(0, -1).join("."),
+        type
+      );
+    } catch (e) {
+      console.log("Error uploading the file");
+      return res.status(400).json({ message: "Error uploading the file" });
     }
 
     res.json({
       ok: true,
       message: "File uploaded !",
-      files: myUploadedFiles[0],
+      files: fileName,
     });
   });
 });

@@ -58,7 +58,6 @@ app.use("/api", articles);
 app.use("/api", categories);
 app.use("/api", about);
 app.use("/api", logo);
-app.use("/medias", express.static(__dirname + "/medias"));
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "static-site/public")));

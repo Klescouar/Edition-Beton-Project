@@ -8,9 +8,11 @@ const bluebird = require("bluebird");
 const user = require("./routes/user");
 const articles = require("./routes/articles");
 const categories = require("./routes/categories");
+const publish = require("./routes/publish");
 const about = require("./routes/about");
 const logo = require("./routes/logo");
 const path = require("path");
+const fs = require("fs");
 
 // Setting up port
 const connUri = process.env.MONGO_LOCAL_CONN_URL;
@@ -58,13 +60,20 @@ app.use("/api", articles);
 app.use("/api", categories);
 app.use("/api", about);
 app.use("/api", logo);
+app.use("/api", publish);
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "static-site/public")));
 
 // Anything that doesn't match the above, send back index.html
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/static-site/public/index.html"));
+app.get("*", async (req, res) => {
+  fs.access(path.join(__dirname + "/static-site/public/index.html"), (err) => {
+    if (err) {
+      res.sendFile(path.join(__dirname + "/index.html"));
+    } else {
+      res.sendFile(path.join(__dirname + "/static-site/public/index.html"));
+    }
+  });
 });
 
 //=== 5 - START SERVER

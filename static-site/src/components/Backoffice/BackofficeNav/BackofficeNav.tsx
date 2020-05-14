@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import API from "../../../utils/api";
 
 import CloseIcon from "../../../icons/white-cross-out.inline.svg";
 import eyeImage from "../../../images/oeil.jpg";
@@ -14,6 +15,13 @@ type Props = {
 export const BackofficeNav = ({ isMobile, setMenuIsOpen }: Props) => {
   const handleClick = () => {
     setMenuIsOpen(false);
+  };
+
+  const handlePublish = async () => {
+    await API.post("/publish", {});
+    setTimeout(function () {
+      location.reload();
+    }, 3000);
   };
 
   return (
@@ -71,6 +79,9 @@ export const BackofficeNav = ({ isMobile, setMenuIsOpen }: Props) => {
       >
         Changer de logo
       </Link>
+      <button onClick={handlePublish} className="BackofficeNav__Button">
+        PUBLIER
+      </button>
     </div>
   );
 };

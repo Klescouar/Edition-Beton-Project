@@ -21,7 +21,7 @@ export const BackofficeNav = ({ isMobile, setMenuIsOpen }: Props) => {
     await API.post("/publish", {});
     setTimeout(function () {
       location.reload();
-    }, 2000);
+    }, 3000);
   };
 
   return (

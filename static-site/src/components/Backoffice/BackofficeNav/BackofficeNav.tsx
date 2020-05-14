@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
+import classNames from "classnames";
 import API from "../../../utils/api";
-
 import CloseIcon from "../../../icons/white-cross-out.inline.svg";
 import eyeImage from "../../../images/oeil.jpg";
 
@@ -13,11 +13,13 @@ type Props = {
 };
 
 export const BackofficeNav = ({ isMobile, setMenuIsOpen }: Props) => {
+  const [publishIsLoading, setPublishIsLoading] = useState(false);
   const handleClick = () => {
     setMenuIsOpen(false);
   };
 
   const handlePublish = async () => {
+    setPublishIsLoading(true);
     await API.post("/publish", {});
     setTimeout(function () {
       location.reload();
@@ -79,8 +81,16 @@ export const BackofficeNav = ({ isMobile, setMenuIsOpen }: Props) => {
       >
         Changer de logo
       </Link>
-      <button onClick={handlePublish} className="BackofficeNav__Button">
-        PUBLIER
+      <button
+        onClick={handlePublish}
+        className={classNames("BackofficeNav__Button", {
+          "BackofficeNav__Button--loading": publishIsLoading,
+        })}
+      >
+        {!publishIsLoading && <span>PUBLIER</span>}
+        {publishIsLoading && (
+          <span className="BackofficeNav__Button__Spinner"></span>
+        )}
       </button>
     </div>
   );

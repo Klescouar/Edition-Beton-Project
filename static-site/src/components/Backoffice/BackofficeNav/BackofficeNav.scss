@@ -1,5 +1,11 @@
 @import "../../../styles/mixins";
 
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .BackofficeNav {
   position: fixed;
   left: 0;
@@ -58,14 +64,50 @@
   }
 
   &__Button {
-    width: 70%;
-    margin: auto;
-    color: white;
+    position: relative;
+    margin: 2rem auto 0;
+    height: 50px;
+    width: 200px;
+    background-image: none;
     border: none;
-    border-radius: 2rem;
-    padding: 0.5rem;
-    background-color: #326ec9;
+    outline: none;
+    background-color: #335c9b;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 2px;
     cursor: pointer;
+    transition: all 0.2s ease-out;
+
+    &:active::after {
+      opacity: 0.3;
+    }
+
+    &__Spinner {
+      display: block;
+      width: 34px;
+      height: 34px;
+      position: absolute;
+      top: 8px;
+      left: calc(50% - 17px);
+      background: transparent;
+      box-sizing: border-box;
+      border-top: 4px solid white;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-radius: 100%;
+      animation: spin 0.6s ease-out infinite;
+    }
+
+    &--loading {
+      border-radius: 50px;
+      width: 50px;
+    }
+    &--loading::after {
+      width: 40px;
+      border-radius: 100%;
+    }
 
     &:hover {
       background-color: #3563a8;

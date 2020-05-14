@@ -10,9 +10,7 @@ import HandleLogo from "./HandleLogo/HandleLogo";
 import BackofficeNav from "./BackofficeNav/BackofficeNav";
 import useScreenSize from "../useScreenSize";
 
-// @ts-ignore
 import MenuIcon from "../../icons/white-menu.inline.svg";
-// @ts-ignore
 import eyeImage from "../../images/oeil.jpg";
 
 import "../../styles/quill.snow.scss";

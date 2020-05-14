@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 
-// @ts-ignore
-import CloseIcon from "../../../icons/white-cross-out.svg";
-// @ts-ignore
+import CloseIcon from "../../../icons/white-cross-out.inline.svg";
 import eyeImage from "../../../images/oeil.jpg";
 
 import "./BackofficeNav.scss";

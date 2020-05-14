@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Headroom from "react-headroom";
 import { Router, RouteComponentProps } from "@reach/router";
+import { Link } from "gatsby";
 
 import HandleArticles from "./HandleArticles/HandleArticles";
 import HandleArticle from "./HandleArticle/HandleArticle";
@@ -30,7 +31,9 @@ export const Backoffice = (props: RouteComponentProps) => {
       {isMobile && (
         <Headroom>
           <div className="Backoffice__Nav">
-            <img className="Backoffice__Nav__Logo" src={eyeImage} alt="" />
+            <Link to="/" className="BackofficeNav__Head">
+              <img className="Backoffice__Nav__Logo" src={eyeImage} alt="" />
+            </Link>
             <button className="Backoffice__Nav__Button" onClick={handleMenu}>
               <MenuIcon />
             </button>

@@ -22,6 +22,7 @@
     "file-type": "^14.3.0",
     "formidable": "^1.2.2",
     "fs": "^0.0.1-security",
+    "gatsby-plugin-robots-txt": "^1.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
     "node-gyp": "^6.1.0",

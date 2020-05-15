@@ -9,6 +9,7 @@ module.exports = {
     title: "Les dessins de Virgile Veyron Guillemaud",
     description:
       "Virgile Veyron Guillemaud / Dessinateur drôlatique / Peintre en châtiment / ACAB",
+    siteUrl: "https://www.lesdessinsdevirgile.com",
     keywords: [
       "Virgile Veyron Guillemaud",
       "dessins",
@@ -23,6 +24,7 @@ module.exports = {
     "gatsby-plugin-typescript",
     "gatsby-plugin-sass",
     "gatsby-plugin-typescript",
+    "gatsby-plugin-robots-txt",
     {
       resolve: `gatsby-source-filesystem`,
       options: {

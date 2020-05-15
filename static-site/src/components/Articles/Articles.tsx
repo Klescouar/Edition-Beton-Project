@@ -46,9 +46,7 @@ const Articles = ({ articles }: Props) => {
     setSelectedImageIndex(index);
     setIsOpen((wasOpen) => !wasOpen);
   };
-
   console.log(articles);
-
   return (
     <div className="Articles">
       <StackGrid
@@ -59,11 +57,10 @@ const Articles = ({ articles }: Props) => {
         columnWidth={isDesktop ? "30%" : "50%"}
       >
         {articles
-          .sort((a: Article, b: Article) =>
-            Math.abs(
+          .sort(
+            (a: Article, b: Article) =>
               new Date(b.creationDate).getTime() -
-                new Date(a.creationDate).getTime()
-            )
+              new Date(a.creationDate).getTime()
           )
           .map((article: Article, index: number) => {
             return (

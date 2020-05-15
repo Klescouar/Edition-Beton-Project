@@ -24,8 +24,19 @@ module.exports = {
     "gatsby-plugin-typescript",
     "gatsby-plugin-sass",
     "gatsby-plugin-typescript",
-    "gatsby-plugin-robots-txt",
-    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://www.lesdessinsdevirgile.com",
+        sitemap: "https://www.lesdessinsdevirgile.com/sitemap.xml",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`/admin`],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

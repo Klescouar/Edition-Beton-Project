@@ -15,7 +15,7 @@ type Props = {
 
 const About = ({ data }: Props) => {
   const { about } = data;
-  console.log(about.description);
+
   return (
     <Layout>
       <div className="About">

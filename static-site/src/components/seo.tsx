@@ -19,7 +19,7 @@ type Props = {
 
 const SEO = ({ description, lang, meta, title }: Props) => {
   const logo = useLogo();
-  console.log(logo);
+
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -27,6 +27,7 @@ const SEO = ({ description, lang, meta, title }: Props) => {
           siteMetadata {
             title
             description
+            keywords
           }
         }
       }
@@ -58,6 +59,22 @@ const SEO = ({ description, lang, meta, title }: Props) => {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          name: "keywords",
+          content: site.siteMetadata.keywords.join(","),
+        },
+        {
+          name: `twitter:creator`,
+          content: site.siteMetadata.author,
+        },
+        {
+          name: `twitter:title`,
+          content: title,
+        },
+        {
+          name: `twitter:description`,
+          content: metaDescription,
         },
       ]
         .concat([

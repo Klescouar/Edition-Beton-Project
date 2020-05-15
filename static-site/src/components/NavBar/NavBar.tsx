@@ -65,10 +65,10 @@ const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }: Props) => {
             <Img fluid={logo.image.childImageSharp.fluid} alt="" />
           )}
         </Link>
-        <p className="NavBar__Content__Presentation">
-          Virgile Veyron Guillemaud / Dessinateur drôlatique / Peintre en
-          châtiment / ACAB
-        </p>
+        <h1 className="NavBar__Content__Presentation">
+          <strong>Virgile Veyron Guillemaud</strong> / Dessinateur drôlatique /
+          Peintre en châtiment / ACAB
+        </h1>
         {true && (
           <div className="NavBar__Content__Actions">
             <Link

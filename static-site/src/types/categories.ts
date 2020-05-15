@@ -36,6 +36,7 @@ export type CategoriesActionTypes =
   | RemoveCategoryFailureAction
   | GetCategoriesSuccessAction
   | GetCategoriesFailureAction;
+
 export interface Category {
   _id: string;
   id: string;
@@ -47,7 +48,7 @@ export interface Category {
 
 export type Categories = Category[];
 
-export type CategoriesData = {
+export type CategoriesType = {
   allCategoryType: {
     edges: [
       {

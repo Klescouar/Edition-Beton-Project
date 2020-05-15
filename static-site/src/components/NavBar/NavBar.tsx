@@ -1,9 +1,10 @@
-import { Categories } from "../../types/categories";
+import { CategoriesType } from "../../types/categories";
 import { Logo } from "../../types/logo";
 
 import React from "react";
 import classNames from "classnames";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import { useLocation } from "@reach/router";
 import Img from "gatsby-image";
 
 import { useLogo } from "../useLogo";
@@ -20,12 +21,19 @@ type Props = {
 };
 
 const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }: Props) => {
+  const location = useLocation();
   const handleClick = () => {
     setMenuIsOpen(false);
   };
 
+  const getCategoryUrl = (category: any) => {
+    return location.pathname === `/${category.fields.slug}/`
+      ? "/"
+      : `/${category.fields.slug}/`;
+  };
+
   const logo: Logo = useLogo();
-  const categories: Categories = useStaticQuery(graphql`
+  const categories: CategoriesType = useStaticQuery(graphql`
     query Categories {
       allCategoryType {
         edges {
@@ -84,7 +92,10 @@ const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }: Props) => {
                   .map((category) => (
                     <MaterialLink
                       key={category.fields.slug}
-                      to={`/${category.fields.slug}`}
+                      to={getCategoryUrl(category)}
+                      isActive={
+                        location.pathname === `/${category.fields.slug}/`
+                      }
                     >
                       {category.name}
                     </MaterialLink>

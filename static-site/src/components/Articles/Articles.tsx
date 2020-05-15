@@ -46,7 +46,7 @@ const Articles = ({ articles }: Props) => {
     setSelectedImageIndex(index);
     setIsOpen((wasOpen) => !wasOpen);
   };
-  console.log(articles);
+
   return (
     <div className="Articles">
       <StackGrid

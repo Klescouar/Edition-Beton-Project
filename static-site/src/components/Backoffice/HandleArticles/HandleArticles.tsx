@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, RouteComponentProps } from "@reach/router";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { RouteComponentProps } from "@reach/router";
 
 import { Article } from "../../../types/articles";
 import { getArticles } from "../../../selectors/articles";
 import { getArticles as loadArticles } from "../../../actions/articles";
 import RemoveButton from "../../RemoveButton/RemoveButton";
-import MaterialButton from "../../MaterialButton/MaterialButton";
 import { removeArticle } from "../../../actions/articles";
 
 import "./HandleArticles.scss";

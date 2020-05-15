@@ -9,7 +9,13 @@ module.exports = {
     title: "Les dessins de Virgile Veyron Guillemaud",
     description:
       "Virgile Veyron Guillemaud / Dessinateur drôlatique / Peintre en châtiment / ACAB",
-    keywords: "Virgile Veyron Guillemaud, dessins, bande dessinée, actualité",
+    keywords: [
+      "Virgile Veyron Guillemaud",
+      "dessins",
+      "dessin",
+      "bande dessinée",
+      "actualité",
+    ],
     author: "Le Scouarnec Kevin & Matthis Duclos",
   },
   plugins: [

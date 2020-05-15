@@ -25,6 +25,7 @@ module.exports = {
     "gatsby-plugin-sass",
     "gatsby-plugin-typescript",
     "gatsby-plugin-robots-txt",
+    "gatsby-plugin-sitemap",
     {
       resolve: `gatsby-source-filesystem`,
       options: {

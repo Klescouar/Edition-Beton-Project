@@ -69,41 +69,37 @@ const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }: Props) => {
           <strong>Virgile Veyron Guillemaud</strong> / Dessinateur drôlatique /
           Peintre en châtiment / ACAB
         </h1>
-        {true && (
-          <div className="NavBar__Content__Actions">
-            <Link
-              className="NavBar__Content__Actions__Link"
-              to="/about"
-              onClick={handleClick}
-            >
-              En savoir plus
-            </Link>
-            <p className="NavBar__Content__Actions__Email">
-              virgilethedream@gmail.com
+        <div className="NavBar__Content__Actions">
+          <Link
+            className="NavBar__Content__Actions__Link"
+            to="/about"
+            onClick={handleClick}
+          >
+            En savoir plus
+          </Link>
+          <p className="NavBar__Content__Actions__Email">
+            virgilethedream@gmail.com
+          </p>
+          <div className="NavBar__Content__Actions__Separator"></div>
+          <div className="NavBar__Content__Actions__Categories">
+            <p className="NavBar__Content__Actions__Categories__Title">
+              Par catégories :
             </p>
-            <div className="NavBar__Content__Actions__Separator"></div>
-            <div className="NavBar__Content__Actions__Categories">
-              <p className="NavBar__Content__Actions__Categories__Title">
-                Par catégories :
-              </p>
-              <div className="NavBar__Content__Actions__Categories__List">
-                {categories.allCategoryType.edges
-                  .map(({ node }) => node)
-                  .map((category) => (
-                    <MaterialLink
-                      key={category.fields.slug}
-                      to={getCategoryUrl(category)}
-                      isActive={
-                        location.pathname === `/${category.fields.slug}/`
-                      }
-                    >
-                      {category.name}
-                    </MaterialLink>
-                  ))}
-              </div>
+            <div className="NavBar__Content__Actions__Categories__List">
+              {categories.allCategoryType.edges
+                .map(({ node }) => node)
+                .map((category) => (
+                  <MaterialLink
+                    key={category.fields.slug}
+                    to={getCategoryUrl(category)}
+                    isActive={location.pathname === `/${category.fields.slug}/`}
+                  >
+                    {category.name}
+                  </MaterialLink>
+                ))}
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

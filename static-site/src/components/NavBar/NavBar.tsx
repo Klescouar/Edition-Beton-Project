@@ -18,9 +18,10 @@ type Props = {
   isMobile: boolean;
   setMenuIsOpen: Function;
   menuIsOpen: boolean;
+  isHome: boolean;
 };
 
-const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }: Props) => {
+const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen, isHome }: Props) => {
   const location = useLocation();
   const handleClick = () => {
     setMenuIsOpen(false);
@@ -80,25 +81,31 @@ const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen }: Props) => {
           <p className="NavBar__Content__Actions__Email">
             virgilethedream@gmail.com
           </p>
-          <div className="NavBar__Content__Actions__Separator"></div>
-          <div className="NavBar__Content__Actions__Categories">
-            <p className="NavBar__Content__Actions__Categories__Title">
-              Par catégories :
-            </p>
-            <div className="NavBar__Content__Actions__Categories__List">
-              {categories.allCategoryType.edges
-                .map(({ node }) => node)
-                .map((category) => (
-                  <MaterialLink
-                    key={category.fields.slug}
-                    to={getCategoryUrl(category)}
-                    isActive={location.pathname === `/${category.fields.slug}/`}
-                  >
-                    {category.name}
-                  </MaterialLink>
-                ))}
-            </div>
-          </div>
+          {isHome && (
+            <>
+              <div className="NavBar__Content__Actions__Separator"></div>
+              <div className="NavBar__Content__Actions__Categories">
+                <p className="NavBar__Content__Actions__Categories__Title">
+                  Par catégories :
+                </p>
+                <div className="NavBar__Content__Actions__Categories__List">
+                  {categories.allCategoryType.edges
+                    .map(({ node }) => node)
+                    .map((category) => (
+                      <MaterialLink
+                        key={category.fields.slug}
+                        to={getCategoryUrl(category)}
+                        isActive={
+                          location.pathname === `/${category.fields.slug}/`
+                        }
+                      >
+                        {category.name}
+                      </MaterialLink>
+                    ))}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

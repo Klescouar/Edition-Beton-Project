@@ -15,14 +15,16 @@ type Props = {
 
 const About = ({ data }: Props) => {
   const { about } = data;
-
+  console.log(about.description);
   return (
     <Layout>
       <div className="About">
         <img alt="" className="About__Image" src={BurnedUpImage} />
-        <p
+        <div
           className="About__Description"
-          dangerouslySetInnerHTML={{ __html: about.description }}
+          dangerouslySetInnerHTML={{
+            __html: about.description,
+          }}
         />
         {about.image?.childImageSharp?.fluid && (
           <Img

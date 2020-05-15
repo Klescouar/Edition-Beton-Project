@@ -8,6 +8,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
+import { useLogo } from "./useLogo";
 
 type Props = {
   description: string;
@@ -17,6 +18,8 @@ type Props = {
 };
 
 const SEO = ({ description, lang, meta, title }: Props) => {
+  const logo = useLogo();
+  console.log(logo);
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -56,7 +59,26 @@ const SEO = ({ description, lang, meta, title }: Props) => {
           property: `og:type`,
           content: `website`,
         },
-      ].concat(meta)}
+      ]
+        .concat([
+          {
+            property: "og:image",
+            content: `https://virgile.s3.eu-west-3.amazonaws.com/${logo.url}`,
+          },
+          {
+            property: "og:image:width",
+            content: 600,
+          },
+          {
+            property: "og:image:height",
+            content: 600,
+          },
+          {
+            name: "twitter:card",
+            content: "summary_large_image",
+          },
+        ])
+        .concat(meta)}
     />
   );
 };

@@ -18,10 +18,15 @@ type Props = {
   isMobile: boolean;
   setMenuIsOpen: Function;
   menuIsOpen: boolean;
-  isHome: boolean;
+  isAboutPage: boolean;
 };
 
-const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen, isHome }: Props) => {
+const NavBar = ({
+  isMobile,
+  setMenuIsOpen,
+  menuIsOpen,
+  isAboutPage,
+}: Props) => {
   const location = useLocation();
   const handleClick = () => {
     setMenuIsOpen(false);
@@ -81,7 +86,7 @@ const NavBar = ({ isMobile, setMenuIsOpen, menuIsOpen, isHome }: Props) => {
           <p className="NavBar__Content__Actions__Email">
             virgilethedream@gmail.com
           </p>
-          {isHome && (
+          {!isAboutPage && (
             <>
               <div className="NavBar__Content__Actions__Separator"></div>
               <div className="NavBar__Content__Actions__Categories">

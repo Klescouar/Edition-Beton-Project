@@ -17,7 +17,7 @@ const About = ({ data }: Props) => {
   const { about } = data;
 
   return (
-    <Layout>
+    <Layout isAboutPage>
       <div className="About">
         <img alt="" className="About__Image" src={BurnedUpImage} />
         <div

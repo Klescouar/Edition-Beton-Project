@@ -17,7 +17,7 @@ const Home = ({ data }: Props) => {
 
   return (
     <div className="App">
-      <Layout isHome>
+      <Layout>
         <Articles articles={articles} />
       </Layout>
     </div>

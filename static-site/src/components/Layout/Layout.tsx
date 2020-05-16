@@ -14,10 +14,10 @@ import "./Layout.scss";
 
 type Props = {
   children: React.ReactNode;
-  isHome?: boolean;
+  isAboutPage?: boolean;
 };
 
-export const Layout = ({ children, isHome = false }: Props) => {
+export const Layout = ({ children, isAboutPage = false }: Props) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const screenSize = useScreenSize();
@@ -37,7 +37,7 @@ export const Layout = ({ children, isHome = false }: Props) => {
     >
       <SEO />
       <NavBar
-        isHome={isHome}
+        isAboutPage={isAboutPage}
         isMobile={isMobile}
         menuIsOpen={menuIsOpen}
         setMenuIsOpen={setMenuIsOpen}

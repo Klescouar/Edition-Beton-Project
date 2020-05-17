@@ -30,7 +30,7 @@ export const getScreenSize = (
 };
 
 const useScreenSize = () => {
-  const [screenSize, setScreenSize] = useState<Breakpoint>(SMALL);
+  const [screenSize, setScreenSize] = useState<Breakpoint>(LARGE);
 
   const handleResize = () => {
     setScreenSize(getScreenSize(window.innerWidth));

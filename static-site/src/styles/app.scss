@@ -239,6 +239,8 @@ body {
 
   @include mobile {
     background: url("../icons/cross-out.svg") no-repeat center;
+    height: 1.5rem;
+    width: 1.5rem;
   }
 }
 

@@ -6,7 +6,7 @@ export interface PreSavedAbout {
   description: string;
 }
 
-export interface SavecAbout {
+export interface SavedAbout {
   _id: string;
   url: string;
   title: string;
@@ -15,7 +15,7 @@ export interface SavecAbout {
 
 interface UpdateAboutSuccessAction {
   type: "UPDATE_ABOUT_SUCCESS";
-  payload: SavecAbout;
+  payload: SavedAbout;
 }
 
 interface UpdateAboutFailureAction {
@@ -24,7 +24,7 @@ interface UpdateAboutFailureAction {
 
 interface GetAboutSuccessAction {
   type: "GET_ABOUT_SUCCESS";
-  payload: SavecAbout;
+  payload: SavedAbout;
 }
 
 interface GetAboutailureAction {
@@ -42,7 +42,8 @@ export interface About {
   id: string;
   title: string;
   description: string;
-  url: string;
+  aboveImage: string;
+  bottomImage: string;
 }
 
 export interface AboutType extends About {

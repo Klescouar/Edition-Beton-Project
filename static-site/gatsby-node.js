@@ -44,7 +44,10 @@ exports.onCreateNode = async ({ node, actions, getCache, createNodeId }) => {
   }
 
   if (["ArticleType", "LogoType", "AboutType"].includes(node.internal.type)) {
-    const imageUrl = `https://virgile.s3.eu-west-3.amazonaws.com/${node.url}`;
+    const imageUrl = `https://virgile.s3.eu-west-3.amazonaws.com/${
+      ["AboutType"].includes(node.internal.type) ? node.aboveImage : node.url
+    }`;
+
     createNodeField({ node, name: "imageUrl", value: imageUrl });
     try {
       const fileNode = await createRemoteFileNode({

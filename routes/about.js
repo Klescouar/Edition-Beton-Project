@@ -31,6 +31,8 @@ router.post("/about", auth, async (req, res) => {
       url: req.body.url,
       title: req.body.title,
       description: req.body.description,
+      aboveImage: req.body.aboveImage,
+      bottomImage: req.body.bottomImage,
     });
 
     await about.save();

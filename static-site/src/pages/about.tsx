@@ -15,11 +15,15 @@ type Props = {
 
 const About = ({ data }: Props) => {
   const { about } = data;
-  console.log(about);
+
   return (
     <Layout isAboutPage>
       <div className="About">
-        <img alt="" className="About__Image" src={BurnedUpImage} />
+        <img
+          alt=""
+          className="About__Image"
+          src={"https://virgile.s3.eu-west-3.amazonaws.com/ciel.jpg"}
+        />
         <div
           className="About__Description"
           dangerouslySetInnerHTML={{

@@ -19,11 +19,15 @@ const HandleAbout = (props: RouteComponentProps) => {
 
   const dispatch = useDispatch();
   const [about, setAbout] = useState<About>(savedAbout);
+  const [aboveImage, setAboveImage] = useState({ url: "" });
+  const [bottomImage, setBottomImage] = useState({ url: "" });
 
   const [formError, setFormError] = useState("");
 
   useEffect(() => {
     if (savedAbout.title) setAbout(savedAbout);
+    if (savedAbout.aboveImage) setAboveImage({ url: savedAbout.aboveImage });
+    if (savedAbout.bottomImage) setBottomImage({ url: savedAbout.bottomImage });
   }, [savedAbout]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,8 +36,14 @@ const HandleAbout = (props: RouteComponentProps) => {
   };
 
   const handleClick = () => {
-    if (about.title.trim() && about.url.trim()) {
-      dispatch(updateAbout(about));
+    if (about.title.trim() && aboveImage.url.trim() && bottomImage.url.trim()) {
+      dispatch(
+        updateAbout({
+          ...about,
+          aboveImage: aboveImage.url,
+          bottomImage: bottomImage.url,
+        })
+      );
       setFormError("");
     } else {
       setFormError("All fields are required");
@@ -72,6 +82,7 @@ const HandleAbout = (props: RouteComponentProps) => {
           value={about.title}
           label="Titre"
         />
+        <ImageUploader item={aboveImage} setItem={setAboveImage} />
         <div className="HandleAbout__Content__Editor">
           <Suspense fallback={<div />}>
             <ReactQuill
@@ -85,7 +96,7 @@ const HandleAbout = (props: RouteComponentProps) => {
             />
           </Suspense>
         </div>
-        <ImageUploader item={about} setItem={setAbout} />
+        <ImageUploader item={bottomImage} setItem={setBottomImage} />
         <MaterialButton handleClick={handleClick} text={"Envoyer"} />
         {formError && (
           <p className="HandleAbout__Content__Error">{formError}</p>

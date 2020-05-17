@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const AboutSchema = mongoose.Schema({
-  url: {
+  aboveImage: {
+    type: String,
+    required: true,
+  },
+  bottomImage: {
     type: String,
     required: true,
   },

@@ -1,6 +1,6 @@
 import { ThunkAction } from "redux-thunk";
 
-import { AboutActionTypes, PreSavedAbout } from "../types/about";
+import { AboutActionTypes, About } from "../types/about";
 import { State } from "../types/state";
 import API from "../utils/api";
 
@@ -22,7 +22,7 @@ export const getAbout = (): ThunkAction<
 };
 
 export const updateAbout = (
-  about: PreSavedAbout
+  about: About
 ): ThunkAction<void, State, unknown, AboutActionTypes> => async (dispatch) => {
   try {
     const response = await API.post("/about", about);

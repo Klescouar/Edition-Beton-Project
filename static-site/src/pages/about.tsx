@@ -14,7 +14,6 @@ type Props = {
 
 const About = ({ data }: Props) => {
   const { about } = data;
-  console.log(about);
 
   return (
     <Layout isAboutPage>

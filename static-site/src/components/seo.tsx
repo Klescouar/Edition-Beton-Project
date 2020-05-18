@@ -95,7 +95,12 @@ const SEO = ({ description, lang, meta, title }: Props) => {
           },
         ])
         .concat(meta)}
-    />
+    >
+      <link
+        rel="icon"
+        href={`https://virgile.s3.eu-west-3.amazonaws.com/${logo.url}`}
+      />
+    </Helmet>
   );
 };
 

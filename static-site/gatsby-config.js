@@ -7,6 +7,7 @@ AWS.config.update({
 module.exports = {
   siteMetadata: {
     title: "Les dessins de Virgile Veyron Guillemaud",
+    titleTemplate: "%s / Dessinateur · Illustrateur",
     description:
       "Virgile Veyron Guillemaud / Dessinateur drôlatique / Peintre en châtiment / ACAB",
     siteUrl: "https://www.lesdessinsdevirgile.com",

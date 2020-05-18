@@ -43,10 +43,8 @@ exports.onCreateNode = async ({ node, actions, getCache, createNodeId }) => {
     });
   }
 
-  if (["ArticleType", "LogoType", "AboutType"].includes(node.internal.type)) {
-    const imageUrl = `https://virgile.s3.eu-west-3.amazonaws.com/${
-      ["AboutType"].includes(node.internal.type) ? node.aboveImage : node.url
-    }`;
+  if (["ArticleType", "LogoType"].includes(node.internal.type)) {
+    const imageUrl = `https://virgile.s3.eu-west-3.amazonaws.com/${node.url}`;
 
     createNodeField({ node, name: "imageUrl", value: imageUrl });
     try {
@@ -60,6 +58,46 @@ exports.onCreateNode = async ({ node, actions, getCache, createNodeId }) => {
 
       if (fileNode) {
         node.image = fileNode.id;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  if (["AboutType"].includes(node.internal.type)) {
+    const aboveImageUrl = `https://virgile.s3.eu-west-3.amazonaws.com/${node.aboveImage}`;
+    const bottomImageUrl = `https://virgile.s3.eu-west-3.amazonaws.com/${node.bottomImage}`;
+
+    createNodeField({ node, name: "aboveImage", value: aboveImageUrl });
+    createNodeField({ node, name: "bottomImage", value: bottomImageUrl });
+
+    try {
+      const fileNode = await createRemoteFileNode({
+        url: aboveImageUrl,
+        parentNodeId: node.id,
+        getCache,
+        createNode,
+        createNodeId,
+      });
+
+      if (fileNode) {
+        node.aboveImage = fileNode.id;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    try {
+      const fileNode = await createRemoteFileNode({
+        url: bottomImageUrl,
+        parentNodeId: node.id,
+        getCache,
+        createNode,
+        createNodeId,
+      });
+
+      if (fileNode) {
+        node.bottomImage = fileNode.id;
       }
     } catch (err) {
       console.error(err);
@@ -85,7 +123,8 @@ exports.createSchemaCustomization = ({ actions }) => {
     type AboutType implements Node {
       id: ID!
       # create a relationship between Article and the File nodes for optimized images
-      image: File @link
+      bottomImage: File @link
+      aboveImage: File @link
     }
   `);
 };

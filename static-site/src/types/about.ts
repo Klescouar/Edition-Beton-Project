@@ -47,7 +47,12 @@ export interface About {
 }
 
 export interface AboutType extends About {
-  image: {
+  bottomImage: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
+  aboveImage: {
     childImageSharp: {
       fluid: FluidObject;
     };

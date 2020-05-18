@@ -5,7 +5,6 @@ import { graphql } from "gatsby";
 import Img from "gatsby-image";
 
 import Layout from "../components/Layout/Layout";
-import BurnedUpImage from "../images/banniere-up_burned.png";
 
 import "../styles/About.scss";
 
@@ -15,26 +14,29 @@ type Props = {
 
 const About = ({ data }: Props) => {
   const { about } = data;
+  console.log(about);
 
   return (
     <Layout isAboutPage>
       <div className="About">
-        <img
-          alt=""
-          className="About__Image"
-          src={"https://virgile.s3.eu-west-3.amazonaws.com/ciel.jpg"}
-        />
+        {about.aboveImage?.childImageSharp?.fluid && (
+          <Img
+            className="About__Image"
+            fluid={about.aboveImage.childImageSharp.fluid}
+            alt=""
+          />
+        )}
         <div
           className="About__Description"
           dangerouslySetInnerHTML={{
             __html: about.description,
           }}
         />
-        {about.image?.childImageSharp?.fluid && (
+        {about.bottomImage?.childImageSharp?.fluid && (
           <Img
-            fluid={about.image.childImageSharp.fluid}
-            alt=""
             className="About__Image"
+            fluid={about.bottomImage.childImageSharp.fluid}
+            alt=""
           />
         )}
       </div>
@@ -47,7 +49,14 @@ export const query = graphql`
     about: aboutType {
       id
       description
-      image {
+      aboveImage {
+        childImageSharp {
+          fluid(maxWidth: 1024) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      bottomImage {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid

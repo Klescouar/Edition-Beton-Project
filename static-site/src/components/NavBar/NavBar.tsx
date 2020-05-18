@@ -33,9 +33,9 @@ const NavBar = ({
   };
 
   const getCategoryUrl = (category: any) => {
-    return location.pathname === `/${category.fields.slug}/`
+    return location.pathname === `/${category.fields.slug}`
       ? "/"
-      : `/${category.fields.slug}/`;
+      : `/${category.fields.slug}`;
   };
 
   const logo: Logo = useLogo();
@@ -101,7 +101,7 @@ const NavBar = ({
                         key={category.fields.slug}
                         to={getCategoryUrl(category)}
                         isActive={
-                          location.pathname === `/${category.fields.slug}/`
+                          location.pathname === `/${category.fields.slug}`
                         }
                       >
                         {category.name}

@@ -4,9 +4,11 @@ type AboutState = About;
 
 const initialState: AboutState = {
   _id: "",
-  url: "",
+  id: "",
   title: "",
   description: "",
+  aboveImage: "",
+  bottomImage: "",
 };
 
 export default (state: AboutState = initialState, action: AboutActionTypes) => {

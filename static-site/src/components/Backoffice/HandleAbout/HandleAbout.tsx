@@ -28,7 +28,7 @@ const HandleAbout = (props: RouteComponentProps) => {
     if (savedAbout.title) setAbout(savedAbout);
     if (savedAbout.aboveImage) setAboveImage({ url: savedAbout.aboveImage });
     if (savedAbout.bottomImage) setBottomImage({ url: savedAbout.bottomImage });
-  }, [savedAbout]);
+  }, [savedAbout, about]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = event.target;

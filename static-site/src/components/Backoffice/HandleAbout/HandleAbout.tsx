@@ -18,16 +18,26 @@ const HandleAbout = (props: RouteComponentProps) => {
   const savedAbout = useFetchData<About>(loadAbout, getAbout);
 
   const dispatch = useDispatch();
-  const [about, setAbout] = useState<About>(savedAbout);
+  const [about, setAbout] = useState<About>({
+    id: "",
+    _id: "",
+    title: "",
+    description: "",
+    aboveImage: "",
+    bottomImage: "",
+  });
   const [aboveImage, setAboveImage] = useState({ url: "" });
   const [bottomImage, setBottomImage] = useState({ url: "" });
 
   const [formError, setFormError] = useState("");
 
   useEffect(() => {
-    if (savedAbout.title) setAbout(savedAbout);
-    if (savedAbout.aboveImage) setAboveImage({ url: savedAbout.aboveImage });
-    if (savedAbout.bottomImage) setBottomImage({ url: savedAbout.bottomImage });
+    if (!about.title) {
+      if (savedAbout) setAbout(savedAbout);
+      if (savedAbout.aboveImage) setAboveImage({ url: savedAbout.aboveImage });
+      if (savedAbout.bottomImage)
+        setBottomImage({ url: savedAbout.bottomImage });
+    }
   }, [savedAbout, about]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

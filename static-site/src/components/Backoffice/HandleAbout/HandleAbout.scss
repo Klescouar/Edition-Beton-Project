@@ -19,9 +19,12 @@
     max-width: 30rem;
     margin: 1rem;
     width: 73%;
+    min-width: 50rem;
 
     @include mobile {
+      width: 90%;
       padding: 2rem;
+      min-width: unset;
     }
 
     &__Editor {

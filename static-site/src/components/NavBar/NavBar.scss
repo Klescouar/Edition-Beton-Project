@@ -18,7 +18,7 @@
 
   @include mobile {
     left: -100%;
-    width: 100%;
+    width: 100vw;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
@@ -37,9 +37,9 @@
     &__Presentation {
       margin: 0;
       padding: 1rem 1rem 0.5rem;
-      line-height: 1.5rem;
+      line-height: 2.3rem;
       text-align: center;
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
 
     &__Actions {
@@ -51,6 +51,7 @@
       &__Email {
         font-weight: bold;
         margin-top: 2rem;
+        font-size: 1.4rem;
 
         @include mobile {
           margin-top: 1rem;
@@ -76,6 +77,7 @@
         font-weight: bold;
         font-style: italic;
         text-decoration: underline;
+        font-size: 1.4rem;
 
         &:hover {
           color: #dd8a37;
@@ -84,13 +86,14 @@
 
       &__Categories {
         a {
-          margin: 0.2rem;
-          padding: 0.3rem;
+          margin: 0.4rem;
+          padding: 0.7rem;
+          font-size: 1.2rem;
         }
 
         &__Title {
           margin-top: 0;
-          font-size: 1.3rem;
+          font-size: 1.6rem;
           font-weight: bold;
           text-align: center;
         }
@@ -119,7 +122,7 @@
     }
 
     &__Logo {
-      max-width: 18rem;
+      max-width: 27rem;
       width: 100%;
       margin-bottom: 1rem;
 

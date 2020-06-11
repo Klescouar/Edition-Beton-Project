@@ -4,8 +4,8 @@
 .ImageUploader {
   margin-top: 4rem;
   background-color: $base-color;
-  height: 12rem;
-  width: 15rem;
+  height: 24rem;
+  width: 30rem;
   position: relative;
   border-radius: 0.5rem;
   border: 0.15rem dashed rgb(190, 190, 190);
@@ -14,8 +14,8 @@
   background-repeat: no-repeat;
 
   @include mobile {
-    height: 10rem;
-    width: 12rem;
+    height: 20rem;
+    width: 24rem;
   }
 
   &__Close {

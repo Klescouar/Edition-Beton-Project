@@ -67,7 +67,7 @@ exports.onCreateNode = async ({ node, actions, getCache, createNodeId }) => {
   if (["AboutType"].includes(node.internal.type)) {
     const aboveImageUrl = `https://virgile.s3.eu-west-3.amazonaws.com/${node.aboveImage}`;
     const bottomImageUrl = `https://virgile.s3.eu-west-3.amazonaws.com/${node.bottomImage}`;
-
+    console.log(node.bottomImage);
     createNodeField({ node, name: "aboveImage", value: aboveImageUrl });
     createNodeField({ node, name: "bottomImage", value: bottomImageUrl });
 

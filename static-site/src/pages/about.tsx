@@ -20,7 +20,7 @@ const About = ({ data }: Props) => {
       <div className="About">
         {about.aboveImage?.childImageSharp?.fluid && (
           <Img
-            className="About__Image"
+            className="About__AboveImage"
             fluid={about.aboveImage.childImageSharp.fluid}
             alt=""
           />
@@ -33,7 +33,7 @@ const About = ({ data }: Props) => {
         />
         {about.bottomImage?.childImageSharp?.fluid && (
           <Img
-            className="About__Image"
+            className="About__BottomImage"
             fluid={about.bottomImage.childImageSharp.fluid}
             alt=""
           />

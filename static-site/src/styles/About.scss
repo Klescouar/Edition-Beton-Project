@@ -7,17 +7,18 @@
   align-items: center;
   min-height: calc(100vh - 10rem);
 
-  &__Image {
-    width: 80%;
+  &__AboveImage {
+    width: 45%;
 
     @include mobile {
-      width: 100%;
+      margin-top: 3rem;
+      width: 85%;
     }
   }
 
   &__Description {
     width: 70%;
-    margin: 6rem;
+    margin: 4rem 6rem 6rem;
     line-height: 2.2rem;
     font-size: 1.6rem;
 
@@ -26,13 +27,21 @@
     }
 
     @include mobile {
-      width: 80%;
-      margin: 2rem;
+      width: 85%;
+      margin: 2rem 0rem 4rem;
     }
 
     @include tablet {
       width: 80%;
       margin: 2rem;
+    }
+  }
+
+  &__BottomImage {
+    width: 80%;
+
+    @include mobile {
+      width: 100%;
     }
   }
 }

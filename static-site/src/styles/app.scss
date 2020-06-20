@@ -7,6 +7,12 @@
   src: url("../fonts/Roboto-Light.ttf");
 }
 
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Medium.ttf");
+  font-weight: bold;
+}
+
 html {
   font-size: 62.5%;
 }

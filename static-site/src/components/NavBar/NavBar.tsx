@@ -72,8 +72,10 @@ const NavBar = ({
           )}
         </Link>
         <h1 className="NavBar__Content__Presentation">
-          <strong>Virgile Veyron Guillemaud</strong> / Dessinateur drôlatique /
-          Peintre en châtiment / ACAB
+          <strong className="NavBar__Content__Presentation__Name">
+            Virgile Veyron Guillemaud
+          </strong>{" "}
+          dessinateur de presse et BD, humaniste.
         </h1>
         <div className="NavBar__Content__Actions">
           <Link
@@ -84,7 +86,7 @@ const NavBar = ({
             En savoir plus
           </Link>
           <p className="NavBar__Content__Actions__Email">
-            virgilethedream@gmail.com
+            message@lesdessinsdevirgile.com
           </p>
           {!isAboutPage && (
             <>

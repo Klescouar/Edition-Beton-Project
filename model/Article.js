@@ -5,10 +5,6 @@ const ArticleSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  title: {
-    type: String,
-    required: true,
-  },
   categories: {
     type: Array,
     required: true,

@@ -2,14 +2,12 @@ import { FluidObject } from "gatsby-image";
 
 export interface PreSavedArticle {
   url: string;
-  title: string;
   categories: string[];
 }
 
 export interface Article {
   _id: string;
   url: string;
-  title: string;
   categories: string[];
   creationDate: Date;
 }
@@ -64,7 +62,6 @@ export type ArticleActionTypes =
 
 export interface Article {
   id: string;
-  title: string;
   creationDate: Date;
   fields: {
     imageUrl: string;

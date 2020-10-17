@@ -91,7 +91,6 @@ router.post("/article", auth, async (req, res) => {
   try {
     const article = new Article({
       url: req.body.url,
-      title: req.body.title,
       categories: req.body.categories,
       creationDate: new Date(),
     });
@@ -126,7 +125,7 @@ router.get("/articles", async (req, res) => {
  * @param - /article
  */
 
-router.delete("/article", auth, async (req, res) => {
+router.post("/removeArticle", auth, async (req, res) => {
   try {
     await Article.findOneAndRemove(
       {
@@ -156,7 +155,6 @@ router.put("/article", auth, async (req, res) => {
     const article = new Article({
       _id: req.body._id,
       url: req.body.url,
-      title: req.body.title,
       categories: req.body.categories,
     });
     await Article.findOneAndUpdate(

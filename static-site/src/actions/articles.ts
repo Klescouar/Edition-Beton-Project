@@ -47,7 +47,7 @@ export const removeArticle = (
   dispatch
 ) => {
   try {
-    const response = await API.delete("/article", article);
+    const response = await API.remove("/removeArticle", article);
     dispatch({
       type: "REMOVE_ARTICLE_SUCCESS",
       payload: response,

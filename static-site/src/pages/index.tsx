@@ -31,7 +31,6 @@ export const query = graphql`
         node {
           id
           creationDate
-          title
           fields {
             imageUrl
           }

@@ -23,7 +23,6 @@ const HandleArticle = (props: RouteComponentProps) => {
   const articleToModify = useSelector(getArticle(params.id));
   const categories = useSelector(getCategories);
   const [article, setArticle] = useState<PreSavedArticle>({
-    title: "",
     url: "",
     categories: [],
   });
@@ -32,12 +31,7 @@ const HandleArticle = (props: RouteComponentProps) => {
   useFetchData<Category[]>(loadCategories, getCategories);
 
   useEffect(() => {
-    if (
-      !!articleToModify &&
-      !article.title &&
-      !article.url &&
-      article.categories.length === 0
-    ) {
+    if (!!articleToModify && !article.url && article.categories.length === 0) {
       setArticle(articleToModify);
     }
   }, [article, articleToModify]);
@@ -48,7 +42,7 @@ const HandleArticle = (props: RouteComponentProps) => {
   };
 
   const handleClick = () => {
-    if (article.title.trim() && article.url.trim()) {
+    if (article.url.trim()) {
       params.id
         ? dispatch(updateArticle(article, params.id))
         : dispatch(addArticle(article));
@@ -76,12 +70,6 @@ const HandleArticle = (props: RouteComponentProps) => {
   return (
     <div className="HandleArticle">
       <div className="HandleArticle__Content">
-        <MaterialInput
-          name="title"
-          handleChange={handleChange}
-          value={article.title}
-          label="Titre"
-        />
         <h3 className="HandleArticle__Content__Subtitle">
           Selection des catégories associées :
         </h3>

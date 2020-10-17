@@ -70,7 +70,6 @@ const Articles = ({ articles }: Props) => {
                   className="Articles__Article"
                   key={article.id}
                   onClick={() => handleClick(index)}
-                  aria-label={`Afficher ${article.title}`}
                 >
                   <Img
                     className="Articles__Article__Image"

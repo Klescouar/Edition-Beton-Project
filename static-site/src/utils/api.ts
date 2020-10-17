@@ -37,9 +37,9 @@ const API = {
     });
   },
 
-  delete(url: string, payload: Object) {
+  remove(url: string, payload: Object) {
     return fetch(`/api${url}`, {
-      method: "DELETE",
+      method: "POST",
       mode: "cors",
       credentials: "include", // necessary to set commits via fetch
       headers: this.getHeaders("POST"),
@@ -72,6 +72,7 @@ const API = {
       }
     });
   },
+
   getHeaders(method: string): Headers {
     const token = Cookies.get("token");
     const headers = new Headers();

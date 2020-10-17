@@ -9,7 +9,7 @@ module.exports = {
     title: "Les dessins de Virgile Veyron Guillemaud",
     titleTemplate: "%s / Dessinateur · Illustrateur",
     description:
-      "Virgile Veyron Guillemaud / Dessinateur drôlatique / Peintre en châtiment / ACAB",
+      "Virgile Veyron Guillemaud dessinateur de presse et BD, humaniste.",
     siteUrl: "https://www.lesdessinsdevirgile.com",
     keywords: [
       "Virgile Veyron Guillemaud",

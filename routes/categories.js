@@ -45,7 +45,7 @@ router.post("/category", auth, async (req, res) => {
  * @param - /category
  */
 
-router.delete("/category", auth, async (req, res) => {
+router.post("/removeCategory", auth, async (req, res) => {
   try {
     await Category.findOneAndRemove({
       _id: req.body.id,

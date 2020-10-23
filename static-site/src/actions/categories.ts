@@ -26,7 +26,7 @@ export const removeCategory = (
   dispatch
 ) => {
   try {
-    const response = await API.delete("/category", { id });
+    const response = await API.post("/removeCategory", { id });
     dispatch({
       type: "REMOVE_CATEGORY_SUCCESS",
       payload: response,
